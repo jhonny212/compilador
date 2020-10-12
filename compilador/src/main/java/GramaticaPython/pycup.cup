@@ -1,0 +1,353 @@
+package GramaticaPython;
+import java_cup.runtime.Symbol;
+import Errores.ErrorClass;
+import controlador.Controlador_;
+import java_cup.runtime.Symbol;
+import Variable.*;
+import Instrucciones.*;
+
+import Arbol.*;
+import Arbol.AritAST.*;
+import Arbol.BoolAST.*;
+import java_cup.runtime.XMLElement;
+import java_cup.runtime.XMLElement;
+import java.util.ArrayList;
+
+parser code {:
+private Controlador_ controlador=new Controlador_();
+public ArrayList<metodo_py> metodos=new ArrayList<>();
+    public ErrorClass errores;
+    @Override
+    public void unrecovered_syntax_error(Symbol s){
+    System.out.println("SYNTAX_La Cadena:" +s.value+" en la Linea:"+(s.right+1) +" ,Columna: "+s.left+"esta fuera de contexto." );
+    }
+    public void syntax_error(Symbol s){
+    System.out.println("La Cadena:" +s.value+" en la Linea:"+(s.right+1) +" ,Columna: "+s.left+"esta fuera de contexto." );
+    }
+:}
+
+non-terminal inicio;
+
+terminal String WHILE,ELSE,IF,FOR,RETURN,CODC;
+terminal String TWOPOINT,COMA,IN;
+terminal String AP,CP,RANGE,OP,SUM,RES,MUL,DIV,MODUL,ELSEIF;
+terminal String EQUALS,DEF,AND,OR,NOT,CADENA;
+terminal String SALTO_LINEA,ID,PRINT;
+terminal Integer ENTERO;
+terminal Double REAL;
+terminal char CARACTER;
+terminal String INPUTI,INPUTC,INPUTD;
+//------------------->
+non-terminal ArrayList<VariableDeclaracion> argumentos;
+//------------------->while
+
+//------------------>metodos
+non-terminal metodos;
+non-terminal funcion;
+//------------------>instrucciones
+non-terminal ArrayList<InstruccionPy> instrucciones;
+non-terminal InstruccionPy instruccion;
+non-terminal InstruccionPy asignacion_var;
+non-terminal InstruccionPy while_var;
+non-terminal InstruccionPy for_var;
+non-terminal InstruccionPy if_var;
+non-terminal InstruccionPy else_var;
+non-terminal InstruccionPy print_var;
+non-terminal ArrayList<argumento_dato> datos;
+non-terminal InstruccionPy input_var;
+//------------------->aritmetica
+non-terminal NodoAritmetica e,t,f;
+
+non-terminal NodoAritmetica ee1,tt1,ff1;
+non-terminal Object[] z,y;
+non-terminal NodoBoolean b,c;
+non-terminal NodoBoolean boolean;
+
+start with inicio;
+
+inicio::= SALTO_LINEA metodos CODC;
+inicio::= SALTO_LINEA CODC;
+
+metodos::= metodos funcion
+| funcion
+|error funcion;
+
+funcion::= DEF:x1 ID:id AP argumentos:args CP TWOPOINT SALTO_LINEA
+instrucciones:list
+{:
+metodo_py m=new metodo_py (id,x1left,x1right,list,args);
+m.errorClass=this.parser.errores;
+m.validate();
+this.parser.metodos.add(m);
+:}
+;
+
+funcion::= DEF:x1 ID:id AP argumentos:args CP TWOPOINT SALTO_LINEA
+instrucciones:list
+SALTO_LINEA
+{:
+metodo_py m=new metodo_py (id,x1left,x1right,list,args);
+m.errorClass=this.parser.errores;
+m.validate();
+this.parser.metodos.add(m);
+:};
+
+funcion::= DEF:x1 ID:id AP CP TWOPOINT SALTO_LINEA
+instrucciones:list
+SALTO_LINEA
+{:
+metodo_py m=new metodo_py (id,x1left,x1right,list);
+m.errorClass=this.parser.errores;
+m.validate();
+this.parser.metodos.add(m);
+:}
+;
+
+funcion::= DEF:x1 ID:id AP CP TWOPOINT SALTO_LINEA
+instrucciones:list
+{:
+metodo_py m=new metodo_py (id,x1left,x1right,list);
+m.errorClass=this.parser.errores;
+m.validate();
+this.parser.metodos.add(m);
+:};
+
+
+
+argumentos::= argumentos:list COMA ID:id
+{:
+VariableDeclaracion var=new VariableDeclaracion(id,idleft,idright);
+var.isNull=false;
+list.add(var);
+RESULT=list;
+:};
+argumentos::= ID:id
+{:
+VariableDeclaracion var=new VariableDeclaracion(id,idleft,idright);
+var.isNull=false;
+RESULT=new ArrayList();
+RESULT.add(var);
+:}
+|error COMA;
+
+instrucciones::= instrucciones:list SALTO_LINEA  instruccion:in
+{:
+list.add(in);
+RESULT=list;
+:}
+|instruccion:in
+{:
+ArrayList<InstruccionPy> list=new ArrayList();
+list.add(in);
+RESULT=list;
+:}
+|error instruccion;
+
+instruccion::= asignacion_var:x {:RESULT=x;:}
+|while_var:x {:RESULT=x;:}
+|for_var:x {:RESULT=x;:}
+|if_var:x {:RESULT=x;:}
+|print_var:x {:RESULT=x;:}
+|input_var:x {:RESULT=x;:}
+|else_var:x {:RESULT=x;:}
+|RETURN:x1 e:nodo {:RESULT=new return_py(x1left,x1right,nodo);:};
+
+asignacion_var::= ID:id EQUALS e:nodo
+{:
+RESULT=new asignacion_PY(id,nodo,idleft,idright);
+
+:};
+asignacion_var::= ID:id EQUALS input_var:nodo
+{:
+RESULT=new asignacion_PY(id,(input_PY)nodo,idleft,idright);
+
+:}
+|error e;
+
+
+while_var::= WHILE:x1 boolean:bool TWOPOINT
+{:RESULT=new while_PY(bool,x1left,x1right);:};
+
+for_var::= FOR:x1 ID:id IN RANGE AP e:n1 COMA e:n2 COMA e:n3 CP TWOPOINT
+{:RESULT=new for_py(x1left,x1right,id,idleft,idright,n1,n2,n3);:};
+
+
+
+if_var::= IF:x1 boolean:bool TWOPOINT
+{:
+RESULT=new if_py(x1left,x1right,bool);
+:};
+
+
+else_var::= ELSE:x1 TWOPOINT
+{:
+RESULT=new else_py(x1left,x1right,null);
+:}
+|ELSEIF:x1  boolean:bool TWOPOINT
+{:
+RESULT=new else_py(x1left,x1right,bool);
+:};
+
+print_var::= PRINT:x1 AP CP {:RESULT=new print_PY(x1left,x1right,null);:};
+print_var::= PRINT:x1 AP datos:d CP {:RESULT=new print_PY(x1left,x1right,d);:};
+input_var::= INPUTI:x1 AP CP {:RESULT=new input_PY(x1left,x1right,1,"e",null);:};
+input_var::= INPUTD:x1 AP CP {:RESULT=new input_PY(x1left,x1right,0,"r",null);:};
+input_var::= INPUTC:x1 AP CP {:RESULT=new input_PY(x1left,x1right,2,"c",null);:};
+input_var::= INPUTI:x1 AP datos:d CP {:RESULT=new input_PY(x1left,x1right,1,"e",d);:};
+input_var::= INPUTD:x1 AP datos:d CP {:RESULT=new input_PY(x1left,x1right,0,"r",d);:};
+input_var::= INPUTC:x1 AP datos:d CP {:RESULT=new input_PY(x1left,x1right,2,"c",d);:};
+
+
+datos::= datos:d COMA CADENA:id
+{:
+d.add(new argumento_dato(id));
+RESULT=d;
+:};
+datos::= datos:d COMA e:nodo
+{:
+d.add(new argumento_dato(nodo));
+RESULT=d;
+:};
+datos::= CADENA:id
+{:
+RESULT= new ArrayList();
+RESULT.add(new argumento_dato(id));
+:};
+datos::= e:nodo
+{:
+RESULT= new ArrayList();
+RESULT.add(new argumento_dato(nodo));
+:}
+|error e;
+
+
+
+//-------------------------------------------------------------------------------------->
+e::= e:val1 SUM t:val2
+{:RESULT=this.parser.controlador.Operar("+",val1,val2);:};
+e::= e:val1 RES t:val2
+{:RESULT=this.parser.controlador.Operar("-",val1,val2);:};
+
+e::= t:val {:RESULT=val;:};
+t::= t:val1 MUL f:val2
+{:RESULT=this.parser.controlador.Operar("*",val1,val2);:};
+t::= t:val1 DIV f:val2{:RESULT=this.parser.controlador.Operar("/",val1,val2);:};
+t::= f:val {:RESULT=val;:};
+t::= t:val1 MODUL f:val2
+{:RESULT=this.parser.controlador.Operar("%",val1,val2);:};
+f::= ID:val
+{:
+RESULT=new NodoAritmetica(new VariableID(val,valleft,valright));:};
+f::= REAL:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val,0,"r"));:};
+f::= CARACTER:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val,1,"c"));:};
+f::= ENTERO:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));:};
+f::= AP e:val1 CP {:RESULT=val1;:};
+f::= RES AP e:val1 CP
+{:
+RESULT=val1;
+RESULT.cambiarSigno=1;
+:};
+
+
+
+boolean::= boolean:v1 AND b:v2 {:RESULT=new NodoBoolean(v1,"and",v2);:};
+boolean::= b:v1 {:RESULT=v1;:};
+b::= b:v1 OR c:v2 {:RESULT=new NodoBoolean(v1,"or",v2);:};
+b::= c:v1 {:RESULT=v1;:};
+c::= ee1:v1 y:v2
+{:
+if(v2!=null){
+RESULT=new NodoBoolean(v1,(Nodo)v2[1],(String)v2[0]);
+}else{
+RESULT=new NodoBoolean(v1);
+}
+:};
+
+c::= AP boolean:v1 CP z:v2 y:v3
+{:
+if(v2!=null && v3!=null){
+    if(!v1.isOp && v1.canAdd){
+        NodoAritmetica n1=(NodoAritmetica)v2[1];
+        Nodo t=n1.addNodo((NodoAritmetica)v1.izq,n1,(String)v2[0],(Integer)v2[2],(Integer)v2[3]);
+        v1.canAdd=false;
+        v1.izq=t;
+        v1.der=(Nodo)v3[1];
+        v1.isOp=false;
+        v1.operador=(String)v3[0];
+    }else{
+                    this.parser.errores.AddError(1,(int)v2[2],(int)v2[3],(String)v2[0],"No se puede operar, ya cumple como una operacion booleana");
+                    this.parser.errores.AddError(1,(int)v3[2],(int)v3[3],(String)v3[0],"No se puede operar, ya cumple como una operacion booleana");
+    }
+
+}else if(v2!=null && v3==null){
+    if(!v1.isOp && v1.canAdd){
+      NodoAritmetica n1=(NodoAritmetica)v2[1];
+      Nodo t=n1.addNodo((NodoAritmetica)v1.izq,n1,(String)v2[0],(Integer)v2[2],(Integer)v2[3]);
+      v1.izq=t;
+    }else{
+             this.parser.errores.AddError(1,(int)v2[2],(int)v2[3],(String)v2[0],"No se puede operar, ya cumple como una operacion booleana");
+        }
+
+}else if(v2==null && v3!=null){
+    if(!v1.isOp && v1.canAdd){
+            v1.der=(Nodo)v3[1];
+            v1.isOp=false;
+            v1.operador=(String)v3[0];
+            v1.canAdd=false;
+    }else{
+    this.parser.errores.AddError(1,(int)v3[2],(int)v3[3],(String)v3[0],"No se puede operar, ya cumple como una operacion booleana");
+        }
+}
+RESULT=v1;
+:};
+
+c::= NOT AP boolean:v1 CP
+{:
+RESULT=v1;
+RESULT.canAdd=false;
+RESULT.cambiarSigno=1;
+:};
+
+z::=
+|SUM:v1 e:v2 {:RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);:}
+|RES:v1 e:v2 {:RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);:}
+|MUL:v1 e:v2 {:RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);:}
+|DIV:v1 e:v2 {:RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);:}
+|MODUL:v1 e:v2 {:RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);:};
+
+y::=
+|OP:v1 e:v2 {:RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);:}
+|EQUALS:v1 e:v2 {:RESULT=this.parser.controlador.getObj("=",v2,v1left,v1right);:};
+
+
+
+
+ee1::= ee1:val1 SUM t:val2
+{:RESULT=this.parser.controlador.Operar("+",val1,val2);:};
+ee1::= ee1:val1 RES t:val2
+{:RESULT=this.parser.controlador.Operar("-",val1,val2);:};
+
+
+ee1::= tt1:val {:RESULT=val;:};
+tt1::= tt1:val1 MUL f:val2
+{:RESULT=this.parser.controlador.Operar("*",val1,val2);:};
+tt1::= tt1:val1 DIV f:val2{:RESULT=this.parser.controlador.Operar("/",val1,val2);:};
+tt1::= ff1:val {:RESULT=val;:};
+tt1::= tt1:val1 MODUL f:val2
+{:RESULT=this.parser.controlador.Operar("%",val1,val2);:};
+ff1::= ID:val
+{:
+RESULT=new NodoAritmetica(new VariableID(val,valleft,valright));:};
+ff1::= REAL:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val,0,"r"));:};
+ff1::= CARACTER:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val,1,"c"));:};
+ff1::= ENTERO:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));:};
+
+
+
+
