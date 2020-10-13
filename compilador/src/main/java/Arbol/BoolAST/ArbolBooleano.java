@@ -15,6 +15,18 @@ public class ArbolBooleano extends Arbol {
 
     public void recorrer(NodoBoolean href){
          validate(href);
+         /*if(href.isOp && href.cambiarSigno==1){
+                 System.err.println("ENTROOOOOOOOOOOOOOOOO");
+                 MetodosVisual.CONTADOR_ETIQ++;
+                 MetodosVisual.add("","t","","goto E"+gI(),3);
+                 int tmp=MetodosVisual.CONTADOR_ETIQ;
+                 MetodosVisual.CONTADOR_ETIQ++;
+                 MetodosVisual.add("Asig","1","","t",2);
+                 MetodosVisual.add("goto","E",String.valueOf(gI()),"",4);
+                 MetodosVisual.add("Et","E",String.valueOf(tmp),"",5);
+                 MetodosVisual.add("Asig","0","","t",2);
+                 MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+         }*/
 
     }
      void validate(NodoBoolean href){
@@ -24,25 +36,37 @@ public class ArbolBooleano extends Arbol {
             MetodosVisual.CONTADOR_ETIQ+=2;
             if(href.izq!=null){
                 if(href.izq instanceof NodoBoolean){
+
                     validate((NodoBoolean) href.izq);
                     if(href.operador.equals("and") ){
-                        MetodosVisual.CONTADOR_ETIQ++;
-                        //MetodosVisual.add(operador,val1,val2,"goto E"+gI(),3);
-                        add();
-                        MetodosVisual.add("Asig","0","","t",2);
-                        //stringBuffer.append(getSTR());
-                        //stringBuffer.append("   t=0;\n");
-                        previo=MetodosVisual.getAndCNT();
-                        MetodosVisual.add("goto","E",String.valueOf(previo),"",4);
-                        //stringBuffer.append("   goto E"+MetodosVisual.getAndCNT()+";\n");
-                        //stringBuffer.append("E"+MetodosVisual.CONTADOR_ETIQ+":\n");
-                        MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+                        if(href.izq.cambiarSigno==0 || href.izq.isOp){
+                            MetodosVisual.CONTADOR_ETIQ++;
+                            add();
+                            MetodosVisual.add("Asig","0","","t",2);
+                            previo=MetodosVisual.getAndCNT();
+                            MetodosVisual.add("goto","E",String.valueOf(previo),"",4);
+                            MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+                        }else {
+                            MetodosVisual.CONTADOR_ETIQ++;
+                            previo=MetodosVisual.getAndCNT();
+                            MetodosVisual.add("Asig","0","","t",2);
+                            add(previo);
+                            MetodosVisual.add("goto","E",String.valueOf(gI()),"",4);
+                            MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+                        }
                     }else{
-                        MetodosVisual.CONTADOR_ETIQ++;
-                        previo=MetodosVisual.CONTADOR_ETIQ;
-                        add();
-                        //stringBuffer.append(getSTR());
+                        if(href.izq.cambiarSigno==0 || href.izq.isOp){
+                            MetodosVisual.CONTADOR_ETIQ++;
+                            previo=MetodosVisual.CONTADOR_ETIQ;
+                            add();
+                        }else{
+                            MetodosVisual.add("Asig","0","","t",2);
+                            MetodosVisual.CONTADOR_ETIQ++;
+                            previo=MetodosVisual.CONTADOR_ETIQ;
+                            add();
+                        }
                     }
+
                     val1="t";
                     operador="";
                     val2="";
@@ -54,27 +78,59 @@ public class ArbolBooleano extends Arbol {
             if(href.der!=null){
                 if(href.der instanceof NodoBoolean){
                     validate((NodoBoolean) href.der);
-
                     if(href.operador.equals("and") ){
+                        if(href.der.cambiarSigno==0 || href.der.isOp){
+                            MetodosVisual.CONTADOR_ETIQ++;
+                            add();
+                            MetodosVisual.add("Asig","0","","t",2);
+                            MetodosVisual.add("goto","E",String.valueOf(previo),"",4);
+                            MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+                            MetodosVisual.add("Asig","1","","t",2);
+                            if(previo>=0)
+                            {
+                                MetodosVisual.add("Et","E",String.valueOf(previo),"",5);
+                            }
+                            MetodosVisual.CONTADOR_ETIQ++;
+                        }else{
+                            MetodosVisual.CONTADOR_ETIQ++;
+                            if(href.izq.cambiarSigno!=1 || href.izq.isOp){
+                                MetodosVisual.add("Asig","0","","t",2);
+                            }
+                            add(previo);
+                            MetodosVisual.add("Asig","1","","t",2);
+                            if(previo>=0)
+                            {
+                                MetodosVisual.add("Et","E",String.valueOf(previo),"",5);
+                            }
+                            MetodosVisual.CONTADOR_ETIQ++;
+                        }
+                    }else if(!href.izq.isOp && href.izq.cambiarSigno==1 && href.der.cambiarSigno==1){
+                        MetodosVisual.add("Asig","1","","t",2);
                         MetodosVisual.CONTADOR_ETIQ++;
+                        MetodosVisual.add("goto","E",String.valueOf(gI()),"",4);
+                        MetodosVisual.add("Et","E",String.valueOf(previo),"",5);
+                        add();
+                        MetodosVisual.add("Asig","1","","t",2);
+                        MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+                    }else if(!href.izq.isOp && href.izq.cambiarSigno==1 && href.der.cambiarSigno==0){
+                        MetodosVisual.add("Asig","1","","t",2);
+                        MetodosVisual.CONTADOR_ETIQ++;
+                        MetodosVisual.add("goto","E",String.valueOf(gI()),"",4);
+                        MetodosVisual.add("Et","E",String.valueOf(previo),"",5);
+                        MetodosVisual.add("Asig","1","","t",2);
                         add();
                         MetodosVisual.add("Asig","0","","t",2);
-                        MetodosVisual.add("goto","E",String.valueOf(previo),"",4);
                         MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
-                        MetodosVisual.add("Asig","1","","t",2);
-                        //stringBuffer.append("   "+getSTR());
-                        //stringBuffer.append("   t=0;\n");
-                        //stringBuffer.append("   goto E"+previo+";\n");
-                        //stringBuffer.append("E"+MetodosVisual.CONTADOR_ETIQ+":\n");
-                        //stringBuffer.append("   t=1;\n");
-                        if(previo>=0)
-                        {
-                            MetodosVisual.add("Et","E",String.valueOf(previo),"",5);
-                            //stringBuffer.append("E"+previo+":\n");
-                        }
+                    }else if(!href.izq.isOp && href.izq.cambiarSigno==0 && href.der.cambiarSigno==1){
+                        MetodosVisual.add("Asig","0","","t",2);
                         MetodosVisual.CONTADOR_ETIQ++;
-                    }else{
-                        //stringBuffer.append(getSTR(previo));
+                        add();
+                        MetodosVisual.add("Et","E",String.valueOf(previo),"",5);
+                        MetodosVisual.add("Asig","1","","t",2);
+                        MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+
+                    }
+                    else {
                         add(previo);
                         MetodosVisual.CONTADOR_ETIQ++;
                         MetodosVisual.add("Asig","0","","t",2);
@@ -82,23 +138,27 @@ public class ArbolBooleano extends Arbol {
                         MetodosVisual.add("Et","E",String.valueOf(previo),"",5);
                         MetodosVisual.add("Asig","1","","t",2);
                         MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
-
-                        //stringBuffer.append("   t=0;\n");
-                        //stringBuffer.append("   goto E"+MetodosVisual.CONTADOR_ETIQ+";\n");
-                        //stringBuffer.append("E"+(previo)+":\n");
-                        //stringBuffer.append("   t=1;\n");
-                        //stringBuffer.append("E"+(MetodosVisual.CONTADOR_ETIQ)+":\n");
-
-
                     }
+
+
                     val1="t";
                     operador="";
                     val2="";
+
+
                 }
             }
-
-
-
+            if(href.cambiarSigno==1 && href.isOp){
+                MetodosVisual.CONTADOR_ETIQ++;
+                MetodosVisual.add("","t","","goto E"+gI(),3);
+                int tmp=MetodosVisual.CONTADOR_ETIQ;
+                MetodosVisual.CONTADOR_ETIQ++;
+                MetodosVisual.add("Asig","1","","t",2);
+                MetodosVisual.add("goto","E",String.valueOf(gI()),"",4);
+                MetodosVisual.add("Et","E",String.valueOf(tmp),"",5);
+                MetodosVisual.add("Asig","0","","t",2);
+                MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
+            }
         }else{
             val1="";val2="";operador="";
             if(href.izq!=null){
@@ -123,13 +183,6 @@ public class ArbolBooleano extends Arbol {
 
     public String val1="",val2="",operador="";
 
-    String getSTR(){
-         return  "if ("+val1+operador+val2+") goto E"+MetodosVisual.CONTADOR_ETIQ+";\n";
-     }
-    String getSTR(int x){
-        return  "if ("+val1+operador+val2+") goto E"+x+";\n";
-    }
-
     int gI(){
           return MetodosVisual.CONTADOR_ETIQ;
     }
@@ -137,6 +190,8 @@ public class ArbolBooleano extends Arbol {
     public void add(){
         MetodosVisual.add(operador,val1,val2,"goto E"+gI(),3);
     }
+
+
    public void add(int x){
         MetodosVisual.add(operador,val1,val2,"goto E"+x,3);
     }

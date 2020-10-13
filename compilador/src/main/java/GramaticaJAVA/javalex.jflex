@@ -54,7 +54,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "%%PY"                 {if(add){add=false;
       yyclose();
      return symbol(sym.PY,new String(yytext()));}}
-    "!"                 {if(add){add=false; return symbol(sym.NOT,new String(yytext()));}}
+    "!"                 {if(add){ return symbol(sym.NOT,new String(yytext()));}}
 
 
     "return"                 {if(add){return symbol(sym.RETURN,new String(yytext()));}}
@@ -71,7 +71,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
      "*"                         {if(add){return symbol(sym.MUL,new String(yytext()));}}
      "%"                         {if(add){return symbol(sym.MODUL,new String(yytext()));}}
      "="                 {if(add){return symbol(sym.EQUALS,new String(yytext()));}}
-     "&"                 {if(add){return symbol(sym.AND,new String(yytext()));}}
+     "&&"                 {if(add){return symbol(sym.AND,new String(yytext()));}}
      "public"                 {if(add){return symbol(sym.PUBLIC,new String(yytext()));}}
      "void"                  {if(add){return symbol(sym.VOID,new String(yytext()));}}
      "int"                     {if(add){return symbol(sym.INT,new String(yytext()));}}

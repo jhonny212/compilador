@@ -53,11 +53,11 @@ public class Cuadruplas {
             case 1:
                 return RESULT+"="+ARG1+";";
             case 2:
-                return RESULT+"="+ARG1;
+                return RESULT+"="+ARG1 +";";
             case 3:
                 return "if("+ARG1+OP+ARG2+")"+RESULT+";";
             case 4:
-                return OP+" "+ARG1+ARG2;
+                return OP+" "+ARG1+ARG2 +";";
             case 5:
                 return ARG1+ARG2+":";
             case 6:
@@ -89,6 +89,14 @@ public class Cuadruplas {
 
     public String getTabs(){
         String tabs="";
+        if(this.TIPO==5){
+            tabulaciones=1;
+        }else if(this.TIPO==15 || this.TIPO==9){
+            tabulaciones=0;
+        }else{
+            this.tabulaciones=2;
+        }
+
         for (int i = 0; i < tabulaciones; i++) {
             tabs+="   ";
         }

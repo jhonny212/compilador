@@ -844,7 +844,7 @@ public class javalex implements java_cup.runtime.Scanner {
             // fall through
           case 59: break;
           case 3:
-            { if(add){add=false; return symbol(sym.NOT,new String(yytext()));}
+            { if(add){ return symbol(sym.NOT,new String(yytext()));}
             }
             // fall through
           case 60: break;

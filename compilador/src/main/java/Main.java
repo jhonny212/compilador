@@ -29,11 +29,11 @@ public class Main {
 
     private static void generarCompilador() {
         try {
-            String ruta = "src/main/java/GramaticaPython/"; //ruta donde tenemos los archivos con extension .jflex y .cup
-            String opcFlex[] = {ruta + "pylex.jflex", "-d", ruta};
+            String ruta = "src/main/java/GramaticaJAVA/"; //ruta donde tenemos los archivos con extension .jflex y .cup
+            String opcFlex[] = {ruta + "javalex.jflex", "-d", ruta};
             jflex.Main.generate(opcFlex);
             String opcCUP[] = {"-destdir", ruta, "-parser", "pycup", ruta + "pycup.cup"};
-            java_cup.Main.main(opcCUP);
+            //java_cup.Main.main(opcCUP);
         } catch (Exception ex) {
         }
 
@@ -102,14 +102,10 @@ public class Main {
                 "End Sub\n" +
                 "%%JAVA\n" +
                 "public class aritmetica{\n" +
-                "    int suma=10;\n" +
-                "    public aritmetica(int x,int y){\n" +
-                "        this.suma=x+2;\n" +
-                "    }\n" +
                 "    public void sumar(int x,int y){\n" +
-                "        int suma=5;\n" +
-                "        this.suma=5*4;\n" +
-                "        suma=intinput(\"Escriba un numero\");\n" +
+                "       if( !(!((0) || !(1) && !(-2))  || 0 ) ){" +
+                "           int zz=20;" +
+                "       }" +
                 "    }\n" +
                 "}\n" +
                 "%%PY\n" +
@@ -133,11 +129,11 @@ public class Main {
                 "}";
         Compilador compilador = new Compilador(texto);
         compilador.create();
-        compilador.compilar_vb();
+        //compilador.compilar_vb();
         compilador.compilar_java();
-        compilador.compilar_pyva();
-        compilador.compilar_c();
-        compilador.printError();
+        //compilador.compilar_pyva();
+        //compilador.compilar_c();
+        //compilador.printError();
         compilador.printCod();
     }
 
