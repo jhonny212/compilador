@@ -21,7 +21,9 @@ public abstract class Instruccion {
 
    public void initDatas(ArrayList<VariableDeclaracion>variables){
       if(this.variables==null){
-         this.variables=variables;
+         //this.variables=variables;
+          this.variables=new ArrayList<>();
+          this.variables.addAll(variables);
       }else{
          this.variables.addAll(0,variables);
       }

@@ -23,9 +23,11 @@ import java_cup.runtime.Symbol;
 %}
 numero=[0-9]
 letra=[a-zA-Z]
+
+InputCharacter = [^\r\n]
 Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
 TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
-EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+EndOfLineComment     = "//" {InputCharacter}* ("\r"|"\n"|"\r\n")?
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
 Identifier = [:jletter:] [:jletterdigit:]*
@@ -80,7 +82,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "Double"            {if(add){ return symbol(sym.FLOAT,new String(yytext()));}}
     "Not"               {if(add){ return symbol(sym.NOT,new String(yytext()));}}
 
-    (("\n")+(("\n")|("\t")|(" "))*)  {if(add){ return symbol(sym.SALTO_LINEA,new String(yytext()));}}
+    (("\n")+(("\n")|("\t")|(" ")|{Comment})*)  {if(add){ return symbol(sym.SALTO_LINEA,new String(yytext()));}}
 
     "\t"
     {}
@@ -92,7 +94,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "+"                         {if(add){ return symbol(sym.SUM,new String(yytext()));}}
     ("-")({numero})+(".")({numero})    {if(add){return symbol(sym.REAL,new Double(yytext()));}}
     ("-")({numero})+                    {if(add){return symbol(sym.ENTERO,new Integer(yytext()));}}
-
+    {Comment}                   {}
     "-"                         {if(add){ return symbol(sym.RES,new String(yytext()));}}
     "/"                         {if(add){ return symbol(sym.DIV,new String(yytext()));}}
     "*"                         {if(add){ return symbol(sym.MUL,new String(yytext()));}}

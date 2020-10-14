@@ -22,6 +22,8 @@ public int fila=0,columna=0;
 %}
 numero=[0-9]
 letra=[a-zA-Z]
+LineTerminator = \r|\n|\r\n
+InputCharacter = [^\r\n]
 Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
 TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
@@ -95,6 +97,8 @@ Identifier = [:jletter:] [:jletterdigit:]*
      ("\n")+             {}
      (" ")+ {}
      ("\t")+ {}
+     {LineTerminator} {}
+     {Comment} {}
 
     {Identifier}                {return symbol(sym.ID,new String(yytext()));}
     ({numero})+(".")({numero})         {return symbol(sym.REAL,new Double(yytext()));}

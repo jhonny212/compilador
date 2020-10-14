@@ -23,9 +23,11 @@ import Errores.ErrorClass;
 %}
 numero=[0-9]
 letra=[a-zA-Z]
+InputCharacter = [^\r\n]
 Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
 TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
-EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+EndOfLineComment     = "//" {InputCharacter}* ("\r"|"\n"|"\r\n")?|"#" {InputCharacter}* ("\r"|"\n"|"\r\n")?
+
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
 Identifier = [:jletter:] [:jletterdigit:]*
@@ -71,9 +73,11 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "charinput"  {if(add){return symbol(sym.INPUTC,new String(yytext()));}}
     "or"                 {if(add){return symbol(sym.OR,new String(yytext()));}}
     "not"                 {if(add){return symbol(sym.NOT,new String(yytext()));}}
-    (("\n")+(("\n")|("\t")|(" "))*)  {if(add){return symbol(sym.SALTO_LINEA,new String(yytext()));}}
+    (("\n")+(("\n")|("\t")|(" ")|{Comment})*)  {if(add){return symbol(sym.SALTO_LINEA,new String(yytext()));}}
     (" ")+ {}
     ("\t")+ {}
+      {Comment}                   {}
+
     {Identifier}                {if(add){return symbol(sym.ID,new String(yytext()));}}
     ({numero})+(".")({numero})         {if(add){return symbol(sym.REAL,new Double(yytext()));}}
     ({numero})+                        {if(add){return symbol(sym.ENTERO,new Integer(yytext()));}}

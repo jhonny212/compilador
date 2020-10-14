@@ -41,11 +41,11 @@ public class instr_for_java extends Instruccion {
 
     @Override
     public void validate(boolean valid) {
-
+        VariableDeclaracion var_=null;
         ArbolAritmetica arbol1=new ArbolAritmetica(this.variables);
         int etiqueta=0;
         if(i!=null){
-            VariableDeclaracion var_=new VariableDeclaracion(ID,i,FILA,COLUMNA);
+            var_=new VariableDeclaracion(ID,i,FILA,COLUMNA);
             this.variables.add(var_);
             var_.TIPO=this.tipo;
             arbol1.recorrer(i);

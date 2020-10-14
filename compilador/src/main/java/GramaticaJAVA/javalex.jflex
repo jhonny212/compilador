@@ -24,6 +24,8 @@ import Errores.ErrorClass;
 %}
 numero=[0-9]
 letra=[a-zA-Z]
+LineTerminator = \r|\n|\r\n
+InputCharacter = [^\r\n]
 Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
 TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
@@ -91,6 +93,8 @@ Identifier = [:jletter:] [:jletterdigit:]*
      ("\n")+             {}
      (" ")+ {}
      ("\t")+ {}
+     {LineTerminator} {}
+     {Comment} {}
     ("this."){Identifier}                {if(add){return symbol(sym.ID,new String(yytext()));}}
     {Identifier}                {if(add){return symbol(sym.ID,new String(yytext()));}}
     ({numero})+(".")({numero})         {if(add){return symbol(sym.REAL,new Double(yytext()));}}
