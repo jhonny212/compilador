@@ -16,14 +16,16 @@ public class instr_while extends Instruccion{
     @Override
     public void validate(boolean valid) {
         ArbolBooleano booleano=new ArbolBooleano(this.variables);
+        int previo=0,dad=0;
         try{
+            MetodosVisual.CONTADOR_ETIQ++;
+            dad=MetodosVisual.CONTADOR_ETIQ;
+            MetodosVisual.add("Et","E",String.valueOf(dad),"",5);
+
             booleano.errorClass=this.errores;
             booleano.recorrer(nodoBoolean);
         }catch (Exception ex){}
-        int previo=0,dad=0;
-        MetodosVisual.CONTADOR_ETIQ++;
-        dad=MetodosVisual.CONTADOR_ETIQ;
-        MetodosVisual.add("Et","E",String.valueOf(dad),"",5);
+
 
         MetodosVisual.CONTADOR_ETIQ++;
         int previo2=MetodosVisual.CONTADOR_ETIQ;

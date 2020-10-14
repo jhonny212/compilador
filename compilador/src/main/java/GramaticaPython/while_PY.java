@@ -18,15 +18,15 @@ public class while_PY extends InstruccionPy {
     @Override
     public void validate() {
         ArbolBooleano arbol=null;
+        int previo=0,dad=0;
         if(nodoBoolean!=null){
+            MetodosVisual.CONTADOR_ETIQ++;
+            dad=MetodosVisual.CONTADOR_ETIQ;
+            MetodosVisual.add("Et","E",String.valueOf(dad),"",5);
             arbol=new ArbolBooleano(this.variables);
             arbol.errorClass=this.errorClass;
             arbol.recorrer(nodoBoolean);
         }
-        int previo=0,dad=0;
-        MetodosVisual.CONTADOR_ETIQ++;
-        dad=MetodosVisual.CONTADOR_ETIQ;
-        MetodosVisual.add("Et","E",String.valueOf(dad),"",5);
 
         MetodosVisual.CONTADOR_ETIQ++;
         int previo2=MetodosVisual.CONTADOR_ETIQ;

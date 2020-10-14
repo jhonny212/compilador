@@ -4,6 +4,7 @@ import Arbol.AritAST.ArbolAritmetica;
 import Arbol.AritAST.NodoAritmetica;
 import Errores.ErrorClass;
 import GramaticaC.declaracion_c;
+import Lenguajes.MetodosVisual;
 import Variable.Variable;
 import Variable.VariableDeclaracion;
 import controlador.Controlador_;
@@ -92,6 +93,8 @@ public class ambito_ {
         if(this.retorno!=null){
             ArbolAritmetica aritmetica=new ArbolAritmetica(this.variables);
             aritmetica.recorrer(this.retorno);
+            MetodosVisual.add("return",aritmetica.lastVal,"","",17);
+
             if(retorno.variable!=null){
                 if(retorno.variable.TIPO==0 && this.TIPORETORNO==1){
                     this.errores.AddError(2,fila, columna,"Return","" +

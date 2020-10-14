@@ -38,7 +38,7 @@ terminal String INPUTI,INPUTC,INPUTD,PRINT,CONST,ACOR,CCOR,MAIN;
 terminal Integer ENTERO;
 terminal Double REAL;
 terminal char CARACTER;
-terminal String SUM,RES,MUL,DIV,MODUL,OP,MASCARA;
+terminal String SUM,RES,MUL,DIV,MODUL,OP,MASCARA,NOT;
 terminal DEFAULT,SWITCH,CASE,BREAK,BOTHPOINT,INCLUDE;
 terminal String INITJAVA,CALLJAVA,CALLPY,CALLVB;
 non-terminal inicio;
@@ -843,7 +843,12 @@ if(v2!=null && v3!=null){
 RESULT=v1;
 :};
 
-
+c::= NOT AP boolean:v1 CP
+{:
+RESULT=v1;
+RESULT.canAdd=false;
+RESULT.cambiarSigno=1;
+:};
 
 z::=
 |SUM:v1 e:v2 {:RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);:}

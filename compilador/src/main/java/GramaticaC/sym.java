@@ -16,10 +16,10 @@ public class sym {
   public static final int CCOR = 35;
   public static final int RES = 41;
   public static final int EQUALS = 19;
-  public static final int CALLPY = 55;
+  public static final int CALLPY = 56;
   public static final int ENTERO = 37;
   public static final int INPUTI = 29;
-  public static final int CASE = 49;
+  public static final int CASE = 50;
   public static final int DOUBLE = 14;
   public static final int INPUTD = 31;
   public static final int INT = 13;
@@ -28,14 +28,15 @@ public class sym {
   public static final int FOR = 26;
   public static final int ACOR = 34;
   public static final int CP = 5;
+  public static final int NOT = 47;
   public static final int AND = 21;
   public static final int CARACTER = 39;
   public static final int OR = 23;
   public static final int OP = 45;
   public static final int CLASS = 3;
   public static final int DIV = 43;
-  public static final int CALLVB = 56;
-  public static final int BOTHPOINT = 51;
+  public static final int CALLVB = 57;
+  public static final int BOTHPOINT = 52;
   public static final int CC = 7;
   public static final int MAIN = 36;
   public static final int IF = 22;
@@ -43,24 +44,24 @@ public class sym {
   public static final int EOF = 0;
   public static final int RETURN = 28;
   public static final int error = 1;
-  public static final int INCLUDE = 52;
+  public static final int INCLUDE = 53;
   public static final int MASCARA = 46;
   public static final int MUL = 42;
   public static final int GETCH = 12;
   public static final int COMA = 20;
   public static final int CADENA = 17;
-  public static final int BREAK = 50;
+  public static final int BREAK = 51;
   public static final int VOID = 8;
-  public static final int SWITCH = 48;
+  public static final int SWITCH = 49;
   public static final int REAL = 38;
-  public static final int INITJAVA = 53;
+  public static final int INITJAVA = 54;
   public static final int ELSE = 25;
   public static final int WHILE = 24;
-  public static final int DEFAULT = 47;
+  public static final int DEFAULT = 48;
   public static final int PUBLIC = 2;
   public static final int CLEAR = 11;
   public static final int SUM = 40;
-  public static final int CALLJAVA = 54;
+  public static final int CALLJAVA = 55;
   public static final int MODUL = 44;
   public static final int AP = 4;
   public static final int PRINT = 32;
@@ -113,6 +114,7 @@ public class sym {
   "MODUL",
   "OP",
   "MASCARA",
+  "NOT",
   "DEFAULT",
   "SWITCH",
   "CASE",

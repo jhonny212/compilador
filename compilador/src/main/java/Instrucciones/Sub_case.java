@@ -1,5 +1,6 @@
 package Instrucciones;
 
+import Arbol.AritAST.ArbolAritmetica;
 import Arbol.AritAST.NodoAritmetica;
 import Errores.ErrorClass;
 import Lenguajes.MetodosVisual;
@@ -59,11 +60,15 @@ public class Sub_case {
         }
 
         if(this.nodoRetorno!=null){
-           this.contadorRetornos=this.retornosRequeridos+1;
+            ArbolAritmetica aritmetica=new ArbolAritmetica(this.variables);
+            aritmetica.recorrer(this.nodoRetorno);
+            MetodosVisual.add("return",aritmetica.lastVal,"","",17);
+
+            this.contadorRetornos=this.retornosRequeridos+1;
         }
     }
 
     public boolean rtn(){
-        return this.retorno==2;
+        return this.retorno==2 || this.retorno==1;
     }
 }

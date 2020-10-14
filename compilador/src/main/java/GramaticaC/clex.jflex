@@ -59,6 +59,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "main"                 {return symbol(sym.MAIN,new String(yytext()));}
     "clrscr"                 {return symbol(sym.CLEAR,new String(yytext()));}
     "getch"                 {return symbol(sym.GETCH,new String(yytext()));}
+    "!"                 {return symbol(sym.NOT,new String(yytext()));}
 
     "&"                 {return symbol(sym.Y,new String(yytext()));}
     ("VB.")({Identifier} )       {return symbol(sym.CALLVB,new String(yytext()));}

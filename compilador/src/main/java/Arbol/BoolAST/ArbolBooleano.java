@@ -122,6 +122,7 @@ public class ArbolBooleano extends Arbol {
                         MetodosVisual.add("Asig","0","","t",2);
                         MetodosVisual.add("Et","E",String.valueOf(gI()),"",5);
                     }else if(!href.izq.isOp && href.izq.cambiarSigno==0 && href.der.cambiarSigno==1){
+
                         MetodosVisual.add("Asig","0","","t",2);
                         MetodosVisual.CONTADOR_ETIQ++;
                         add();
@@ -167,10 +168,13 @@ public class ArbolBooleano extends Arbol {
                     arbolAritmetica.errorClass=this.errorClass;
                     arbolAritmetica.recorrer((NodoAritmetica) href.izq);
                     val1=arbolAritmetica.lastVal;
+
                 }
             }
             if(href.der!=null){
                 if(href.der instanceof NodoAritmetica){
+                    MetodosVisual.add("Asig",val1,"","num_tmp",2);
+                    val1="num_tmp";
                     ArbolAritmetica arbolAritmetica=new ArbolAritmetica(this.tablaSimbolos);
                     arbolAritmetica.errorClass=this.errorClass;
                     arbolAritmetica.recorrer((NodoAritmetica) href.der);

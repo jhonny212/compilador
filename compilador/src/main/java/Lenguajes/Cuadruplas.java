@@ -82,6 +82,8 @@ public class Cuadruplas {
                 return "class "+ARG1+"{";
             case 16:
                 return "clear";
+            case 17:
+                return "return "+ARG1;
         }
         return "";
     }
@@ -91,7 +93,7 @@ public class Cuadruplas {
         String tabs="";
         if(this.TIPO==5){
             tabulaciones=1;
-        }else if(this.TIPO==15 || this.TIPO==9){
+        }else if(this.TIPO==15 || this.TIPO==9 || this.TIPO==8){
             tabulaciones=0;
         }else{
             this.tabulaciones=2;

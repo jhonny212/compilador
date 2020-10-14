@@ -29,11 +29,11 @@ public class Main {
 
     private static void generarCompilador() {
         try {
-            String ruta = "src/main/java/GramaticaJAVA/"; //ruta donde tenemos los archivos con extension .jflex y .cup
-            String opcFlex[] = {ruta + "javalex.jflex", "-d", ruta};
+            String ruta = "src/main/java/GramaticaC/"; //ruta donde tenemos los archivos con extension .jflex y .cup
+            String opcFlex[] = {ruta + "clex.jflex", "-d", ruta};
             jflex.Main.generate(opcFlex);
-            String opcCUP[] = {"-destdir", ruta, "-parser", "pycup", ruta + "pycup.cup"};
-            //java_cup.Main.main(opcCUP);
+            String opcCUP[] = {"-destdir", ruta, "-parser", "ccup", ruta + "ccup.cup"};
+            java_cup.Main.main(opcCUP);
         } catch (Exception ex) {
         }
 
@@ -90,43 +90,65 @@ public class Main {
 
     public static void test() {
         String texto ="%%VB\n" +
-                "Public Sub Suma()\n" +
-                "    Dim edad As Integer\n" +
-                "    Dim year=2020 As Integer\n" +
-                "    While 2\n" +
-                "        Dim xx As Integer\n" +
+                "Public Sub suma (ByVal x As Integer,ByVal yy As Integer)\n" +
+                "    Dim y=x*2 As Integer\n" +
+                "    While x*y <= 10\n" +
+                "        If ( 0 Or !(1) ) Then\n" +
+                "            x=intinput(\"Escriba su edad\")\n" +
+                "            Console.WriteLine(\"La edad es de \" & x)\n" +
+                "            Do\n" +
+                "                x=x+1\n" +
+                "            Loop While 2*x>1*x\n" +
+                "        End If\n" +
                 "    End While\n" +
-                "    edad=intinput(\"Escriba su edad coño\")\n" +
-                "    Console.WriteLine(\"La edad es de \" &edad)\n" +
-                "    Console.Write(\"Come back son\")    \n" +
+                "End Sub\n" +
+                "Public Sub resta (ByVal z As Double,ByVal y As Integer)\n" +
+                "    Dim x=y+2 As Integer\n" +
+                "    For w As Integer=10 To 20\n" +
+                "        If x = 1 Then\n" +
+                "            Console.Write(\"Caso 1\")\n" +
+                "        ElseIf x=2 Then\n" +
+                "            Console.Write(\"Caso 2\")\n" +
+                "        ElseIf x=3 Then\n" +
+                "            Console.WriteLine(\"Caso 3\")\n" +
+                "        Else\n" +
+                "            Console.Write(\"caso 4\")\n" +
+                "        End If        \n" +
+                "    Next\n" +
+                "    Select Case x\n" +
+                "        Case 1\n" +
+                "            x=10*x\n" +
+                "        Case 2\n" +
+                "            x=10/x\n" +
+                "        Case 3\n" +
+                "            x=10+x\n" +
+                "        Case 4\n" +
+                "            x=10%x\n" +
+                "        Case Else\n" +
+                "            x=x\n" +
+                "    End Select\n" +
                 "End Sub\n" +
                 "%%JAVA\n" +
-                "public class aritmetica{\n" +
-                "    public void sumar(int x,int y){\n" +
-                "       if( !(!((0) || !(1) && !(-2))  || 0 ) ){" +
-                "           int zz=20;" +
+                " public class aritmetica{\n" +
+                "     public void suma(int x,int y){\n" +
+                "       switch(x){" +
+                "           case 1:" +
+                "               x=x*y;" +
+                "               return x+10;" +
+                "           case 2:" +
+                "               x=x;" +
                 "       }" +
-                "    }\n" +
-                "}\n" +
+                "     }\n" +
+                " }\n" +
                 "%%PY\n" +
-                "def suma(x,y):\n" +
-                "    print(\"hola\",x,\"jeje\")\n" +
-                "    suma=intinput(\"Escriba algo\")\n" +
-                "    while 2:\n" +
-                "        suma=suma*2\n" +
-                "    if 2:\n" +
-                "        suma=2*suma\n" +
-                "    elif 2:\n" +
-                "        suma=2\n" +
-                "    else:\n" +
-                "        suma=2\n" +
-                "def suma(x,y):\n" +
-                "    print(2)\n" +
-                "%%PROGRAMA\n" +
-                "\n" +
-                "void main(){\n" +
-                "    int x=10;\n" +
-                "}";
+                "def suma():\n" +
+                "    if (not(0 or 0) and 1):\n" +
+                "        print(\"Hola mundo\")\n" +
+                "    while 0*1:\n" +
+                "        print(\"xd\")\n" +
+                "        for x in range(0,10,1):\n" +
+                "            return x*10\n" +
+                "%%PROGRAMA";
         Compilador compilador = new Compilador(texto);
         compilador.create();
         //compilador.compilar_vb();

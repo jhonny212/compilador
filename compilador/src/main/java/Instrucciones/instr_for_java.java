@@ -152,7 +152,7 @@ public class instr_for_java extends Instruccion {
                     }
                 }
             }
-            MetodosVisual.add("+","",arbol1.lastVal,this.id3,0);
+            MetodosVisual.add("+",arbol1.lastVal,this.id3,this.id3,0);
         }
         MetodosVisual.add("goto","E",String.valueOf(etiqueta),"",4);
         MetodosVisual.add("Et","E",String.valueOf(salid),"",5);

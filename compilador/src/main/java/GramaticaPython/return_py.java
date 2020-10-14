@@ -3,6 +3,7 @@ package GramaticaPython;
 import Arbol.AritAST.ArbolAritmetica;
 import Arbol.AritAST.ArbolPY;
 import Arbol.AritAST.NodoAritmetica;
+import Lenguajes.MetodosVisual;
 
 public class return_py extends InstruccionPy {
     public NodoAritmetica nodo;
@@ -18,6 +19,7 @@ public class return_py extends InstruccionPy {
             ArbolAritmetica arbol=new ArbolAritmetica(this.variables);
             arbol.errorClass=this.errorClass;
             arbol.recorrer(nodo);
+            MetodosVisual.add("return",arbol.lastVal,"","",17);
         }
     }
 }

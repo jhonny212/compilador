@@ -1894,7 +1894,8 @@ RESULT=v1;
 		
 RESULT=v1;
 RESULT.canAdd=false;
-              RESULT.cambiarSigno=1;
+System.err.println("ENTROOOOOOOOOOOO");
+RESULT.cambiarSigno=1;
 
               CUP$vbcup$result = parser.getSymbolFactory().newSymbol("c",18, ((java_cup.runtime.Symbol)CUP$vbcup$stack.elementAt(CUP$vbcup$top-3)), ((java_cup.runtime.Symbol)CUP$vbcup$stack.peek()), RESULT);
             }
