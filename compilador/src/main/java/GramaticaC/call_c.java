@@ -46,6 +46,8 @@ public class call_c extends Instruccion {
         }
         String vector[]=this.metodo.split("\\.");
         String name="";
+        MetodosVisual.tipo=-10;
+        MetodosVisual.string="";
         if(vector.length==2){
             if(vector[0].equals("VB")){
              name =MetodosVisual.buscar_vb(this,vector[1],this.errores);
@@ -73,11 +75,13 @@ public class call_c extends Instruccion {
                 MetodosVisual.add("call",name,String.valueOf(argumentos.size()),this.lasValtmp1.equals("%")?"call_fun":"",12);
             }
         }
-        /*else if(vector.length==3){
-           name="JAVA_"+ MetodosVisual.buscar_java(this,vector[1],vector[2],errores);
+        else if(vector.length==3){
+           name=MetodosVisual.buscar_java(this,vector[1],vector[2],errores);
+            this.tipo=MetodosVisual.tipo;
+            this.string=MetodosVisual.string;
            MetodosVisual.add("call",name,"",this.lasValtmp1.equals("%")?"call_fun":"",12);
 
-        }*/
+        }
         this.lasValtmp1=this.lasValtmp1.equals("%")?"call_fun":"";
 
 

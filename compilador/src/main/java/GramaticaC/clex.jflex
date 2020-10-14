@@ -68,6 +68,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
     ("PY.")({Identifier} )       {return symbol(sym.CALLPY,new String(yytext()));}
     ("JAVA.")({Identifier} )      {return symbol(sym.INITJAVA,new String(yytext()));}
     ({Identifier} )(".")({Identifier} )       {return symbol(sym.CALLJAVA,new String(yytext()));}
+    (("JAVA."){Identifier} )(".")({Identifier} )       {return symbol(sym.CALLJAVA,new String(yytext()));}
 
     ("-")({numero})+(".")({numero})     {return symbol(sym.REAL,new Double(yytext()));}
     ("-")({numero})+                    {return symbol(sym.ENTERO,new Integer(yytext()));}
