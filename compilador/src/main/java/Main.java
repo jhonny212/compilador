@@ -22,9 +22,9 @@ public class Main {
 
     public static void main(String[] args) {
         //generarCompilador();
-        test();
-        //MainInterfaz main=new MainInterfaz();
-        //main.show();
+        //test();
+        MainInterfaz main=new MainInterfaz();
+        main.show();
     }
 
     private static void generarCompilador() {
