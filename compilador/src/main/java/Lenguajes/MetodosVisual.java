@@ -42,7 +42,6 @@ public class MetodosVisual {
         cod="";
         instrucciones.stream()
                 .forEach((x)->{
-                    //previo(cnt,x);
                     cod+=x.getTabs()+x.PRINT()+"\n";
                     cnt++;
                 });

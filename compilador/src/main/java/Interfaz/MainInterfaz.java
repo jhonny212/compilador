@@ -246,6 +246,10 @@ Compilador compilador=null;
                compilador.compilar_java();
                compilador.compilar_pyva();
                compilador.compilar_c();
+               String codigo=MetodosVisual.print();
+               System.err.println("*********************************");
+               System.err.println(codigo);
+               System.err.println("*********************************");
                if(!compilador.errorClass.haveErrors()){
                    Editor.addError(compilador.errorClass, jTabbedPane1);
                    MetodosVisual.clear();
