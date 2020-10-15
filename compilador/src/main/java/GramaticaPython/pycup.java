@@ -470,8 +470,24 @@ class CUP$pycup$actions {
           case 3: // metodos ::= metodos funcion 
             {
               Object RESULT =null;
+                if(this.parser.metodos!=null){
+                    if(!this.parser.metodos.isEmpty()){
+                        int tam=this.parser.metodos.size();
+                        for (int i = 0; i < tam; i++) {
+                            metodo_py t1=this.parser.metodos.get(i);
+                            for (int j = i+1; j < tam; j++) {
+                                metodo_py t2=this.parser.metodos.get(j);
+                                if(t1.ID.equals(t2.ID) && t1.tamaño==t2.tamaño  && !t1.equals(t2)){
+                                    this.parser.errores.AddError(2, t2.FILA, t2.COLUMNA, t2.ID,""
+                                            + "El metodo de python se repite en:\n"
+                                            + "Fila: "+(t1.FILA+ErrorClass.numLine) +" COLUMNA: "+t1.COLUMNA);
+                                }
+                            }
 
-              CUP$pycup$result = parser.getSymbolFactory().newSymbol("metodos",2, ((java_cup.runtime.Symbol)CUP$pycup$stack.elementAt(CUP$pycup$top-1)), ((java_cup.runtime.Symbol)CUP$pycup$stack.peek()), RESULT);
+                        }
+                    }
+                }
+                CUP$pycup$result = parser.getSymbolFactory().newSymbol("metodos",2, ((java_cup.runtime.Symbol)CUP$pycup$stack.elementAt(CUP$pycup$top-1)), ((java_cup.runtime.Symbol)CUP$pycup$stack.peek()), RESULT);
             }
           return CUP$pycup$result;
 

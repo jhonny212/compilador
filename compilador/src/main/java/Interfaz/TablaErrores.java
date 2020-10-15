@@ -6,6 +6,7 @@
 package Interfaz;
 
 import Errores.ErrorClass;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -94,6 +95,11 @@ public class TablaErrores extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,6 +115,15 @@ public class TablaErrores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        try{
+            int column=this.jTable1.getSelectedColumn();
+            int fila=this.jTable1.getSelectedRow();
+            Object val=this.jTable1.getModel().getValueAt(fila, column);
+            JOptionPane.showMessageDialog(this, String.valueOf(val));
+        }catch(Exception ex){}
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

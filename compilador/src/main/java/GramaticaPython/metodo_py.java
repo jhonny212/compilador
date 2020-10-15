@@ -12,11 +12,13 @@ public class metodo_py {
     public int FILA,COLUMNA;
     public String ID,CODIGO;
     public int numParams=0;
+    public int tamaño=0;
     public metodo_py(String id,int f1,int c1,ArrayList<InstruccionPy> instruccionPIES){
         this.FILA=f1;
         this.COLUMNA=c1-1;
         this.instruccionPIES=instruccionPIES;
         this.ID=id;
+        
     }
     ArrayList<VariableDeclaracion> variables;
     public metodo_py(String id,int f1, int c1, ArrayList<InstruccionPy> instruccionPIES, ArrayList<VariableDeclaracion> args){
@@ -25,6 +27,7 @@ public class metodo_py {
         this.instruccionPIES=instruccionPIES;
         this.variables=args;
         this.ID=id;
+        tamaño=args.size();
     }
 
 
