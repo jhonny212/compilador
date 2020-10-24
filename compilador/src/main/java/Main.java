@@ -10,21 +10,25 @@ import GramaticaVisualBasic.vblex;
 import Interfaz.MainInterfaz;
 import Lenguajes.Compilador;
 import Lenguajes.MetodosVisual;
+import OptimizarCodigoIntermedio.OptimizarCodigo;
+import TablaSimbolos.SymTable;
 import java_cup.runtime.Symbol;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class Main {
 
     public static void main(String[] args) {
         //generarCompilador();
-        //test();
-        MainInterfaz main=new MainInterfaz();
-        main.show();
+        test();
+        //MainInterfaz main=new MainInterfaz();
+        //main.show();
     }
 
     private static void generarCompilador() {
@@ -33,7 +37,7 @@ public class Main {
             String opcFlex[] = {ruta + "clex.jflex", "-d", ruta};
             jflex.Main.generate(opcFlex);
             String opcCUP[] = {"-destdir", ruta, "-parser", "ccup", ruta + "ccup.cup"};
-            //java_cup.Main.main(opcCUP);
+            java_cup.Main.main(opcCUP);
         } catch (Exception ex) {
         }
 
@@ -93,7 +97,7 @@ public class Main {
         String texto ="%%VB\n" +
                 "  //xxxxxxxxxxxx\n" +
                 "Public Sub suma (ByVal x As Integer,ByVal yy As Integer)\n" +
-                "    Dim y=x*2 As Integer\n" +
+                "    Dim y=x--2 As Integer\n" +
                 "    While x*y <= 10\n" +
                 "        If ( 0 Or Not(1) ) Then\n" +
                 "            x=intinput(\"Escriba su edad\")\n" +
@@ -133,44 +137,44 @@ public class Main {
                 "%%JAVA\n" +
                 "   //sdaaaaaaaaaaa\n" +
                 " public class aritmetica{\n" +
-                "     public aritmetica(){\n" +
-                "\n" +
-                "     }\n" +
-                "     public int suma(int x,int y){\n" +
-                "                 for(int i=0;i<10;i=i+1){\n" +
-                "                   int k=10;" +
+                "     int k=0;" +
+                "     public void suma(){\n" +
+                "                   while(k){" +
+                "                       if(k+1){" +
+                "                           int j=20;" +
+                "                       }else if(k+2){" +
+                "                           int f=30;" +
+                "                       }else{" +
+                "                           int j=10;" +
+                "                       }" +
                 "                 }\n" +
-                "         return 0;\n" +
                 "     }\n" +
                 " }\n" +
                 "%%PY\n" +
                 "def suma():\n" +
-                "    if (not(0 or 0) and 1):\n" +
-                "        print(\"Hola mundo\")\n" +
-                "    while 0*1:\n" +
-                "        print(\"xd\")\n" +
-                "        for x in range(0,10,1):\n" +
-                "            print(\"is a for\")\n" +
+                "    testin=10*3+2\n" +
+                "    testin=testin+2\n" +
                 "%%PROGRAMA\n" +
                 "#include \"PY\"\n" +
                 "#include \"VB\"\n" +
                 "#include \"JAVA.*\"\n" +
-                "\n" +
+                "int x,z=10;" +
                 "void main(){\n" +
-                "   //xxxxxxx\n" +
-                "    JAVA.aritmetica arit();\n" +
-                "    int suma=PY.suma()*10;\n" +
-                "    int resta=JAVA.aritmetica.suma(2*suma,3)+suma;\n" +
-                "\n" +
+                "   int y=x;" +
                 "}\n";
         Compilador compilador = new Compilador(texto);
         compilador.create();
-        compilador.compilar_vb();
-        compilador.compilar_java();
-        compilador.compilar_pyva();
+        //compilador.compilar_vb();
+        //compilador.compilar_java();
+        //SymTable.print();
+        //compilador.compilar_pyva();
         compilador.compilar_c();
         compilador.printError();
         //compilador.printCod();
+        //OptimizarCodigo xx=new OptimizarCodigo();
+        //xx.optimiar();
+        //xx.print();
+
     }
 
 }

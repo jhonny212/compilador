@@ -77,7 +77,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
     ","                 {return symbol(sym.COMA,new String(yytext()));}
     "("                 {return symbol(sym.AP,new String(yytext()));}
     ")"                 {return symbol(sym.CP,new String(yytext()));}
-     ">"|"<"|">="|"<="|"!="      {return symbol(sym.OP,new String(yytext()));}
+     ">"|"<"|">="|"<="|"!="|"=="      {return symbol(sym.OP,new String(yytext()));}
      "+"                         {return symbol(sym.SUM,new String(yytext()));}
      "-"                         {return symbol(sym.RES,new String(yytext()));}
      "/"                         {return symbol(sym.DIV,new String(yytext()));}
@@ -102,9 +102,9 @@ Identifier = [:jletter:] [:jletterdigit:]*
      {Comment} {}
 
     {Identifier}                {return symbol(sym.ID,new String(yytext()));}
-    ({numero})+(".")({numero})         {return symbol(sym.REAL,new Double(yytext()));}
+    ({numero})+(".")({numero})+         {return symbol(sym.REAL,new Double(yytext()));}
     ({numero})+                        {return symbol(sym.ENTERO,new Integer(yytext()));}
-     .   {
+      .   {
             fila=yyline+1;
             columna+=yycolumn+1;
             errores.AddError(0,yyline+1,yycolumn+1,yytext());}

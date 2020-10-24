@@ -518,7 +518,7 @@ WHILE AP boolean:bool CP
  }catch(Exception e){}
 :};
 
-for_var::= FOR AP declarateVar:obj PUNTOCOMA ID:x1 OP:op1 e:t1 PUNTOCOMA ID:x2 typeOp:op EQUALS e:t2 PUNTOCOMA CP
+for_var::= FOR AP declarateVar:obj PUNTOCOMA ID:x1 OP:op1 e:t1 PUNTOCOMA ID:x2 typeOp:op EQUALS e:t2  CP
 AC
 datos2:am
 CC
@@ -528,7 +528,7 @@ RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,op,am);
 ;
 
 
-for_var::= FOR AP declarateVar:obj PUNTOCOMA ID:x1 OP:op1 e:t1 PUNTOCOMA ID:x2 EQUALS e:t2 PUNTOCOMA CP
+for_var::= FOR AP declarateVar:obj PUNTOCOMA ID:x1 OP:op1 e:t1 PUNTOCOMA ID:x2 EQUALS e:t2  CP
 AC
 datos2:am
 CC
@@ -741,6 +741,10 @@ f::= callfun:fun
 {:
 RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
 :};
+f::= RES ENTERO:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
+f::= RES REAL:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
 
 
 
@@ -786,6 +790,10 @@ f_::= RES AP e_:val1 CP {:
 RESULT=val1;
 RESULT.cambiarSigno=1;
 :};
+f_::= RES ENTERO:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
+f_::= RES REAL:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
 
 
 
@@ -894,3 +902,7 @@ ff1::= callfun:fun
 {:
 RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
 :};
+ff1::= RES ENTERO:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
+ff1::= RES REAL:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};

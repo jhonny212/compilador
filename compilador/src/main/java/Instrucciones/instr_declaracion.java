@@ -3,6 +3,7 @@ package Instrucciones;
 import Arbol.AritAST.ArbolAritmetica;
 import Arbol.AritAST.NodoAritmetica;
 import Lenguajes.MetodosVisual;
+import TablaSimbolos.SymTable;
 import Variable.Variable;
 import Variable.VariableDeclaracion;
 
@@ -22,6 +23,7 @@ public class instr_declaracion extends Instruccion{
                 .forEach((x)->{
                     if(x!=null && !x.pass){
                         //System.err.println("AMBITO: "+this.numeroAmbito+" ID: "+x.ID+" TIPO:"+x.TIPO+ " STR: "+x.string+" DAD: "+this.ambitoDad);
+                        SymTable.ADD(x.TIPO,false,1,this.numeroAmbito,this.ambitoDad,x.ID);
                     }
                 });
 

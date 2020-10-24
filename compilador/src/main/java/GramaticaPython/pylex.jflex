@@ -52,11 +52,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "("                 {if(add){return symbol(sym.AP,new String(yytext()));}}
     ")"                 {if(add){return symbol(sym.CP,new String(yytext()));}}
     "range"                 {if(add){return symbol(sym.RANGE,new String(yytext()));}}
-     ">"|"<"|">="|"<="|"!="      {if(add){return symbol(sym.OP,new String(yytext()));}}
+     ">"|"<"|">="|"<="|"!="|"=="      {if(add){return symbol(sym.OP,new String(yytext()));}}
      "+"                         {if(add){return symbol(sym.SUM,new String(yytext()));}}
-     ("-")({numero})+(".")({numero})         {if(add){return symbol(sym.REAL,new Double(yytext()));}}
-     ("-")({numero})+                        {if(add){return symbol(sym.ENTERO,new Integer(yytext()));}}
      "-"                         {if(add){return symbol(sym.RES,new String(yytext()));}}
+
      "/"                         {if(add){return symbol(sym.DIV,new String(yytext()));}}
     "*"                         {if(add){return symbol(sym.MUL,new String(yytext()));}}
     "%%PROGRAMA"                         {if(add){add=false;
@@ -79,7 +78,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
       {Comment}                   {}
 
     {Identifier}                {if(add){return symbol(sym.ID,new String(yytext()));}}
-    ({numero})+(".")({numero})         {if(add){return symbol(sym.REAL,new Double(yytext()));}}
+    ({numero})+(".")({numero})+         {if(add){return symbol(sym.REAL,new Double(yytext()));}}
     ({numero})+                        {if(add){return symbol(sym.ENTERO,new Integer(yytext()));}}
 
     .   {if(add){

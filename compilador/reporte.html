@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+      
+</head>
+<body>
+    <style>
+        .table{
+            width: 95%;
+            height: 100%;
+            margin: 50px auto;
+        }
+        body{
+            background-color: rgb(192, 190, 187);
+        }
+    </style>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Codigo Intermedio</th>
+            <th scope="col">Codigo Optimizado</th>
+            <th scope="col">Dato</th>
+          </tr>
+        </thead>
+        <tbody>          <tr>
+            <th scope="row">1</th>
+            <td>class aritmetica{</td>
+            <td>class aritmetica{</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>void JAVA_aritmetica_suma() {</td>
+            <td>void JAVA_aritmetica_suma() {</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>i=0;</td>
+            <td>i=0;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>E1:</td>
+            <td>E1:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>int_num0=2*0;</td>
+            <td>int_num0=2;</td>
+            <td>Operacion con valor cero, puede ser reducida</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>int_num1=10+int_num0;</td>
+            <td>int_num1=10+int_num0;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>if(i< int_num1)goto E2;</td>
+            <td>if(i< int_num1)goto E2;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>goto E3;</td>
+            <td>goto E3;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td>E2:</td>
+            <td>E2:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>i=0;</td>
+            <td>i=0;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">11</th>
+            <td>k=10;</td>
+            <td>k=10;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">12</th>
+            <td>E5:</td>
+            <td>E5:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">13</th>
+            <td>if(k )goto E6;</td>
+            <td>if(k )goto E6;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">14</th>
+            <td>goto E7;</td>
+            <td>goto E7;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">15</th>
+            <td>E6:</td>
+            <td>E6:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">16</th>
+            <td>int_num0=10*x;</td>
+            <td>int_num0=10*x;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">17</th>
+            <td>int_num1=int_num0+k;</td>
+            <td>f=int_num0+k;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">18</th>
+            <td>f=int_num1;</td>
+            <td style="color:red">f=int_num1;</td>
+            <td>La asignacion puede asignarse de una vez, a la instruccion anterior</td>
+          </tr>
+          <tr>
+            <th scope="row">19</th>
+            <td>int_num0=k+1;</td>
+            <td>int_num0=k+1;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">20</th>
+            <td>if(int_num0 )goto E8;</td>
+            <td>if(int_num0 )goto E5;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+          </tr>
+          <tr>
+            <th scope="row">21</th>
+            <td>goto E9;</td>
+            <td>goto E9;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">22</th>
+            <td>E8:</td>
+            <td style="color:red">E8:</td>
+            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
+          </tr>
+          <tr>
+            <th scope="row">23</th>
+            <td>goto E10;</td>
+            <td style="color:red">goto E5;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+          </tr>
+          <tr>
+            <th scope="row">24</th>
+            <td>E9:</td>
+            <td>E9:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">25</th>
+            <td>int_num0=k+2;</td>
+            <td>int_num0=k+2;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">26</th>
+            <td>if(int_num0 )goto E11;</td>
+            <td>if(int_num0 )goto E5;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+          </tr>
+          <tr>
+            <th scope="row">27</th>
+            <td>goto E12;</td>
+            <td>goto E5;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+          </tr>
+          <tr>
+            <th scope="row">28</th>
+            <td>E11:</td>
+            <td style="color:red">E11:</td>
+            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
+          </tr>
+          <tr>
+            <th scope="row">29</th>
+            <td>goto E10;</td>
+            <td style="color:red">goto E5;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+          </tr>
+          <tr>
+            <th scope="row">30</th>
+            <td>E12:</td>
+            <td style="color:red">E12:</td>
+            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
+          </tr>
+          <tr>
+            <th scope="row">31</th>
+            <td>goto E13;</td>
+            <td style="color:red">goto E5;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+          </tr>
+          <tr>
+            <th scope="row">32</th>
+            <td>E10:</td>
+            <td style="color:red">E10:</td>
+            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
+          </tr>
+          <tr>
+            <th scope="row">33</th>
+            <td>goto E14;</td>
+            <td style="color:red">goto E5;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+          </tr>
+          <tr>
+            <th scope="row">34</th>
+            <td>E13:</td>
+            <td style="color:red">E13:</td>
+            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
+          </tr>
+          <tr>
+            <th scope="row">35</th>
+            <td>E14:</td>
+            <td style="color:red">E14:</td>
+            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
+          </tr>
+          <tr>
+            <th scope="row">36</th>
+            <td>goto E5;</td>
+            <td style="color:red">goto E5;</td>
+            <td>La instruccion puede ser eliminada, dado que se elimina la etiqueta</td>
+          </tr>
+          <tr>
+            <th scope="row">37</th>
+            <td>E7:</td>
+            <td>E7:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">38</th>
+            <td>int_num1=i+1;</td>
+            <td>int_num1=i+1;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">39</th>
+            <td>i=int_num1+i;</td>
+            <td>i=int_num1+i;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">40</th>
+            <td>goto E1;</td>
+            <td>goto E1;</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">41</th>
+            <td>E3:</td>
+            <td>E3:</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">42</th>
+            <td>}</td>
+            <td>}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">43</th>
+            <td>}</td>
+            <td>}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+     
+</body>
+</html>

@@ -5,6 +5,7 @@ import Arbol.AritAST.NodoAritmetica;
 import Errores.ErrorClass;
 import GramaticaC.declaracion_c;
 import Lenguajes.MetodosVisual;
+import TablaSimbolos.ambitoTable;
 import Variable.Variable;
 import Variable.VariableDeclaracion;
 import controlador.Controlador_;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class ambito_ {
     ArrayList<Instruccion> instruccions;
-    ArrayList<VariableDeclaracion> variables;
+    public ArrayList<VariableDeclaracion> variables;
     public int numeroAm=0,numTmp=0;
     public int TIPORETORNO;
     public ErrorClass errores=null;
@@ -56,6 +57,7 @@ public class ambito_ {
     public boolean entered=false;
     public void validate(boolean isFun){
         //System.out.println("TABLA AMBIOTS "+this.numeroAm+" DAD:"+this.ambitoDad);
+        ambitoTable.ADD_AMB(this.numeroAm,this.ambitoDad);
         if(this.instruccions!=null){
             this.instruccions.stream()
                     .forEach((x)->{

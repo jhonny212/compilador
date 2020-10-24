@@ -251,6 +251,11 @@ RESULT=val1;
 RESULT.cambiarSigno=1;
 :};
 
+f::= RES ENTERO:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
+f::= RES REAL:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
+
 
 
 boolean::= boolean:v1 AND b:v2 {:RESULT=new NodoBoolean(v1,"and",v2);:};
@@ -347,6 +352,10 @@ ff1::= CARACTER:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val,1,"c"));:};
 ff1::= ENTERO:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));:};
+ff1::= RES ENTERO:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
+ff1::= RES REAL:val
+{:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
 
 
 

@@ -2,7 +2,7 @@ package Lenguajes;
 
 public class Cuadruplas {
     public String OP,ARG1,ARG2,RESULT;
-    public final int TIPO;
+    public  int TIPO;
     public String KIND;
 
     public Cuadruplas(String OP, String ARG1, String ARG2,
@@ -55,7 +55,7 @@ public class Cuadruplas {
             case 2:
                 return RESULT+"="+ARG1 +";";
             case 3:
-                return "if("+ARG1+OP+ARG2+")"+RESULT+";";
+                return "if("+ARG1+OP+" "+ARG2+")"+RESULT+";";
             case 4:
                 return OP+" "+ARG1+ARG2 +";";
             case 5:
@@ -104,4 +104,6 @@ public class Cuadruplas {
         }
         return tabs;
     }
+
+    public boolean canAdd=true;
 }
