@@ -16,16 +16,24 @@ public class Arbol {
             return null;
         }
         if(ID.startsWith("this.")){
-            String tmp=ID.replaceFirst("this.","");
+           // String tmp=ID.replaceFirst("this.","");
             for (VariableDeclaracion x:this.tablaSimbolos) {
-                if(x.ID.equals(tmp) && x.globalVar==1){
+                if(x.ID.equals(ID) && x.globalVar==1){
                     return x;
                 }
             }
+
+
         }else{
             for (int i = this.tablaSimbolos.size()-1; i >=0 ; i--) {
                 VariableDeclaracion x=this.tablaSimbolos.get(i);
                 if(x.ID.equals(ID)){
+                    return x;
+                }
+            }
+            for (int i = this.tablaSimbolos.size()-1; i >=0 ; i--) {
+                VariableDeclaracion x=this.tablaSimbolos.get(i);
+                if(x.ID.equals("this."+ID)){
                     return x;
                 }
             }

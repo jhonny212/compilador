@@ -11,6 +11,7 @@ import GramaticaPython.pylex;
 import GramaticaVisualBasic.vbcup;
 import GramaticaVisualBasic.vblex;
 import Instrucciones.metodos;
+import TablaSimbolos.SymTable;
 
 import java.io.BufferedReader;
 import java.io.StringReader;
@@ -41,9 +42,9 @@ public class Compilador {
 
     public ErrorClass errorClass=new ErrorClass();
     public void compilar_vb(){
-        var lex=new vblex(new BufferedReader(new StringReader(codigoVB)));
+        vblex lex=new vblex(new BufferedReader(new StringReader(codigoVB)));
         lex.errores=errorClass;
-        var parser=new vbcup(lex);
+        vbcup parser=new vbcup(lex);
         parser.errores=lex.errores;
         try {
             parser.parse();
@@ -52,29 +53,30 @@ public class Compilador {
         }
         ErrorClass.numLine=lex.fila-1;
         System.err.println("#"+ErrorClass.numLine);
-        MetodosVisual.metodosVB=parser.listado;
+        //MetodosVisual.metodosVB=parser.listado;
 
     }
     public void compilar_java(){
-        var lex=new javalex(new BufferedReader(new StringReader(codigoJAVA)));
+        javalex lex=new javalex(new BufferedReader(new StringReader(codigoJAVA)));
         lex.errores=errorClass;
-        var parser=new javacup(lex);
+        javacup parser=new javacup(lex);
+        MetodosVisual.clasesJava=parser.java;
         parser.errores=lex.errores;
         try {
             parser.parse();
         }catch (Exception e){
             System.err.println("Error java");
         }
-         ErrorClass.numLine+=lex.fila-1;
-         System.err.println("#"+ErrorClass.numLine);
-        MetodosVisual.clasesJava=parser.java;
+        ErrorClass.numLine+=lex.fila-1;
+        //System.err.println("#"+ErrorClass.numLine);
+        //MetodosVisual.clasesJava=parser.java;
         MetodosVisual.clasesJava.validate(this.errorClass);
 
     }
     public void compilar_pyva(){
-        var lex=new pylex(new BufferedReader(new StringReader(codigoPY)));
+        pylex lex=new pylex(new BufferedReader(new StringReader(codigoPY)));
         lex.errores=errorClass;
-        var parser=new pycup(lex);
+        pycup parser=new pycup(lex);
         parser.errores=lex.errores;
         try {
             parser.parse();
@@ -83,13 +85,14 @@ public class Compilador {
         }
          ErrorClass.numLine+=lex.fila-1;
          System.err.println("#"+ErrorClass.numLine);
-        MetodosVisual.metodosPY=parser.metodos;
+        //MetodosVisual.metodosPY=parser.metodos;
         validatePy();
     }
     public void compilar_c(){
-        var lex=new clex(new BufferedReader(new StringReader(codigoC)));
+        clex lex=new clex(new BufferedReader(new StringReader(codigoC)));
         lex.errores=errorClass;
-        var parser=new ccup(lex);
+        ccup parser=new ccup(lex);
+        SymTable.canAdd=false;
         parser.errores=lex.errores;
         try {
             parser.parse();

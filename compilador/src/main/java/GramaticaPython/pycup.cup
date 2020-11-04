@@ -28,6 +28,9 @@ public ArrayList<metodo_py> metodos=new ArrayList<>();
 
 non-terminal inicio;
 
+non-terminal ArrayList<argumento_dato > argumentos_function;
+non-terminal Instruccion call_fun;
+
 terminal String WHILE,ELSE,IF,FOR,RETURN,CODC;
 terminal String TWOPOINT,COMA,IN;
 terminal String AP,CP,RANGE,OP,SUM,RES,MUL,DIV,MODUL,ELSEIF;
@@ -65,7 +68,10 @@ non-terminal NodoBoolean boolean;
 
 start with inicio;
 
-inicio::= SALTO_LINEA metodos CODC;
+inicio::= SALTO_LINEA metodos CODC
+{:
+
+:};
 inicio::= SALTO_LINEA CODC;
 
 metodos::= metodos funcion
@@ -77,7 +83,7 @@ instrucciones:list
 {:
 metodo_py m=new metodo_py (id,x1left,x1right,list,args);
 m.errorClass=this.parser.errores;
-m.validate();
+//m.validate();
 this.parser.metodos.add(m);
 :}
 ;
@@ -88,7 +94,7 @@ SALTO_LINEA
 {:
 metodo_py m=new metodo_py (id,x1left,x1right,list,args);
 m.errorClass=this.parser.errores;
-m.validate();
+//m.validate();
 this.parser.metodos.add(m);
 :};
 
@@ -98,7 +104,7 @@ SALTO_LINEA
 {:
 metodo_py m=new metodo_py (id,x1left,x1right,list);
 m.errorClass=this.parser.errores;
-m.validate();
+//m.validate();
 this.parser.metodos.add(m);
 :}
 ;
@@ -108,7 +114,7 @@ instrucciones:list
 {:
 metodo_py m=new metodo_py (id,x1left,x1right,list);
 m.errorClass=this.parser.errores;
-m.validate();
+//m.validate();
 this.parser.metodos.add(m);
 :};
 
@@ -256,6 +262,10 @@ f::= RES ENTERO:val
 f::= RES REAL:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
 
+f::= call_fun:fun
+{:
+RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
+:};
 
 
 boolean::= boolean:v1 AND b:v2 {:RESULT=new NodoBoolean(v1,"and",v2);:};
@@ -358,5 +368,32 @@ ff1::= RES REAL:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
 
 
+ff1::= call_fun:fun
+{:
+RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
+:};
 
+call_fun::=ID:id AP  CP
+{:
+call_c call=new call_c(0,id,idleft,idright);
+RESULT=call;
+call.tipoMetodo=1;
+:};
+
+call_fun::=ID:id AP argumentos_function:list CP
+{:
+call_c call=new call_c(0,id,idleft,idright,list);
+RESULT=call;
+call.tipoMetodo=1;
+:};
+argumentos_function::= argumentos_function:list COMA e:nodo
+{:
+list.add(new argumento_dato(nodo));
+RESULT=list;
+:}
+|e:nodo
+{:
+RESULT=new ArrayList();
+RESULT.add(new argumento_dato(nodo));
+:};
 

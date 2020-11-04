@@ -5,10 +5,16 @@
  */
 package Interfaz;
 
+import CodigoEjecutable.generarCodigoIntermedio;
+import Errores.ErrorClass;
 import Lenguajes.Compilador;
 import Lenguajes.MetodosVisual;
+import OptimizarCodigoIntermedio.OptimizarCodigo;
+import TablaSimbolos.SymTable;
 
 import javax.swing.JOptionPane;
+import java.awt.*;
+import java.io.File;
 
 /**
  *
@@ -137,6 +143,11 @@ public class MainInterfaz extends javax.swing.JFrame {
         jMenu2.add(Compilar);
 
         generarOptimizado.setText("Codigo Optimizado");
+        generarOptimizado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarOptimizadoActionPerformed(evt);
+            }
+        });
         jMenu2.add(generarOptimizado);
 
         generarAsembler.setText("Codigo Assembler");
@@ -147,12 +158,27 @@ public class MainInterfaz extends javax.swing.JFrame {
         ejecutar3dir.setText("Ejecutar");
 
         jMenuItem9.setText("Codigo de 3 direcciones");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         ejecutar3dir.add(jMenuItem9);
 
         ejecutarOpti.setText("Codigo Optimiazdo");
+        ejecutarOpti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ejecutarOptiActionPerformed(evt);
+            }
+        });
         ejecutar3dir.add(ejecutarOpti);
 
         ejecutarAsm.setText("Codigo Assembler");
+        ejecutarAsm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ejecutarAsmActionPerformed(evt);
+            }
+        });
         ejecutar3dir.add(ejecutarAsm);
 
         jMenuBar1.add(ejecutar3dir);
@@ -207,7 +233,6 @@ public class MainInterfaz extends javax.swing.JFrame {
 
     private void ClosePestañaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClosePestañaActionPerformed
         try {
-
             ContentTab cnt = (ContentTab) this.jTabbedPane1.getSelectedComponent();
             if (!cnt.canSave()) {
                 final int opc = JOptionPane.showConfirmDialog(this, "¿Desea guardar el documento?");
@@ -226,9 +251,15 @@ public class MainInterfaz extends javax.swing.JFrame {
                     this.jTabbedPane1.remove(this.jTabbedPane1.getSelectedComponent());
                 }
             }
+            try{
+                this.jTabbedPane1.remove(this.jTabbedPane1.getSelectedComponent());
+            }catch (Exception ignored){}
         } catch (Exception ex) {
+            try{
+                this.jTabbedPane1.remove(this.jTabbedPane1.getSelectedComponent());
+            }catch (Exception ignored){}
         }
-        Editor.program_=null;
+        //Editor.program_=null;
     }//GEN-LAST:event_ClosePestañaActionPerformed
 
     private void ExitProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitProgramActionPerformed
@@ -236,40 +267,97 @@ public class MainInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitProgramActionPerformed
 Compilador compilador=null;
     private void CompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompilarActionPerformed
-        if(Editor.program_!=null){
-           try{
-               ContentTab tab=(ContentTab) this.jTabbedPane1.getSelectedComponent();
-               String texto=tab.getTexto();
-               compilador=new Compilador(texto);
-               compilador.create();
-               compilador.compilar_vb();
-               compilador.compilar_java();
-               compilador.compilar_pyva();
-               compilador.compilar_c();
-               String codigo=MetodosVisual.print();
-               System.err.println("*********************************");
-               System.err.println(codigo);
-               System.err.println("*********************************");
-               if(!compilador.errorClass.haveErrors()){
-                   Editor.addError(compilador.errorClass, jTabbedPane1);
-                   MetodosVisual.clear();
-                 
-               }
+        compilar();
 
-           }catch(Exception ex){
-               compilador=null;
-               System.err.println("ex");
-               MetodosVisual.clear();
-           }
-        }
     }//GEN-LAST:event_CompilarActionPerformed
 
+    void compilar(){
+        if(Editor.program_==null){
+            Editor.program_ = new ContentTab();
+        }
+        try{
+            try{
+                this.jTabbedPane1.remove(Editor.codInter);
+            }catch (Exception ex){}
+            ContentTab tab=(ContentTab) this.jTabbedPane1.getSelectedComponent();
+            String texto=tab.getTexto();
+            ErrorClass.numLine=0;
+            MetodosVisual.clear();
+            compilador=new Compilador(texto);
+            compilador.create();
+            compilador.compilar_vb();
+            compilador.compilar_java();
+            compilador.compilar_pyva();
+            compilador.compilar_c();
+            if(!compilador.errorClass.haveErrors()){
+                Editor.addError(compilador.errorClass, jTabbedPane1);
+                MetodosVisual.clear();
+                compilador=null;
+                //JOptionPane.showMessageDialog(this,"Error");
+            }else{
+                SymTable.fix();
+                SymTable.print2();
+                JOptionPane.showMessageDialog(this,"Compilacion exitosa");
+            }
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,"Error "+ex.getMessage());
+            if(!compilador.errorClass.haveErrors()){
+                Editor.addError(compilador.errorClass, jTabbedPane1);
+            }
+            compilador=null;
+            MetodosVisual.clear();
+        }
+    }
     private void generarCodigoIntermedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarCodigoIntermedioActionPerformed
         if(compilador==null){
         return;
         }
+
+        CodigoEjecutable.generarCodigoIntermedio codigoIntermedio = new CodigoEjecutable.generarCodigoIntermedio();
+        codigoIntermedio.generar(MetodosVisual.instrucciones);
         Editor.addCodInter(jTabbedPane1);
     }//GEN-LAST:event_generarCodigoIntermedioActionPerformed
+
+
+
+    private void generarOptimizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarOptimizadoActionPerformed
+        if(compilador==null){
+            return;
+        }
+        OptimizarCodigo op=new OptimizarCodigo();
+        op.optimiar();
+        op.print();
+        try{
+            Desktop.getDesktop().open(new File("reporte.html"));
+        }catch (Exception ex){}
+
+    }//GEN-LAST:event_generarOptimizadoActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        if(compilador!=null){
+            //CodigoEjecutable.generarCodigoIntermedio cod=new CodigoEjecutable.generarCodigoIntermedio();
+            //cod.generar(MetodosVisual.instrucciones);
+            Editor.compilarCodigoC(CodigoEjecutable.generarCodigoIntermedio.codigoFinal);
+        }else{
+            compilar();
+            if(compilador!=null){
+                CodigoEjecutable.generarCodigoIntermedio cod=new CodigoEjecutable.generarCodigoIntermedio();
+                cod.generar(MetodosVisual.instrucciones);
+                Editor.compilarCodigoC(CodigoEjecutable.generarCodigoIntermedio.codigoFinal);
+            }
+
+        }
+
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void ejecutarOptiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarOptiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ejecutarOptiActionPerformed
+
+    private void ejecutarAsmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarAsmActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ejecutarAsmActionPerformed
 
     /**
      * @param args the command line arguments

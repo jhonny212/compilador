@@ -14,9 +14,9 @@ abstract public class Variable {
     public abstract boolean isNull();
     public abstract Object getValor();
     public String codigo3d="";
-    public  String lasValtmp1="",lasValtmp2="";
-    public  String asignacionVal="";
-    public boolean isFunExter=false,isConst=false;
+    public  String lasValtmp1="";
+
+    public boolean isFunExter=false,isConst=false,isJava=false;
 
     abstract public void change();
 

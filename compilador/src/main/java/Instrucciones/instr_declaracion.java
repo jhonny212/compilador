@@ -19,24 +19,23 @@ public class instr_declaracion extends Instruccion{
 
     @Override
     public void validate(boolean valid) {
-        this.variables.stream()
-                .forEach((x)->{
-                    if(x!=null && !x.pass){
-                        //System.err.println("AMBITO: "+this.numeroAmbito+" ID: "+x.ID+" TIPO:"+x.TIPO+ " STR: "+x.string+" DAD: "+this.ambitoDad);
-                        SymTable.ADD(x.TIPO,false,1,this.numeroAmbito,this.ambitoDad,x.ID);
-                    }
-                });
 
-        this.variables.stream()
+       this.variables.stream()
                 .forEach((x)->{
                     if(!x.isNull()){
                        if(!x.pass){
                            if(x.nodo==null){
                                if(x.variableVECTOR!=null){
+                                   x.variableVECTOR.AMBITO=this.numeroAmbito;
+                                   x.variableVECTOR.AMBITO_DAD=this.ambitoDad;
                                    x.variableVECTOR.validate(this.variables,this.errores);
+                                   SymTable.ADD(x.getTipe_var(),true,1,this.numeroAmbito,this.ambitoDad,x.ID);
+                                   SymTable.celdas2.get(SymTable.celdas2.size()-1).sizePOS=x.variableVECTOR.lasValtmp1;
                                    x.variableVECTOR.TIPO=this.tipo;
                                }
                            }else{
+                               SymTable.ADD(x.getTipe_var(),false,1,this.numeroAmbito,this.ambitoDad,x.ID);
+
                                ArbolAritmetica arbol=new ArbolAritmetica(this.variables);
                                arbol.errorClass=this.errores;
                                arbol.kindVar=x.string;
@@ -50,12 +49,12 @@ public class instr_declaracion extends Instruccion{
                                }
                                x.nodo.variable.TIPO=this.tipo;
                            }
-
-                          //System.out.println(x.ID+"="+lastVals);
-
                        }
                        x.pass=true;
-                      }
+                      }else if(x.entered==1){
+                        x.entered=2;
+                        SymTable.ADD(x.getTipe_var(),false,1,this.numeroAmbito,this.ambitoDad,x.ID);
+                    }
                 });
     }
 }

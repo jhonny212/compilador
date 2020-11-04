@@ -55,6 +55,8 @@ non-terminal ArrayList<metodos> metodos;
 non-terminal metodos funcion;
 non-terminal metodos procedimiento;
 
+non-terminal ArrayList<argumento_dato > argumentos_function;
+non-terminal Instruccion call_fun;
 //-------------------->instrucciones
 non-terminal ambito_ datos;
 non-terminal ambito_ instrucciones;
@@ -106,17 +108,41 @@ clases::= clase
 
 clase::= PUBLIC CLASS ID:id AC metodos:datos CC
 {:
-  /*
-  Controlador_.verifyConstruc(this.parser.constructores,this.parser.errores,id);
-  Controlador_.verifyMetodos(datos,this.parser.errores);
-    MetodosVisual.add("class",id,"","",15);
+  try{
+    datos.forEach((x)->{
+      x.string="JAVA_"+id+"_";
+      x.validateSTRING();
+    });
+  }catch (Exception ex){}
+              try{
+                this.parser.constructores.forEach((x)->{
+                  x.string="JAVA_constru_"+id+"_";
+                  x.validateSTRING();
+                });
+              }catch (Exception ex){}
 
-if(!this.parser.variablesDeclar.isEmpty()){
+              Controlador_.verifyConstruc(this.parser.constructores,this.parser.errores,id);
+  Controlador_.verifyMetodos(datos,this.parser.errores);
+
+  int tamaño=this.parser.variablesDeclar.size();
+  int prev=SymTable.celdas.size()-tamaño;
+  SymTable.celda celda=new SymTable.celda(20,false,0,-1,-1,id,-1);
+  SymTable.celdas.add((prev),celda);
+  int tamañoPrevio=SymTable.celdas.size();
+  //celda.POS_MEMORIA=this.parser.constructores.size()+datos.size()+this.parser.variablesDeclar.size();
+              for (int i = MetodosVisual.instrucciones.size()-1; i >=0 ; i--) {
+                Cuadruplas tmp=MetodosVisual.instrucciones.get(i);
+                if(tmp.TIPO==15 && tmp.ARG1.isEmpty()){
+                  tmp.ARG1=id;
+                }
+              }
+   if(!this.parser.variablesDeclar.isEmpty()){
 		  this.parser.variablesDeclar.stream()
                   .forEach((x)->{
                     x.globalVar=1;
                   });
         }
+        Controlador_.add=false;
 		Controlador_.verifyArgs(this.parser.variablesDeclar, this.parser.errores);
 
         datos.stream()
@@ -137,7 +163,9 @@ if(!this.parser.variablesDeclar.isEmpty()){
                                x.addVars(this.parser.variablesDeclar);
                              }
                            }
-                           x.string="JAVA_";
+
+                           x.string="JAVA_constru_"+x.ID+"_";
+
                            x.validate();
                            try{
                              x.argumentos.removeAll(this.parser.variablesDeclar);
@@ -146,11 +174,12 @@ if(!this.parser.variablesDeclar.isEmpty()){
                          });
                }
               MetodosVisual.search(id);
-              MetodosVisual.add("class",id,"","",9);
+              //MetodosVisual.add("class ",id,"","",9);
               this.parser.java.add(id,idleft,idright,datos,this.parser.constructores,this.parser.variablesDeclar);
-              */
+   celda.POS_MEMORIA=this.parser.variablesDeclar.size();
 this.parser.variablesDeclar=new ArrayList();
 this.parser.constructores=new ArrayList<>();
+
 
 :};
 
@@ -212,6 +241,12 @@ x=new ArrayList();
                 MetodosVisual.add("class","","","",15);
               }
   list.errores=this.parser.errores;
+                try {
+                  list.variables
+                          .forEach((var)->{
+                            var.ID="this."+var.ID;
+                          });
+                }catch (Exception ex){}
               list.initDatas(this.parser.variablesDeclar);
               list.validate(false);
 list.variables.removeAll(this.parser.variablesDeclar);
@@ -224,6 +259,12 @@ metodos::= declaracion_var:list PUNTOCOMA
                 MetodosVisual.add("class","","","",15);
               }
   list.errores=this.parser.errores;
+                try {
+                  list.variables
+                          .forEach((var)->{
+                            var.ID="this."+var.ID;
+                          });
+                }catch (Exception ex){}
               list.initDatas(this.parser.variablesDeclar);
               list.validate(false);
  list.variables.removeAll(this.parser.variablesDeclar);
@@ -368,7 +409,8 @@ instruccion::= asignacion_var:x {:RESULT=x;:} PUNTOCOMA
 |input_var:x  PUNTOCOMA {:RESULT=x;:}
 |print_var:x  PUNTOCOMA {:RESULT=x;:}
 |error PUNTOCOMA {:System.out.println(";");:}
-|error CP {:System.out.println("cp");:};
+|error CP {:System.out.println("cp");:}
+|call_fun:x  PUNTOCOMA {:RESULT=x;:};
 
 
 
@@ -545,7 +587,7 @@ RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,"=",am);
 ;
 */
 
-for_var::= FOR AP ID:id PUNTOCOMA ID:id2 OP e:t2 PUNTOCOMA ID:id3 EQUALS e:t3  CP
+for_var::= FOR AP ID:id PUNTOCOMA ID:id2 OP:op e:t2 PUNTOCOMA ID:id3 EQUALS e:t3  CP
 AC
 datos2:am
 CC
@@ -553,7 +595,7 @@ CC
 RESULT=new instr_for_java(id,null,t2,t3,-1,am,idleft,idright,id2,id2left,id2right,id3,id3left,id3right);
 :};
 
-for_var::= FOR AP tipos:t ID:id EQUALS e:t1 PUNTOCOMA ID:id2 OP e:t2 PUNTOCOMA ID:id3 EQUALS e:t3  CP
+for_var::= FOR AP tipos:t ID:id EQUALS e:t1 PUNTOCOMA ID:id2 OP:op e:t2 PUNTOCOMA ID:id3 EQUALS e:t3  CP
 AC
 datos2:am
 CC
@@ -755,6 +797,11 @@ f::= RES ENTERO:val
 f::= RES REAL:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
 
+f::= call_fun:fun
+{:
+RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
+:};
+
 
 e_::= e_:val1 SUM t_:val2
 {:
@@ -905,4 +952,33 @@ ff1::= RES ENTERO:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
 ff1::= RES REAL:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
+ff1::= call_fun:fun
+{:
+RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
+:};
 
+
+
+call_fun::=ID:id AP  CP
+{:
+call_c call=new call_c(0,id,idleft,idright);
+RESULT=call;
+call.tipoMetodo=2;
+:};
+
+call_fun::=ID:id AP argumentos_function:list CP
+{:
+call_c call=new call_c(0,id,idleft,idright,list);
+RESULT=call;
+call.tipoMetodo=2;
+:};
+argumentos_function::= argumentos_function:list COMA e:nodo
+{:
+list.add(new argumento_dato(nodo));
+RESULT=list;
+:}
+|e:nodo
+{:
+RESULT=new ArrayList();
+RESULT.add(new argumento_dato(nodo));
+:};

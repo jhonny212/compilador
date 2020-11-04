@@ -120,10 +120,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
                                         if(add){ return symbol(sym.CADENA,val);}
                                     }
       [^\"]                         {string.append(yytext());yybegin(CHAR);}
-      \\t                           { string.append('\t'); yybegin(CHAR); }
-      \\n                           { string.append('\n'); yybegin(CHAR); }
+      \\t                           { string.append("\\t"); yybegin(CHAR); }
+      \\n                           { string.append("\\n"); yybegin(CHAR); }
 
-      \\r                           { string.append('\r'); yybegin(CHAR);}
+      \\r                           { string.append("\\r"); yybegin(CHAR);}
       \\\"                          { string.append('\"'); yybegin(CHAR);}
       \\                            { string.append('\\'); yybegin(CHAR);}
 }
@@ -135,10 +135,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
                                         char y=val.charAt(0);
                                       if(add){   return symbol(sym.CARACTER,y);}}
     [^\"]                         {string.append(yytext());yybegin(STRING);}
-    \\t                           { string.append('\t'); yybegin(STRING); }
-    \\n                           { string.append('\n'); yybegin(STRING); }
+    \\t                           { string.append("\\t"); yybegin(STRING); }
+    \\n                           { string.append("\\n"); yybegin(STRING); }
 
-    \\r                           { string.append('\r'); yybegin(STRING);}
+    \\r                           { string.append("\\r"); yybegin(STRING);}
     \\\"                          { string.append('\"'); yybegin(STRING);}
     \\                            { string.append('\\'); yybegin(STRING);}
 }
@@ -148,10 +148,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
                                         string=new StringBuffer();
                                     if(add){     return symbol(sym.CADENA,val);}}
     [^\"]+                         {string.append(yytext());yybegin(STRING);}
-    \\t                           { string.append('\t'); yybegin(STRING); }
-    \\n                           { string.append('\n'); yybegin(STRING); }
+    \\t                           { string.append("\\t"); yybegin(STRING); }
+    \\n                           { string.append("\\n"); yybegin(STRING); }
 
-    \\r                           { string.append('\r'); yybegin(STRING);}
+    \\r                           { string.append("\\r"); yybegin(STRING);}
     \\\"                          { string.append('\"'); yybegin(STRING);}
     \\                            { string.append('\\'); yybegin(STRING);}
 }

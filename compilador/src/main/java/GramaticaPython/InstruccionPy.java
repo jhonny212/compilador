@@ -12,4 +12,6 @@ public abstract class InstruccionPy {
     public ErrorClass errorClass;
     public boolean ambitoVal=false;
     public abstract void validate();
+    public int ambitoDad=0;
+    public int numeroAmbito=0;
 }

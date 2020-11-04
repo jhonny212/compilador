@@ -37,7 +37,9 @@ public class VariableDeclaracion extends Variable{
         this.pass=true;
         this.fila=fila;
         this.columna=columna;
+        entered=1;
     }
+    public int entered=0;
     public VariableDeclaracion(String id,int fila,int columna, boolean isnull){
         this.ID=id;
         this.isNull=false;
@@ -45,6 +47,7 @@ public class VariableDeclaracion extends Variable{
         this.fila=fila;
         this.columna=columna;
         isFunExter=true;
+        isJava=true;
     }
     public ArrayList<argumento_dato> args;
     public VariableDeclaracion(String id,int fila,int columna, ArrayList<argumento_dato> args){
@@ -55,6 +58,7 @@ public class VariableDeclaracion extends Variable{
         this.columna=columna;
         isFunExter=true;
         this.args=args;
+        isJava=true;
     }
 
     public VariableDeclaracion(String id,int fila,int columna,int t1,boolean is){
@@ -63,6 +67,7 @@ public class VariableDeclaracion extends Variable{
         this.pass=true;
         this.fila=fila;
         this.columna=columna;
+
         switch (t1){
             case 0:
                 this.TIPO=t1;
@@ -78,6 +83,18 @@ public class VariableDeclaracion extends Variable{
                 break;
         }
 
+    }
+
+    public int getTipe_var(){
+        switch (this.string){
+            case "r":
+                return 0;
+            case "e":
+                return 1;
+            case "c":
+                return 2;
+        }
+        return 0;
     }
 
 
@@ -102,5 +119,6 @@ public class VariableDeclaracion extends Variable{
     public String getStr() {
         return null;
     }
+
 
 }

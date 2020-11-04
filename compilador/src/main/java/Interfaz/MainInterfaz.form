@@ -111,6 +111,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Codigo Optimizado"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generarOptimizadoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="generarAsembler">
               <Properties>
@@ -128,16 +131,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Codigo de 3 direcciones"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem9ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ejecutarOpti">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Codigo Optimiazdo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ejecutarOptiActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ejecutarAsm">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Codigo Assembler"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ejecutarAsmActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

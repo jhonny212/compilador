@@ -56,7 +56,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "default"                 {return symbol(sym.DEFAULT,new String(yytext()));}
     "break"                 {return symbol(sym.BREAK,new String(yytext()));}
     ":"                 {return symbol(sym.BOTHPOINT,new String(yytext()));}
+    "#include <stdio.h>"                 {}
+    "#include <stdlib.h>"                 {}
     "#include"                 {return symbol(sym.INCLUDE,new String(yytext()));}
+
     "void"                 {return symbol(sym.VOID,new String(yytext()));}
     "main"                 {return symbol(sym.MAIN,new String(yytext()));}
     "clrscr"                 {return symbol(sym.CLEAR,new String(yytext()));}
@@ -70,8 +73,6 @@ Identifier = [:jletter:] [:jletterdigit:]*
     ({Identifier} )(".")({Identifier} )       {return symbol(sym.CALLJAVA,new String(yytext()));}
     (("JAVA."){Identifier} )(".")({Identifier} )       {return symbol(sym.CALLJAVA,new String(yytext()));}
 
-    ("-")({numero})+(".")({numero})     {return symbol(sym.REAL,new Double(yytext()));}
-    ("-")({numero})+                    {return symbol(sym.ENTERO,new Integer(yytext()));}
 
     "if"                 {return symbol(sym.IF,new String(yytext()));}
     ","                 {return symbol(sym.COMA,new String(yytext()));}
@@ -147,10 +148,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
                                         return symbol(sym.CADENA,xx_);
                                     }
       [^\"]+                         {string.append(yytext());yybegin(VERIFY);}
-      \\t                           { string.append('\t'); yybegin(VERIFY); }
-      \\n                           { string.append('\n'); yybegin(VERIFY); }
+      \\t                           { string.append("\\t"); yybegin(VERIFY); }
+      \\n                           { string.append("\\n"); yybegin(VERIFY); }
 
-      \\r                           { string.append('\r'); yybegin(VERIFY);}
+      \\r                           { string.append("\\r"); yybegin(VERIFY);}
       \\\"                          { string.append('\"'); yybegin(VERIFY);}
       \\                            { string.append('\\'); yybegin(VERIFY);}
 }
@@ -168,9 +169,9 @@ Identifier = [:jletter:] [:jletterdigit:]*
 <STRING>{
     "'"                           {yybegin(YYINITIAL); {}}
     [^']                          {string.append(yytext());yybegin(CHAR);}
-    \\t                           { string.append('\t'); yybegin(CHAR); }
-    \\n                           { string.append('\n'); yybegin(CHAR); }
-    \\r                           { string.append('\r'); yybegin(CHAR);}
+    \\t                           { string.append("\\t"); yybegin(CHAR); }
+    \\n                           { string.append("\\n"); yybegin(CHAR); }
+    \\r                           { string.append("\\r"); yybegin(CHAR);}
     \\\"                          { string.append('\"'); yybegin(CHAR);}
     \\                            { string.append('\\'); yybegin(CHAR);}
 }

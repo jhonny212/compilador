@@ -37,11 +37,15 @@ public class instr_asignacion extends Instruccion{
     @Override
     public void validate(boolean valid) {
         Variable var=this.getVar(this.ID);
+        String tmp="";
         if(var==null){
             this.errores.AddError(2,FILA,COLUMNA-1,ID,"" +
                     "La variable no existe" +
                     "");
         }else{
+            if(var.ID.startsWith("this.") && !this.ID.startsWith("this.")){
+                tmp="this.";
+            }
             if(var.isFunExter && (this.nodo!=null || this.nodoAritmeticas!=null)){
                 this.errores.AddError(2,FILA,COLUMNA-1,ID,"" +
                         "Error de tipos, en asignacion. la variable es de una clase java");
@@ -53,15 +57,29 @@ public class instr_asignacion extends Instruccion{
 
 
         if(nodo!=null){
+
             ArbolAritmetica arbolAritmetica=new ArbolAritmetica(this.variables);
             arbolAritmetica.errorClass=this.errores;
             arbolAritmetica.ID=this.ID;
             arbolAritmetica.kindVar=var==null?"e":var.string;
             arbolAritmetica.recorrer(nodo);
             if(this.nodoAritmeticas==null){
-                MetodosVisual.add("Asig",arbolAritmetica.lastVal,"",this.ID,2);
+                MetodosVisual.add("Asig",arbolAritmetica.lastVal,"",tmp+this.ID,2);
             }else{
-                this.lasValtmp2=arbolAritmetica.lastVal;
+                try {
+                    Integer.parseInt(arbolAritmetica.lastVal);
+                    this.lasValtmp2=arbolAritmetica.lastVal;
+                }catch (Exception ex){
+                    //this.lasValtmp2=arbolAritmetica.lastVal+"vector";
+                    if(start("t_1") || start("t_2") || start("t_3")
+                    || start("int_num") || start("char_num") || start("double_num")){
+                        this.lasValtmp2=arbolAritmetica.lastVal+"vector";
+                    }else{
+                        this.lasValtmp2=arbolAritmetica.lastVal;
+                    }
+                    MetodosVisual.add("asig",arbolAritmetica.lastVal,"",this.lasValtmp2,2);
+                }
+
             }
 
             if(var!=null){
@@ -121,4 +139,8 @@ public class instr_asignacion extends Instruccion{
         }
     }
     int cnt=0;
+
+    boolean start(String init){
+        return this.lasValtmp2.startsWith(init);
+    }
 }

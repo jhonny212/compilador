@@ -173,8 +173,8 @@ public class ArbolBooleano extends Arbol {
             }
             if(href.der!=null){
                 if(href.der instanceof NodoAritmetica){
-                    MetodosVisual.add("Asig",val1,"","num_tmp",2);
-                    val1="num_tmp";
+                    MetodosVisual.add("Asig",val1,"","num_tmp_float",2);
+                    val1="num_tmp_float";
                     ArbolAritmetica arbolAritmetica=new ArbolAritmetica(this.tablaSimbolos);
                     arbolAritmetica.errorClass=this.errorClass;
                     arbolAritmetica.recorrer((NodoAritmetica) href.der);

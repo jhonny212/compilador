@@ -194,7 +194,7 @@ public class OptimizarCodigo {
                     "            <th scope=\"row\">"+(i+1)+"</th>\n" +
                     "            <td>"+x.PRINT()+"</td>\n" +
                     "            "+(y.canAdd?"<td>"+y.PRINT()+"</td>":"<td style=\"color:red\">"+y.PRINT()+"</td>")+"\n" +
-                    "            <td>"+vectorDatosExtra[i]+"</td>\n" +
+                    "            <td>"+(vectorDatosExtra[i]==null?"":vectorDatosExtra[i])+"</td>\n" +
                     "          </tr>\n";
         }
         codigo+="        </tbody>\n" +
@@ -203,7 +203,7 @@ public class OptimizarCodigo {
                 "</body>\n" +
                 "</html>";
         Editor.write(new File("reporte.html"),codigo);
-        //System.err.println(codigo);
+
     }
 
     boolean validar(){

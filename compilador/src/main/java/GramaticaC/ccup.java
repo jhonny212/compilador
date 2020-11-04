@@ -6,16 +6,19 @@
 package GramaticaC;
 
 import Errores.ErrorClass;
+import Lenguajes.MetodosVisual;
+import TablaSimbolos.SymTable;
 import controlador.Controlador_;
-import java_cup.runtime.Symbol;
+import java_cup.runtime.*;
 import Variable.*;
 import Instrucciones.*;
 import Arbol.*;
 import Arbol.AritAST.*;
 import Arbol.BoolAST.*;
 import java_cup.runtime.XMLElement;
-import java_cup.runtime.XMLElement;
 import java.util.ArrayList;
+import java.util.Stack;
+
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20150326 (SVN rev 63) generated parser.
@@ -829,15 +832,15 @@ class CUP$ccup$actions {
   }
 
   /** Method 0 with the actual generated action code for actions 0 to 300. */
-  public final java_cup.runtime.Symbol CUP$ccup$do_action_part00000000(
+  public final Symbol CUP$ccup$do_action_part00000000(
     int                        CUP$ccup$act_num,
-    java_cup.runtime.lr_parser CUP$ccup$parser,
-    java.util.Stack            CUP$ccup$stack,
+    lr_parser CUP$ccup$parser,
+    Stack            CUP$ccup$stack,
     int                        CUP$ccup$top)
-    throws java.lang.Exception
+    throws Exception
     {
       /* Symbol object for return from actions */
-      java_cup.runtime.Symbol CUP$ccup$result;
+      Symbol CUP$ccup$result;
 
       /* select the action based on the action number */
       switch (CUP$ccup$act_num)
@@ -846,11 +849,11 @@ class CUP$ccup$actions {
           case 0: // $START ::= inicio EOF 
             {
               Object RESULT =null;
-		int start_valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int start_valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Object start_val = (Object)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int start_valleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int start_valright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Object start_val = (Object)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT = start_val;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("$START",0, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           /* ACCEPT */
           CUP$ccup$parser.done_parsing();
@@ -861,7 +864,7 @@ class CUP$ccup$actions {
             {
               Object RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("inicio",0, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -870,7 +873,7 @@ class CUP$ccup$actions {
             {
               Object RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("library",3, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("library",3, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -879,7 +882,7 @@ class CUP$ccup$actions {
             {
               Object RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("library",3, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("library",3, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -887,9 +890,9 @@ class CUP$ccup$actions {
           case 4: // librerias ::= librerias INCLUDE CADENA 
             {
               Object RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String x = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String x = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 String tmp=x.replaceAll(" ","");
 x=tmp.replaceAll("\n","");
@@ -914,7 +917,7 @@ if(this.parser.hasGlobal){
 this.parser.librerias=null;
 }
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("librerias",46, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("librerias",46, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -922,9 +925,9 @@ this.parser.librerias=null;
           case 5: // librerias ::= INCLUDE CADENA 
             {
               Object RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String x = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String x = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 String tmp=x.replaceAll(" ","");
 x=tmp.replaceAll("\n","");
@@ -949,7 +952,7 @@ if(this.parser.hasGlobal){
 this.parser.librerias=null;
 }
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("librerias",46, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("librerias",46, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -958,7 +961,7 @@ this.parser.librerias=null;
             {
               Object RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global",4, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global",4, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -967,7 +970,7 @@ this.parser.librerias=null;
             {
               Object RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global",4, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global",4, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -975,13 +978,13 @@ this.parser.librerias=null;
           case 8: // global_var ::= global_var declaracion_var PUNTOCOMA 
             {
               Object RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 this.parser.variablesGlobales.add(x);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global_var",5, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global_var",5, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -989,13 +992,13 @@ this.parser.variablesGlobales.add(x);
           case 9: // global_var ::= declaracion_var PUNTOCOMA 
             {
               Object RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 this.parser.variablesGlobales.add(x);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global_var",5, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global_var",5, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1004,7 +1007,7 @@ this.parser.variablesGlobales.add(x);
             {
               Object RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global_var",5, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("global_var",5, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1012,12 +1015,13 @@ this.parser.variablesGlobales.add(x);
           case 11: // codigoc ::= VOID MAIN AP CP AC datos2 CC 
             {
               ambito_ RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ x = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ x = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
  RESULT=x;
  x.errores=this.parser.errores;
+       MetodosVisual.add("void","","","",18);
         ArrayList<VariableDeclaracion> variableDeclaracions=new ArrayList();
         if(this.parser.variablesGlobales!=null){
           if(!this.parser.variablesGlobales.isEmpty()){
@@ -1034,9 +1038,10 @@ this.parser.variablesGlobales.add(x);
         }
         Controlador_.verifyInstr(variableDeclaracions,this.parser.errores);
         x.variables=variableDeclaracions;
+
         x.validate(false);
- 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("codigoc",47, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+        MetodosVisual.add("","","","",9);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("codigoc",47, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1045,7 +1050,7 @@ this.parser.variablesGlobales.add(x);
             {
               ambito_ RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos2",19, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos2",19, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1053,11 +1058,11 @@ this.parser.variablesGlobales.add(x);
           case 13: // datos2 ::= instrucciones_fun 
             {
               ambito_ RESULT =null;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int amleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int amright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=am;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos2",19, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos2",19, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1066,7 +1071,7 @@ this.parser.variablesGlobales.add(x);
             {
               ambito_ RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones",7, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones",7, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1075,7 +1080,7 @@ this.parser.variablesGlobales.add(x);
             {
               ambito_ RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones",7, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones",7, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1083,12 +1088,12 @@ this.parser.variablesGlobales.add(x);
           case 16: // instrucciones_fun ::= instruccion instrucciones_fun 
             {
               ambito_ RESULT =null;
-		int insleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int insright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Instruccion ins = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ambito_ val = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int insleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int insright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Instruccion ins = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ambito_ val = (ambito_)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 val.addIndex(ins);
@@ -1096,7 +1101,7 @@ RESULT=val;
 }catch(Exception ex){
 }
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones_fun",18, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones_fun",18, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1104,9 +1109,9 @@ RESULT=val;
           case 17: // instrucciones_fun ::= instruccion 
             {
               ambito_ RESULT =null;
-		int insleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int insright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion ins = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int insleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int insright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion ins = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 ambito_ am=new ambito_();
@@ -1115,7 +1120,7 @@ RESULT=am;
 }catch(Exception ex){
 }
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones_fun",18, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instrucciones_fun",18, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1123,11 +1128,11 @@ RESULT=am;
           case 18: // NT$0 ::= 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("NT$0",48, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("NT$0",48, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1136,12 +1141,12 @@ RESULT=x;
             {
               Instruccion RESULT =null;
               // propagate RESULT from NT$0
-                RESULT = (Instruccion) ((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+                RESULT = (Instruccion) ((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1149,11 +1154,11 @@ RESULT=x;
           case 20: // NT$1 ::= 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("NT$1",49, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("NT$1",49, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1162,12 +1167,12 @@ RESULT=x;
             {
               Instruccion RESULT =null;
               // propagate RESULT from NT$1
-                RESULT = (Instruccion) ((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+                RESULT = (Instruccion) ((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1175,11 +1180,11 @@ RESULT=x;
           case 22: // instruccion ::= if_var 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1187,11 +1192,11 @@ RESULT=x;
           case 23: // instruccion ::= while_var 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1199,11 +1204,11 @@ RESULT=x;
           case 24: // instruccion ::= dowhile_var PUNTOCOMA 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1211,11 +1216,11 @@ RESULT=x;
           case 25: // instruccion ::= for_var 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1223,11 +1228,11 @@ RESULT=x;
           case 26: // instruccion ::= switch_var 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int xright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1235,11 +1240,11 @@ RESULT=x;
           case 27: // instruccion ::= print_var PUNTOCOMA 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1248,7 +1253,7 @@ RESULT=x;
             {
               Instruccion RESULT =null;
 		System.out.println(";");
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1257,7 +1262,7 @@ RESULT=x;
             {
               Instruccion RESULT =null;
 		System.out.println("cp");
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1265,11 +1270,11 @@ RESULT=x;
           case 30: // instruccion ::= callfun PUNTOCOMA 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1277,11 +1282,11 @@ RESULT=x;
           case 31: // instruccion ::= clear_screen PUNTOCOMA 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Instruccion x = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Instruccion x = (Instruccion)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=x;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("instruccion",8, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1292,7 +1297,7 @@ RESULT=x;
 		
 RESULT=new inst_clear();
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("clear_screen",45, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("clear_screen",45, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1300,17 +1305,17 @@ RESULT=new inst_clear();
           case 33: // dimensiones ::= dimensiones ACOR e CCOR 
             {
               ArrayList<NodoAritmetica> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		ArrayList<NodoAritmetica> list = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		ArrayList<NodoAritmetica> list = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 list.add(nodo);
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("dimensiones",44, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("dimensiones",44, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1318,14 +1323,14 @@ RESULT=list;
           case 34: // dimensiones ::= ACOR e CCOR 
             {
               ArrayList<NodoAritmetica> RESULT =null;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 RESULT=new ArrayList();
 RESULT.add(nodo);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("dimensiones",44, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("dimensiones",44, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1334,7 +1339,7 @@ RESULT.add(nodo);
             {
               Integer RESULT =null;
 		RESULT=1;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tipos",2, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tipos",2, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1343,7 +1348,7 @@ RESULT.add(nodo);
             {
               Integer RESULT =null;
 		RESULT=0;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tipos",2, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tipos",2, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1352,7 +1357,7 @@ RESULT.add(nodo);
             {
               Integer RESULT =null;
 		RESULT=2;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tipos",2, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tipos",2, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1360,17 +1365,17 @@ RESULT.add(nodo);
           case 38: // argumentos ::= argumentos COMA e 
             {
               ArrayList<argumento_dato> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 list.add(new argumento_dato(nodo));
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1378,14 +1383,14 @@ RESULT=list;
           case 39: // argumentos ::= e 
             {
               ArrayList<argumento_dato> RESULT =null;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new ArrayList();
 RESULT.add(new argumento_dato(nodo));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1393,14 +1398,14 @@ RESULT.add(new argumento_dato(nodo));
           case 40: // argumentos ::= CADENA 
             {
               ArrayList<argumento_dato> RESULT =null;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String str = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int strleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int strright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String str = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new ArrayList();
 RESULT.add(new argumento_dato(str));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1408,17 +1413,17 @@ RESULT.add(new argumento_dato(str));
           case 41: // argumentos ::= argumentos COMA CADENA 
             {
               ArrayList<argumento_dato> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String str = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int strleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int strright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String str = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 list.add(new argumento_dato(str));
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("argumentos",1, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1426,16 +1431,16 @@ RESULT=list;
           case 42: // asignacion_var ::= ID EQUALS e 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new instr_asignacion(id,nodo,idleft,idright);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1443,13 +1448,13 @@ RESULT=new instr_asignacion(id,nodo,idleft,idright);
           case 43: // asignacion_var ::= error e 
             {
               Instruccion RESULT =null;
-		int x1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int x1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Object x1 = (Object)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int x1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int x1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Object x1 = (Object)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 this.parser.errores.update(x1left,x1right,"Error al asignar un valor a la una variable");
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1457,19 +1462,19 @@ this.parser.errores.update(x1left,x1right,"Error al asignar un valor a la una va
           case 44: // asignacion_var ::= ID dimensiones EQUALS e 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int nodosleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int nodosright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int nodosleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int nodosright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new instr_asignacion(id,nodos,nodo,idleft,idright);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1477,16 +1482,16 @@ RESULT=new instr_asignacion(id,nodos,nodo,idleft,idright);
           case 45: // asignacion_var ::= SCANF AP MASCARA COMA Y ID CP 
             {
               Instruccion RESULT =null;
-		int tleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int tright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		String t = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int tleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int tright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		String t = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 RESULT=new asig_c (id,t,idleft,idright);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1497,7 +1502,7 @@ RESULT=new asig_c (id,t,idleft,idright);
 		
 RESULT=new instr_getch();
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1505,13 +1510,13 @@ RESULT=new instr_getch();
           case 47: // asignacion_var ::= ID EQUALS GETCH AP CP 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
 		
 RESULT=new instr_getch(id,idleft,idright);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("asignacion_var",9, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1519,19 +1524,19 @@ RESULT=new instr_getch(id,idleft,idright);
           case 48: // declaracion_var ::= tipos variables 
             {
               Instruccion RESULT =null;
-		int t1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int t1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Integer t1 = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int t1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int t1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Integer t1 = (Integer)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int listright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 this.parser.controlador.verifyID(list,this.parser.errores,t1);
 RESULT=new instr_declaracion(list,t1);
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declaracion_var",26, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declaracion_var",26, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1539,19 +1544,19 @@ RESULT=new instr_declaracion(list,t1);
           case 49: // declaracion_var ::= CONST tipos variables_const 
             {
               Instruccion RESULT =null;
-		int t1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int t1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Integer t1 = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int t1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int t1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Integer t1 = (Integer)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int listright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 this.parser.controlador.verifyID(list,this.parser.errores,t1);
 RESULT=new instr_declaracion(list,t1);
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declaracion_var",26, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declaracion_var",26, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1559,22 +1564,22 @@ RESULT=new instr_declaracion(list,t1);
           case 50: // variables_const ::= variables_const COMA ID dimensiones 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int nodosleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodosright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int nodosleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodosright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 VariableDeclaracion var=new VariableDeclaracion(id,new VariableVECTOR(nodos),idleft,idright);
 var.isConst=true;
 list.add(var);
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1582,15 +1587,15 @@ RESULT=list;
           case 51: // variables_const ::= variables_const COMA ID EQUALS e 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 VariableDeclaracion var=new VariableDeclaracion(id,nodo,idleft,idright);
@@ -1599,7 +1604,7 @@ list.add(var);
 RESULT=list;
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1607,19 +1612,19 @@ RESULT=list;
           case 52: // variables_const ::= ID dimensiones 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int nodosleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodosright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int nodosleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodosright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new ArrayList();
 VariableDeclaracion var=new VariableDeclaracion(id,new VariableVECTOR(nodos),idleft,idright);
 var.isConst=true;
 RESULT.add(var);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1627,12 +1632,12 @@ RESULT.add(var);
           case 53: // variables_const ::= ID EQUALS e 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 ArrayList<VariableDeclaracion> list=new ArrayList();
@@ -1642,7 +1647,7 @@ list.add(var);
 RESULT=list;
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables_const",28, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1650,19 +1655,19 @@ RESULT=list;
           case 54: // declaracion_var ::= INITJAVA vars_java 
             {
               Instruccion RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String x = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String x = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int listright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 if(!this.parser.hasGlobal){
 Controlador_.verifyLibrary(x,xleft,xright,this.parser.librerias,this.parser.errores);
 }
 RESULT=new declaracion_c(x,xleft,xright,list);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declaracion_var",26, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declaracion_var",26, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1670,19 +1675,22 @@ RESULT=new declaracion_c(x,xleft,xright,list);
           case 55: // vars_java ::= vars_java COMA ID 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int idright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String id = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
-list.add(new VariableDeclaracion(id,idleft,idright,true));
+VariableDeclaracion var=new VariableDeclaracion(id,idleft,idright,true);
+var.isJava=true;
+list.add(var);
 RESULT=list;
+
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1690,22 +1698,22 @@ RESULT=list;
           case 56: // vars_java ::= vars_java COMA ID AP argumentos CP 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int xleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
-		int xright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
-		ArrayList<VariableDeclaracion> x = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int xleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
+		int xright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
+		ArrayList<VariableDeclaracion> x = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 try{
 x.add(new VariableDeclaracion(id,idleft,idright,list));
 RESULT=x;
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1713,19 +1721,19 @@ RESULT=x;
           case 57: // vars_java ::= vars_java COMA ID AP CP 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
 		
 try{
 list.add(new VariableDeclaracion(id,idleft,idright,true));
 RESULT=list;
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1733,14 +1741,14 @@ RESULT=list;
           case 58: // vars_java ::= ID AP CP 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
 		
 RESULT=new ArrayList();
 RESULT.add(new VariableDeclaracion(id,idleft,idright,true));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1748,17 +1756,17 @@ RESULT.add(new VariableDeclaracion(id,idleft,idright,true));
           case 59: // vars_java ::= ID AP argumentos CP 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 RESULT=new ArrayList();
 RESULT.add(new VariableDeclaracion(id,idleft,idright,list));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1766,14 +1774,14 @@ RESULT.add(new VariableDeclaracion(id,idleft,idright,list));
           case 60: // vars_java ::= ID 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int idright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String id = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new ArrayList();
 RESULT.add(new VariableDeclaracion(id,idleft,idright,true));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("vars_java",6, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1781,19 +1789,19 @@ RESULT.add(new VariableDeclaracion(id,idleft,idright,true));
           case 61: // variables ::= variables COMA ID 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int idright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String id = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 list.add(new VariableDeclaracion(id,idleft,idright));
 RESULT=list;
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1801,22 +1809,22 @@ RESULT=list;
           case 62: // variables ::= variables COMA ID EQUALS e 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 list.add(new VariableDeclaracion(id,nodo,idleft,idright));
 RESULT=list;
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1824,9 +1832,9 @@ RESULT=list;
           case 63: // variables ::= ID 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int idright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String id = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 ArrayList<VariableDeclaracion> list=new ArrayList();
@@ -1835,7 +1843,7 @@ RESULT=list;
 }catch(Exception ex){}
 
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1843,12 +1851,12 @@ RESULT=list;
           case 64: // variables ::= ID EQUALS e 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 try{
 ArrayList<VariableDeclaracion> list=new ArrayList();
@@ -1856,7 +1864,7 @@ list.add(new VariableDeclaracion(id,nodo,idleft,idright));
 RESULT=list;
 }catch(Exception ex){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1864,17 +1872,17 @@ RESULT=list;
           case 65: // variables ::= ID dimensiones 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int nodosleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodosright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int nodosleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodosright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new ArrayList();
 RESULT.add(new VariableDeclaracion(id,new VariableVECTOR(nodos),idleft,idright));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1882,20 +1890,20 @@ RESULT.add(new VariableDeclaracion(id,new VariableVECTOR(nodos),idleft,idright))
           case 66: // variables ::= variables COMA ID dimensiones 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int nodosleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodosright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		ArrayList<VariableDeclaracion> list = (ArrayList<VariableDeclaracion>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int nodosleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodosright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 list.add(new VariableDeclaracion(id,new VariableVECTOR(nodos),idleft,idright));
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1903,13 +1911,13 @@ RESULT=list;
           case 67: // variables ::= error e 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int x1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int x1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Object x1 = (Object)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int x1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int x1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Object x1 = (Object)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verifique que la asignacion sea correcta");
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1917,11 +1925,11 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 68: // variables ::= error COMA 
             {
               ArrayList<VariableDeclaracion> RESULT =null;
-		int x1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int x1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Object x1 = (Object)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int x1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int x1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Object x1 = (Object)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("variables",27, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1929,14 +1937,14 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 69: // if_var ::= IF AP boolean CP AC datos2 CC 
             {
               Instruccion RESULT =null;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+              RESULT=new instr_if(am,bool);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1944,17 +1952,17 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 70: // if_var ::= IF AP boolean CP AC datos2 CC ELSE AC datos2 CC 
             {
               Instruccion RESULT =null;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-8)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
-		int vleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int vright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ v = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-8)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
+		int vleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int vright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ v = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=new instr_if(bool,am,null,new instr_if(v));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1962,17 +1970,17 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 71: // if_var ::= IF AP boolean CP AC datos2 CC else_var 
             {
               Instruccion RESULT =null;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<instr_if> list = (ArrayList<instr_if>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int listright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<instr_if> list = (ArrayList<instr_if>)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new instr_if(bool,am,list,null);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -1980,20 +1988,20 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 72: // if_var ::= IF AP boolean CP AC datos2 CC else_var ELSE AC datos2 CC 
             {
               Instruccion RESULT =null;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-9)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-6)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		ArrayList<instr_if> list = (ArrayList<instr_if>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int vleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int vright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ v = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-9)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-6)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		ArrayList<instr_if> list = (ArrayList<instr_if>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int vleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int vright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ v = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=new instr_if(bool,am,list,new instr_if(v));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-11)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("if_var",12, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-11)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2001,15 +2009,15 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 73: // else_var ::= else_var ELSE IF AP boolean CP AC datos2 CC 
             {
               ArrayList<instr_if> RESULT =null;
-		int instr_ifsleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).left;
-		int instr_ifsright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).right;
-		ArrayList<instr_if> instr_ifs = (ArrayList<instr_if>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-8)).value;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int instr_ifsleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).left;
+		int instr_ifsright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).right;
+		ArrayList<instr_if> instr_ifs = (ArrayList<instr_if>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-8)).value;
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
  try{
   instr_ifs.add(new instr_if(am,bool));
@@ -2017,7 +2025,7 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
   }catch(Exception ex){}
 
  
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("else_var",11, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("else_var",11, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2025,12 +2033,12 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 74: // else_var ::= ELSE IF AP boolean CP AC datos2 CC 
             {
               ArrayList<instr_if> RESULT =null;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
   try{
   ArrayList<instr_if> instr_ifs=new ArrayList();;
@@ -2039,7 +2047,7 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
   }catch(Exception ex){}
 
   
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("else_var",11, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("else_var",11, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2047,14 +2055,14 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 75: // while_var ::= WHILE AP boolean CP AC datos2 CC 
             {
               Instruccion RESULT =null;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=new instr_while(am,bool);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("while_var",13, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("while_var",13, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2062,18 +2070,18 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 76: // dowhile_var ::= DO AC datos2 CC WHILE AP boolean CP 
             {
               Instruccion RESULT =null;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
-		int boolleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int boolright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoBoolean bool = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-5)).value;
+		int boolleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int boolright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoBoolean bool = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
  try{
   RESULT=new instr_dowhile(am,bool);
  }catch(Exception e){}
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("dowhile_var",14, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("dowhile_var",14, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2081,34 +2089,36 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
           case 77: // for_var ::= FOR AP declarateVar PUNTOCOMA ID OP e PUNTOCOMA ID typeOp EQUALS e CP AC datos2 CC 
             {
               Instruccion RESULT =null;
-		int objleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-13)).left;
-		int objright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-13)).right;
-		Object[] obj = (Object[])((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-13)).value;
-		int x1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-11)).left;
-		int x1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-11)).right;
-		String x1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-11)).value;
-		int op1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).left;
-		int op1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).right;
-		String op1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-10)).value;
-		int t1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).left;
-		int t1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).right;
-		NodoAritmetica t1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-9)).value;
-		int x2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)).left;
-		int x2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)).right;
-		String x2 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-7)).value;
-		int opleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).left;
-		int opright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).right;
-		String op = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-6)).value;
-		int t2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int t2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		NodoAritmetica t2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		
-RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,op,am);
+		int objleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-13)).left;
+		int objright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-13)).right;
+		Object[] obj = (Object[])((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-13)).value;
+		int x1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-11)).left;
+		int x1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-11)).right;
+		String x1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-11)).value;
+		int op1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).left;
+		int op1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).right;
+		String op1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-10)).value;
+		int t1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).left;
+		int t1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).right;
+		NodoAritmetica t1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-9)).value;
+		int x2left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)).left;
+		int x2right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-7)).right;
+		String x2 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-7)).value;
+		int opleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).left;
+		int opright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).right;
+		String op = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-6)).value;
+		int t2left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int t2right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		NodoAritmetica t2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+instr_for_java t=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,op,am);
+t.id2=x1;
+t.id3=x2;
+RESULT=t;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("for_var",15, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-15)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("for_var",15, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-15)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2116,31 +2126,32 @@ RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,op,am);
           case 78: // for_var ::= FOR AP declarateVar PUNTOCOMA ID OP e PUNTOCOMA ID EQUALS e CP AC datos2 CC 
             {
               Instruccion RESULT =null;
-		int objleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-12)).left;
-		int objright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-12)).right;
-		Object[] obj = (Object[])((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-12)).value;
-		int x1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).left;
-		int x1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).right;
-		String x1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-10)).value;
-		int op1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).left;
-		int op1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).right;
-		String op1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-9)).value;
-		int t1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).left;
-		int t1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).right;
-		NodoAritmetica t1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-8)).value;
-		int x2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).left;
-		int x2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).right;
-		String x2 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-6)).value;
-		int t2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int t2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		NodoAritmetica t2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		
-RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,"=",am);
-
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("for_var",15, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-14)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+		int objleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-12)).left;
+		int objright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-12)).right;
+		Object[] obj = (Object[])((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-12)).value;
+		int x1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).left;
+		int x1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-10)).right;
+		String x1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-10)).value;
+		int op1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).left;
+		int op1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-9)).right;
+		String op1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-9)).value;
+		int t1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).left;
+		int t1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-8)).right;
+		NodoAritmetica t1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-8)).value;
+		int x2left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).left;
+		int x2right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)).right;
+		String x2 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-6)).value;
+		int t2left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int t2right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		NodoAritmetica t2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+          	  instr_for_java t=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,"=",am);
+              t.id2=x1;
+              t.id3=x2;
+              RESULT=t;
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("for_var",15, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-14)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2149,7 +2160,7 @@ RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,"=",am);
             {
               String RESULT =null;
 		RESULT="+";
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("typeOp",16, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("typeOp",16, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2158,7 +2169,7 @@ RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,"=",am);
             {
               String RESULT =null;
 		RESULT="-";
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("typeOp",16, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("typeOp",16, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2166,9 +2177,9 @@ RESULT=new instr_for_java(obj,t1,t2,x1left,x1right,x2left,x2right,op1,"=",am);
           case 81: // declarateVar ::= ID 
             {
               Object[] RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int idright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String id = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		
 Object[]obj=new Object[5];
 obj[0]=id;
@@ -2176,7 +2187,7 @@ obj[1]=idleft;
 obj[2]=idright;
 RESULT=obj;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declarateVar",17, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declarateVar",17, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2184,12 +2195,12 @@ RESULT=obj;
           case 82: // declarateVar ::= ID EQUALS e 
             {
               Object[] RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 Object[]obj=new Object[5];
 obj[0]=id;
@@ -2198,7 +2209,7 @@ obj[2]=idright;
 obj[4]=nodo;
 RESULT=obj;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declarateVar",17, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declarateVar",17, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2206,15 +2217,15 @@ RESULT=obj;
           case 83: // declarateVar ::= tipos ID EQUALS e 
             {
               Object[] RESULT =null;
-		int t1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int t1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		Integer t1 = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int t1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int t1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		Integer t1 = (Integer)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 Object[]obj=new Object[5];
 obj[0]=id;
@@ -2224,7 +2235,7 @@ obj[3]=t1;
 obj[4]=nodo;
 RESULT=obj;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declarateVar",17, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("declarateVar",17, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2232,14 +2243,14 @@ RESULT=obj;
           case 84: // switch_var ::= SWITCH AP ID CP AC cases CC 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<Sub_case> list = (ArrayList<Sub_case>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-4)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<Sub_case> list = (ArrayList<Sub_case>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=new switch_var(id,list,idleft,idright);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("switch_var",40, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("switch_var",40, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-6)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2247,17 +2258,17 @@ RESULT=obj;
           case 85: // cases ::= cases case_ 
             {
               ArrayList<Sub_case> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<Sub_case> list = (ArrayList<Sub_case>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int casoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int casoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Sub_case caso = (Sub_case)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<Sub_case> list = (ArrayList<Sub_case>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int casoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int casoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Sub_case caso = (Sub_case)((Symbol) CUP$ccup$stack.peek()).value;
 		
 list.add(caso);
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("cases",37, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("cases",37, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2265,15 +2276,15 @@ RESULT=list;
           case 86: // cases ::= case_ 
             {
               ArrayList<Sub_case> RESULT =null;
-		int casoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int casoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Sub_case caso = (Sub_case)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int casoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int casoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Sub_case caso = (Sub_case)((Symbol) CUP$ccup$stack.peek()).value;
 		
 ArrayList<Sub_case> list=new ArrayList();
 list.add(caso);
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("cases",37, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("cases",37, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2281,13 +2292,13 @@ RESULT=list;
           case 87: // cases ::= error case_ 
             {
               ArrayList<Sub_case> RESULT =null;
-		int x1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int x1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Object x1 = (Object)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int x1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int x1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Object x1 = (Object)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 this.parser.errores.update(x1left,x1right,"Error en un caso de la sentencia switch");
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("cases",37, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("cases",37, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2295,15 +2306,15 @@ this.parser.errores.update(x1left,x1right,"Error en un caso de la sentencia swit
           case 88: // case_ ::= CASE e_ BOTHPOINT datos2 break_case 
             {
               Sub_case RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		NodoAritmetica val = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int brleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int brright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Object[] br = (Object[])((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int valright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		NodoAritmetica val = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int brleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int brright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Object[] br = (Object[])((Symbol) CUP$ccup$stack.peek()).value;
 		
 Variable var=val.variable;
 if(br!=null){
@@ -2316,7 +2327,7 @@ if(br!=null){
      RESULT=new Sub_case(var,valleft,valright,am,-1,false,null);
 }
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("case_",39, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("case_",39, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2324,15 +2335,15 @@ if(br!=null){
           case 89: // case_ ::= DEFAULT BOTHPOINT datos2 break_case 
             {
               Sub_case RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		Object val = (Object)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int amleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int amright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ambito_ am = (ambito_)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int brleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int brright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Object[] br = (Object[])((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int valright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		Object val = (Object)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int amleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int amright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ambito_ am = (ambito_)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int brleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int brright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Object[] br = (Object[])((Symbol) CUP$ccup$stack.peek()).value;
 		
  if(br!=null){
   if(br[1]!=null){
@@ -2344,7 +2355,7 @@ if(br!=null){
       RESULT=new Sub_case(null,valleft,valright,am,-1,true,null);
  }
  
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("case_",39, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("case_",39, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2357,7 +2368,7 @@ Object b[]=new Object[2];
 b[0]=2;
 RESULT=b;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("break_case",38, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("break_case",38, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2366,7 +2377,7 @@ RESULT=b;
             {
               Object[] RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("break_case",38, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("break_case",38, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2374,17 +2385,17 @@ RESULT=b;
           case 92: // datos_ ::= datos_ COMA e 
             {
               ArrayList<argumento_dato> RESULT =null;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 list.add(new argumento_dato(nodo));
 RESULT=list;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos_",43, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos_",43, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2392,14 +2403,14 @@ RESULT=list;
           case 93: // datos_ ::= e 
             {
               ArrayList<argumento_dato> RESULT =null;
-		int nodoleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodoright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica nodo = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int nodoleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodoright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica nodo = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new ArrayList();
 RESULT.add(new argumento_dato(nodo));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos_",43, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos_",43, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2407,13 +2418,13 @@ RESULT.add(new argumento_dato(nodo));
           case 94: // datos_ ::= error e 
             {
               ArrayList<argumento_dato> RESULT =null;
-		int x1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int x1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Object x1 = (Object)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int x1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int x1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Object x1 = (Object)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 this.parser.errores.update(x1left,x1right,"Error en los parametros de printf");
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos_",43, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("datos_",43, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2421,11 +2432,11 @@ this.parser.errores.update(x1left,x1right,"Error en los parametros de printf");
           case 95: // print_var ::= PRINT AP CADENA CP 
             {
               Instruccion RESULT =null;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String str = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int strleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int strright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String str = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=new print_c(str);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("print_var",42, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("print_var",42, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2434,7 +2445,7 @@ this.parser.errores.update(x1left,x1right,"Error en los parametros de printf");
             {
               Instruccion RESULT =null;
 		RESULT=new print_c();
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("print_var",42, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("print_var",42, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2442,17 +2453,17 @@ this.parser.errores.update(x1left,x1right,"Error en los parametros de printf");
           case 97: // print_var ::= PRINT AP MASCARA COMA datos_ CP 
             {
               Instruccion RESULT =null;
-		int mscleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int mscright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		String msc = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int datasleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int datasright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<argumento_dato> datas = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int mscleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int mscright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		String msc = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int datasleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int datasright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<argumento_dato> datas = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=new print_c(msc,datas);
 RESULT.FILA=mscleft;
 RESULT.COLUMNA=mscright;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("print_var",42, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("print_var",42, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-5)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2460,16 +2471,16 @@ RESULT.COLUMNA=mscright;
           case 98: // callfun ::= CALLJAVA AP argumentos CP 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 RESULT=new call_c(2,id,idleft,idright,list);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2477,12 +2488,12 @@ RESULT=new call_c(2,id,idleft,idright,list);
           case 99: // callfun ::= CALLPY AP argumentos CP 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 if(!this.parser.PYGLOBAL)
 {
@@ -2490,7 +2501,7 @@ if(!this.parser.PYGLOBAL)
 }
 RESULT=new call_c(1,id,idleft,idright,list);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2498,12 +2509,12 @@ RESULT=new call_c(1,id,idleft,idright,list);
           case 100: // callfun ::= CALLVB AP argumentos CP 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int listleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int listright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int listleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int listright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		ArrayList<argumento_dato> list = (ArrayList<argumento_dato>)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 if(!this.parser.VBGLOBAL)
 {
@@ -2511,7 +2522,7 @@ if(!this.parser.VBGLOBAL)
 }
 RESULT=new call_c(0,id,idleft,idright,list);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2519,14 +2530,14 @@ RESULT=new call_c(0,id,idleft,idright,list);
           case 101: // callfun ::= CALLJAVA AP CP 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
 		
 
 RESULT=new call_c(2,id,idleft,idright);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2534,9 +2545,9 @@ RESULT=new call_c(2,id,idleft,idright);
           case 102: // callfun ::= CALLPY AP CP 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
 		
 if(!this.parser.PYGLOBAL)
 {
@@ -2544,7 +2555,7 @@ if(!this.parser.PYGLOBAL)
 }
 RESULT=new call_c(1,id,idleft,idright);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2552,9 +2563,9 @@ RESULT=new call_c(1,id,idleft,idright);
           case 103: // callfun ::= CALLVB AP CP 
             {
               Instruccion RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int idleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int idright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		String id = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
 		
 if(!this.parser.VBGLOBAL)
 {
@@ -2562,7 +2573,7 @@ if(!this.parser.VBGLOBAL)
 }
 RESULT=new call_c(0,id,idleft,idright);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("callfun",10, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2570,14 +2581,14 @@ RESULT=new call_c(0,id,idleft,idright);
           case 104: // e ::= e SUM t 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("+",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e",20, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e",20, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2585,14 +2596,14 @@ RESULT=new call_c(0,id,idleft,idright);
           case 105: // e ::= e RES t 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("-",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e",20, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e",20, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2600,11 +2611,11 @@ RESULT=new call_c(0,id,idleft,idright);
           case 106: // e ::= t 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=val;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e",20, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e",20, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2612,14 +2623,14 @@ RESULT=new call_c(0,id,idleft,idright);
           case 107: // t ::= t MUL f 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("*",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2627,14 +2638,14 @@ RESULT=new call_c(0,id,idleft,idright);
           case 108: // t ::= t DIV f 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("/",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2642,11 +2653,11 @@ RESULT=new call_c(0,id,idleft,idright);
           case 109: // t ::= f 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=val;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2654,14 +2665,14 @@ RESULT=new call_c(0,id,idleft,idright);
           case 110: // t ::= t MODUL f 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("%",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t",21, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2669,11 +2680,11 @@ RESULT=new call_c(0,id,idleft,idright);
           case 111: // f ::= ID 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String val = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String val = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableID(val,valleft,valright));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2681,11 +2692,11 @@ RESULT=new call_c(0,id,idleft,idright);
           case 112: // f ::= REAL 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Double val = (Double)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Double val = (Double)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val,0,"r"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2693,11 +2704,11 @@ RESULT=new call_c(0,id,idleft,idright);
           case 113: // f ::= CARACTER 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		char val = (char)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		char val = (char)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val,1,"c"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2705,11 +2716,11 @@ RESULT=new call_c(0,id,idleft,idright);
           case 114: // f ::= ENTERO 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Integer val = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Integer val = (Integer)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2717,11 +2728,11 @@ RESULT=new call_c(0,id,idleft,idright);
           case 115: // f ::= AP e CP 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=val1;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2729,14 +2740,14 @@ RESULT=new call_c(0,id,idleft,idright);
           case 116: // f ::= RES AP e CP 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 RESULT=val1;
 RESULT.cambiarSigno=1;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2744,16 +2755,16 @@ RESULT.cambiarSigno=1;
           case 117: // f ::= ID dimensiones 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String val = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int nodosleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodosright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int valright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String val = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int nodosleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodosright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new NodoAritmetica(new VariableVECTOR(valleft,valright,val,nodos));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2761,13 +2772,13 @@ RESULT=new NodoAritmetica(new VariableVECTOR(valleft,valright,val,nodos));
           case 118: // f ::= callfun 
             {
               NodoAritmetica RESULT =null;
-		int funleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int funright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion fun = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int funleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int funright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion fun = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2775,11 +2786,11 @@ RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
           case 119: // f ::= RES ENTERO 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Integer val = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Integer val = (Integer)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2787,11 +2798,11 @@ RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
           case 120: // f ::= RES REAL 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Double val = (Double)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Double val = (Double)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f",22, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2799,16 +2810,16 @@ RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
           case 121: // e_ ::= e_ SUM t_ 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=this.parser.controlador.Operar("+",val1,val2);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e_",23, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e_",23, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2816,16 +2827,16 @@ RESULT=this.parser.controlador.Operar("+",val1,val2);
           case 122: // e_ ::= e_ RES t_ 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=this.parser.controlador.Operar("-",val1,val2);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e_",23, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e_",23, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2833,11 +2844,11 @@ RESULT=this.parser.controlador.Operar("-",val1,val2);
           case 123: // e_ ::= t_ 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=val;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e_",23, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("e_",23, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2845,16 +2856,16 @@ RESULT=this.parser.controlador.Operar("-",val1,val2);
           case 124: // t_ ::= t_ MUL f_ 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=this.parser.controlador.Operar("*",val1,val2);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2862,16 +2873,16 @@ RESULT=this.parser.controlador.Operar("*",val1,val2);
           case 125: // t_ ::= t_ DIV f_ 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=this.parser.controlador.Operar("/",val1,val2);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2879,11 +2890,11 @@ RESULT=this.parser.controlador.Operar("/",val1,val2);
           case 126: // t_ ::= f_ 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=val;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2891,16 +2902,16 @@ RESULT=this.parser.controlador.Operar("/",val1,val2);
           case 127: // t_ ::= t_ MODUL f_ 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=this.parser.controlador.Operar("%",val1,val2);
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("t_",25, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2908,13 +2919,13 @@ RESULT=this.parser.controlador.Operar("%",val1,val2);
           case 128: // f_ ::= REAL 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Double val = (Double)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Double val = (Double)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new NodoAritmetica(new VariableVAL(val,0,"r"));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2922,13 +2933,13 @@ RESULT=new NodoAritmetica(new VariableVAL(val,0,"r"));
           case 129: // f_ ::= CARACTER 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		char val = (char)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		char val = (char)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new NodoAritmetica(new VariableVAL(val,1,"c"));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2936,13 +2947,13 @@ RESULT=new NodoAritmetica(new VariableVAL(val,1,"c"));
           case 130: // f_ ::= ENTERO 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Integer val = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Integer val = (Integer)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2950,11 +2961,11 @@ RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));
           case 131: // f_ ::= AP e_ CP 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		RESULT=val1;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2962,14 +2973,14 @@ RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));
           case 132: // f_ ::= RES AP e_ CP 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 RESULT=val1;
 RESULT.cambiarSigno=1;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2977,11 +2988,11 @@ RESULT.cambiarSigno=1;
           case 133: // f_ ::= RES ENTERO 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Integer val = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Integer val = (Integer)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -2989,11 +3000,11 @@ RESULT.cambiarSigno=1;
           case 134: // f_ ::= RES REAL 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Double val = (Double)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Double val = (Double)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("f_",24, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3001,14 +3012,14 @@ RESULT.cambiarSigno=1;
           case 135: // boolean ::= boolean AND b 
             {
               NodoBoolean RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoBoolean v1 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoBoolean v2 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoBoolean v1 = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoBoolean v2 = (NodoBoolean)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoBoolean(v1,"and",v2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("boolean",36, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("boolean",36, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3016,11 +3027,11 @@ RESULT.cambiarSigno=1;
           case 136: // boolean ::= b 
             {
               NodoBoolean RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoBoolean v1 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v1right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoBoolean v1 = (NodoBoolean)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=v1;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("boolean",36, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("boolean",36, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3028,14 +3039,14 @@ RESULT.cambiarSigno=1;
           case 137: // b ::= b OR c 
             {
               NodoBoolean RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoBoolean v1 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoBoolean v2 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoBoolean v1 = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoBoolean v2 = (NodoBoolean)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoBoolean(v1,"or",v2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("b",34, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("b",34, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3043,11 +3054,11 @@ RESULT.cambiarSigno=1;
           case 138: // b ::= c 
             {
               NodoBoolean RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoBoolean v1 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v1right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoBoolean v1 = (NodoBoolean)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=v1;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("b",34, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("b",34, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3055,12 +3066,12 @@ RESULT.cambiarSigno=1;
           case 139: // c ::= ee1 y 
             {
               NodoBoolean RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoAritmetica v1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Object[] v2 = (Object[])((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoAritmetica v1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		Object[] v2 = (Object[])((Symbol) CUP$ccup$stack.peek()).value;
 		
 if(v2!=null){
 RESULT=new NodoBoolean(v1,(Nodo)v2[1],(String)v2[0]);
@@ -3068,7 +3079,7 @@ RESULT=new NodoBoolean(v1,(Nodo)v2[1],(String)v2[0]);
 RESULT=new NodoBoolean(v1);
 }
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("c",35, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("c",35, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3076,15 +3087,15 @@ RESULT=new NodoBoolean(v1);
           case 140: // c ::= AP boolean CP z y 
             {
               NodoBoolean RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
-		NodoBoolean v1 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		Object[] v2 = (Object[])((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v3left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v3right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Object[] v3 = (Object[])((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)).right;
+		NodoBoolean v1 = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-3)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v2right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		Object[] v2 = (Object[])((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v3left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v3right = ((Symbol)CUP$ccup$stack.peek()).right;
+		Object[] v3 = (Object[])((Symbol) CUP$ccup$stack.peek()).value;
 		
 if(v2!=null && v3!=null){
     if(!v1.isOp && v1.canAdd){
@@ -3122,7 +3133,7 @@ if(v2!=null && v3!=null){
 }
 RESULT=v1;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("c",35, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("c",35, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-4)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3130,15 +3141,15 @@ RESULT=v1;
           case 141: // c ::= NOT AP boolean CP 
             {
               NodoBoolean RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		NodoBoolean v1 = (NodoBoolean)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		NodoBoolean v1 = (NodoBoolean)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
 		
 RESULT=v1;
 RESULT.canAdd=false;
 RESULT.cambiarSigno=1;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("c",35, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("c",35, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-3)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3147,7 +3158,7 @@ RESULT.cambiarSigno=1;
             {
               Object[] RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3155,14 +3166,14 @@ RESULT.cambiarSigno=1;
           case 143: // z ::= SUM e 
             {
               Object[] RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String v1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica v2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String v1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica v2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3170,14 +3181,14 @@ RESULT.cambiarSigno=1;
           case 144: // z ::= RES e 
             {
               Object[] RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String v1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica v2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String v1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica v2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3185,14 +3196,14 @@ RESULT.cambiarSigno=1;
           case 145: // z ::= MUL e 
             {
               Object[] RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String v1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica v2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String v1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica v2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3200,14 +3211,14 @@ RESULT.cambiarSigno=1;
           case 146: // z ::= DIV e 
             {
               Object[] RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String v1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica v2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String v1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica v2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3215,14 +3226,14 @@ RESULT.cambiarSigno=1;
           case 147: // z ::= MODUL e 
             {
               Object[] RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String v1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica v2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String v1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica v2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("z",32, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3231,7 +3242,7 @@ RESULT.cambiarSigno=1;
             {
               Object[] RESULT =null;
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("y",33, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("y",33, ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3239,14 +3250,14 @@ RESULT.cambiarSigno=1;
           case 149: // y ::= OP e 
             {
               Object[] RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String v1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica v2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String v1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica v2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.getObj(v1,v2,v1left,v1right);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("y",33, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("y",33, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3254,14 +3265,14 @@ RESULT.cambiarSigno=1;
           case 150: // y ::= EQUALS e 
             {
               Object[] RESULT =null;
-		int v1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int v1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String v1 = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int v2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int v2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica v2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int v1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int v1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String v1 = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int v2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int v2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica v2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.getObj("=",v2,v1left,v1right);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("y",33, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("y",33, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3269,14 +3280,14 @@ RESULT.cambiarSigno=1;
           case 151: // ee1 ::= ee1 SUM t 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("+",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ee1",29, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ee1",29, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3284,14 +3295,14 @@ RESULT.cambiarSigno=1;
           case 152: // ee1 ::= ee1 RES t 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("-",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ee1",29, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ee1",29, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3299,11 +3310,11 @@ RESULT.cambiarSigno=1;
           case 153: // ee1 ::= tt1 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=val;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ee1",29, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ee1",29, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3311,14 +3322,14 @@ RESULT.cambiarSigno=1;
           case 154: // tt1 ::= tt1 MUL f 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("*",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3326,14 +3337,14 @@ RESULT.cambiarSigno=1;
           case 155: // tt1 ::= tt1 DIV f 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("/",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3341,11 +3352,11 @@ RESULT.cambiarSigno=1;
           case 156: // tt1 ::= ff1 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=val;
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3353,14 +3364,14 @@ RESULT.cambiarSigno=1;
           case 157: // tt1 ::= tt1 MODUL f 
             {
               NodoAritmetica RESULT =null;
-		int val1left = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
-		int val1right = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
-		NodoAritmetica val1 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
-		int val2left = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int val2right = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		NodoAritmetica val2 = (NodoAritmetica)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int val1left = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).left;
+		int val1right = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)).right;
+		NodoAritmetica val1 = (NodoAritmetica)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-2)).value;
+		int val2left = ((Symbol)CUP$ccup$stack.peek()).left;
+		int val2right = ((Symbol)CUP$ccup$stack.peek()).right;
+		NodoAritmetica val2 = (NodoAritmetica)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=this.parser.controlador.Operar("%",val1,val2);
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("tt1",30, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-2)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3368,11 +3379,11 @@ RESULT.cambiarSigno=1;
           case 158: // ff1 ::= ID 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		String val = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		String val = (String)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableID(val,valleft,valright));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3380,11 +3391,11 @@ RESULT.cambiarSigno=1;
           case 159: // ff1 ::= REAL 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Double val = (Double)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Double val = (Double)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val,0,"r"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3392,11 +3403,11 @@ RESULT.cambiarSigno=1;
           case 160: // ff1 ::= CARACTER 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		char val = (char)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		char val = (char)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val,1,"c"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3404,11 +3415,11 @@ RESULT.cambiarSigno=1;
           case 161: // ff1 ::= ENTERO 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Integer val = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Integer val = (Integer)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val,1,"e"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3416,16 +3427,16 @@ RESULT.cambiarSigno=1;
           case 162: // ff1 ::= ID dimensiones 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
-		String val = (String)((java_cup.runtime.Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
-		int nodosleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int nodosright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).left;
+		int valright = ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)).right;
+		String val = (String)((Symbol) CUP$ccup$stack.elementAt(CUP$ccup$top-1)).value;
+		int nodosleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int nodosright = ((Symbol)CUP$ccup$stack.peek()).right;
+		ArrayList<NodoAritmetica> nodos = (ArrayList<NodoAritmetica>)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new NodoAritmetica(new VariableVECTOR(valleft,valright,val,nodos));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3433,13 +3444,13 @@ RESULT=new NodoAritmetica(new VariableVECTOR(valleft,valright,val,nodos));
           case 163: // ff1 ::= callfun 
             {
               NodoAritmetica RESULT =null;
-		int funleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int funright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Instruccion fun = (Instruccion)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int funleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int funright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Instruccion fun = (Instruccion)((Symbol) CUP$ccup$stack.peek()).value;
 		
 RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
 
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.peek()), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3447,11 +3458,11 @@ RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
           case 164: // ff1 ::= RES ENTERO 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Integer val = (Integer)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Integer val = (Integer)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 
@@ -3459,11 +3470,11 @@ RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
           case 165: // ff1 ::= RES REAL 
             {
               NodoAritmetica RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()).right;
-		Double val = (Double)((java_cup.runtime.Symbol) CUP$ccup$stack.peek()).value;
+		int valleft = ((Symbol)CUP$ccup$stack.peek()).left;
+		int valright = ((Symbol)CUP$ccup$stack.peek()).right;
+		Double val = (Double)((Symbol) CUP$ccup$stack.peek()).value;
 		RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));
-              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((java_cup.runtime.Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((java_cup.runtime.Symbol)CUP$ccup$stack.peek()), RESULT);
+              CUP$ccup$result = parser.getSymbolFactory().newSymbol("ff1",31, ((Symbol)CUP$ccup$stack.elementAt(CUP$ccup$top-1)), ((Symbol)CUP$ccup$stack.peek()), RESULT);
             }
           return CUP$ccup$result;
 

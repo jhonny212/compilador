@@ -4,6 +4,7 @@ import Arbol.AritAST.NodoAritmetica;
 import Errores.ErrorClass;
 import GramaticaPython.asignacion_PY;
 import Instrucciones.metodos;
+import TablaSimbolos.SymTable;
 import Variable.VariableDeclaracion;
 import Variable.VariableMETODO;
 import Variable.VariableVAL;
@@ -106,25 +107,65 @@ public class Controlador_ {
         }
 
     }
+    public static boolean add=true;
 
-    public static String verifyArgs(ArrayList<VariableDeclaracion>list, ErrorClass errorClass){
+    public static String verifyArgs(ArrayList<VariableDeclaracion>list){
         String args="";
         for (int i = 0; i < list.size(); i++) {
             VariableDeclaracion x=list.get(i);
             switch (x.TIPO){
                 case 0:
                     x.string="r";
-                    args+="_"+"float";
+                    if(x.globalVar!=1){
+                        args+="_"+"float";
+                    }
                     break;
                 case 1:
                     x.TIPO=1;
                     x.string="e";
-                    args+="_"+"int";
+                    if(x.globalVar!=1){
+                        args+="_"+"int";
+                    }
                     break;
                 case 2:
                     x.TIPO=1;
                     x.string="c";
-                    args+="_"+"char";
+                    if(x.globalVar!=1){
+                        args+="_"+"char";
+                    }
+                    break;
+            }
+        }
+        return args;
+    }
+
+    public static String verifyArgs(ArrayList<VariableDeclaracion>list, ErrorClass errorClass){
+        String args="";
+        for (int i = 0; i < list.size(); i++) {
+            VariableDeclaracion x=list.get(i);
+            if(x.globalVar!=1){
+                SymTable.ADD(x.getTipe_var(),false,1,0,-1,x.ID);
+            }
+            switch (x.TIPO){
+                case 0:
+                    x.string="r";
+                    if(x.globalVar!=1){
+                        args+="_"+"float";
+                    }
+                    break;
+                case 1:
+                    x.TIPO=1;
+                    x.string="e";
+                    if(x.globalVar!=1){
+                        args+="_"+"int";
+                    }
+                    break;
+                case 2:
+                    x.TIPO=1;
+                    x.string="c";
+                    if(x.globalVar!=1){
+                        args+="_"+"char";
+                    }
                     break;
             }
 
@@ -151,6 +192,7 @@ public class Controlador_ {
         }
         for (int i = 0; i < metodos.size(); i++) {
             metodos x=metodos.get(i);
+            x.validateSTRING();
             for (int j = i+1; j < metodos.size(); j++) {
                 metodos y =metodos.get(j);
                 if(x.ID.equals(y.ID) && x.args==y.args){

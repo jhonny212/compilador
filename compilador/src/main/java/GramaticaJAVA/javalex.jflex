@@ -113,10 +113,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
                                       if(add){  return symbol(sym.CADENA,val);}
                                     }
       [^\"]+                         {string.append(yytext());yybegin(VERIFY);}
-      \\t                           { string.append('\t'); yybegin(VERIFY); }
-      \\n                           { string.append('\n'); yybegin(VERIFY); }
+      \\t                           { string.append("\\t"); yybegin(VERIFY); }
+      \\n                           { string.append("\\n"); yybegin(VERIFY); }
 
-      \\r                           { string.append('\r'); yybegin(VERIFY);}
+      \\r                           { string.append("\\r"); yybegin(VERIFY);}
       \\\"                          { string.append('\"'); yybegin(VERIFY);}
       \\                            { string.append('\\'); yybegin(VERIFY);}
 }
@@ -134,9 +134,9 @@ Identifier = [:jletter:] [:jletterdigit:]*
 <STRING>{
     "'"                           {yybegin(YYINITIAL); {}}
     [^']                          {string.append(yytext());yybegin(CHAR);}
-    \\t                           { string.append('\t'); yybegin(CHAR); }
-    \\n                           { string.append('\n'); yybegin(CHAR); }
-    \\r                           { string.append('\r'); yybegin(CHAR);}
+    \\t                           { string.append("\\t"); yybegin(CHAR); }
+    \\n                           { string.append("\\n"); yybegin(CHAR); }
+    \\r                           { string.append("\\r"); yybegin(CHAR);}
     \\\"                          { string.append('\"'); yybegin(CHAR);}
     \\                            { string.append('\\'); yybegin(CHAR);}
 }

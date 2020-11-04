@@ -1,7 +1,9 @@
 package Instrucciones;
 
 import Errores.ErrorClass;
+import Lenguajes.Cuadruplas;
 import Lenguajes.MetodosVisual;
+import TablaSimbolos.SymTable;
 import Variable.*;
 import controlador.Controlador_;
 
@@ -39,6 +41,10 @@ public class metodos {
             this.argumentos=new ArrayList();
         }
         argumentos.addAll(variableDeclaracions);
+        argumentos.stream()
+                .forEach((x)->{
+                    x.isNull=false;
+                });
    }
    public void add(ArrayList<VariableDeclaracion>variableDeclaracions){
         if(this.ambito_==null){
@@ -49,13 +55,12 @@ public class metodos {
         }
         this.ambito_.variables.addAll(variableDeclaracions);
    }
+    public void validateSTRING(){
 
-    public void validate(){
-        String arg2="";
         if(this.argumentos!=null){
             if(!this.argumentos.isEmpty())
             {
-               arg2=Controlador_.verifyArgs(this.argumentos,this.errores);
+                arg2=Controlador_.verifyArgs(this.argumentos);
             }
         }
         if(this.isFun){
@@ -74,8 +79,26 @@ public class metodos {
                 this.TIPO=1;
             }
         }
+
         this.codigoMetodo=string+this.ID+arg2;
+    }
+    String arg2="";
+    public void validate(){
+        int tamPrevio=SymTable.celdas.size();
+        int tamCuad=MetodosVisual.instrucciones.size();
+        SymTable.celda tmp=new SymTable.celda(this.isFun?this.TIPO:10,false,0,0,(this.string.equals("VB_")?0:-1),this.codigoMetodo,SymTable.getPos(this.TIPO));
+        tmp.IS_FUN=true;
+        SymTable.celdas.add(tmp);
+        if(this.argumentos!=null){
+            if(!this.argumentos.isEmpty())
+            {
+               Controlador_.verifyArgs(this.argumentos,this.errores);
+            }
+        }
+
+        tmp.ID=codigoMetodo;
         MetodosVisual.add("Fun",string+this.ID,arg2,"",8);
+
         if(this.ambito_!=null){
             ambito_.TIPORETORNO=this.TIPO;
             this.ambito_.errores=this.errores;
@@ -97,7 +120,23 @@ public class metodos {
                     "El metodo no cumple con los return requeridos, \nverifique o agregue" +
                     "un return al final del metodo");
         }
-        //this.ambito_=null;
+
+        int tamSig=SymTable.celdas.size();
+        //int tamCuad_next=MetodosVisual.instrucciones.size();
+        MetodosVisual.CONTADOR_ETIQ++;
+        boolean entro=false;
+        for (int i = tamCuad; i < MetodosVisual.instrucciones.size(); i++) {
+            Cuadruplas cuadrupla=MetodosVisual.instrucciones.get(i);
+            if(cuadrupla.TIPO==17){
+                entro=true;
+                MetodosVisual.instrucciones.add(i+1,new Cuadruplas("goto","E",String.valueOf(MetodosVisual.CONTADOR_ETIQ),"",4));
+                i=i+1;
+            }
+        }
+        if(entro){
+            MetodosVisual.add("","E",String.valueOf(MetodosVisual.CONTADOR_ETIQ),"",5);
+        }
+        tmp.POS_MEMORIA=tamSig-tamPrevio;
         MetodosVisual.add("close","}","","",9);
     }
 

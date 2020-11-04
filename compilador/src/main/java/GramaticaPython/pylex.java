@@ -929,17 +929,17 @@ public class pylex implements java_cup.runtime.Scanner {
             // fall through
           case 74: break;
           case 27:
-            { string.append('\n'); yybegin(CHAR);
+            { string.append("\\n"); yybegin(CHAR);
             }
             // fall through
           case 75: break;
           case 28:
-            { string.append('\r'); yybegin(CHAR);
+            { string.append("\\r"); yybegin(CHAR);
             }
             // fall through
           case 76: break;
           case 29:
-            { string.append('\t'); yybegin(CHAR);
+            { string.append("\\t"); yybegin(CHAR);
             }
             // fall through
           case 77: break;
@@ -949,17 +949,17 @@ public class pylex implements java_cup.runtime.Scanner {
             // fall through
           case 78: break;
           case 31:
-            { string.append('\n'); yybegin(STRING);
+            { string.append("\\n"); yybegin(STRING);
             }
             // fall through
           case 79: break;
           case 32:
-            { string.append('\r'); yybegin(STRING);
+            { string.append("\\r"); yybegin(STRING);
             }
             // fall through
           case 80: break;
           case 33:
-            { string.append('\t'); yybegin(STRING);
+            { string.append("\\t"); yybegin(STRING);
             }
             // fall through
           case 81: break;

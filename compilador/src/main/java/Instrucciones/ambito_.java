@@ -94,6 +94,7 @@ public class ambito_ {
         }
         if(this.retorno!=null){
             ArbolAritmetica aritmetica=new ArbolAritmetica(this.variables);
+            aritmetica.errorClass=this.errores;
             aritmetica.recorrer(this.retorno);
             MetodosVisual.add("return",aritmetica.lastVal,"","",17);
 

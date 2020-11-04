@@ -1,4 +1,7 @@
 
+import CodigoEjecutable.CodigoIntermedio;
+import CodigoEjecutable.generarCodigoIntermedio;
+import Errores.ErrorClass;
 import GramaticaC.ccup;
 import GramaticaC.clex;
 import GramaticaJAVA.javacup;
@@ -7,17 +10,17 @@ import GramaticaPython.pycup;
 import GramaticaPython.pylex;
 import GramaticaVisualBasic.vbcup;
 import GramaticaVisualBasic.vblex;
+import Interfaz.Editor;
 import Interfaz.MainInterfaz;
 import Lenguajes.Compilador;
 import Lenguajes.MetodosVisual;
 import OptimizarCodigoIntermedio.OptimizarCodigo;
 import TablaSimbolos.SymTable;
 import java_cup.runtime.Symbol;
+import org.apache.tools.ant.taskdefs.condition.Http;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -27,8 +30,9 @@ public class Main {
     public static void main(String[] args) {
         //generarCompilador();
         test();
-        //MainInterfaz main=new MainInterfaz();
-        //main.show();
+        //MainInterfaz interfaz=new MainInterfaz();
+        //interfaz.show();
+
     }
 
     private static void generarCompilador() {
@@ -36,8 +40,8 @@ public class Main {
             String ruta = "src/main/java/GramaticaC/"; //ruta donde tenemos los archivos con extension .jflex y .cup
             String opcFlex[] = {ruta + "clex.jflex", "-d", ruta};
             jflex.Main.generate(opcFlex);
-            String opcCUP[] = {"-destdir", ruta, "-parser", "ccup", ruta + "ccup.cup"};
-            java_cup.Main.main(opcCUP);
+            String opcCUP[] = {"-destdir", ruta, "-parser", "javacup", ruta + "javacup.cup"};
+            //java_cup.Main.main(opcCUP);
         } catch (Exception ex) {
         }
 
@@ -45,36 +49,7 @@ public class Main {
 
     public static void probar() {
 
-        String texto = "%%VB\n" +
-                " //hola mundo\n\n"
-                + "Public Sub Suma()\n"
-                + "    \n"
-                + "End Sub\n"
-                + "Public Sub Res()\n"
-                + "End Sub\n"
-                + "%%JAVA\n"
-                + "public class test1{\n"
-                + "    public void suma(){\n"
-                + "        int x=10;\n"
-                + "    }\n"
-                + "    public void suma(){\n"
-                + "        int y=10;\n"
-                + "    }\n"
-                + "}\n"
-                + "public class test12{\n"
-                + "    int x=10;\n"
-                + "    int y=20;\n"
-                + "    public void suma(){\n"
-                + "        int x=10;\n"
-                + "        this.x=20;\n"
-                + "    }\n"
-                + "}\n"
-                + "%%PY\n"
-                + "def suma():\n"
-                + "def suma():\n"
-                + "%%\n"
-                + "#include \"PY\"\n"
-                + "#include \"VB\"";
+        String texto = "";
 
         var lex = new vblex(new BufferedReader(new StringReader(texto)));
 
@@ -94,87 +69,131 @@ public class Main {
     }
 
     public static void test() {
-        String texto ="%%VB\n" +
-                "  //xxxxxxxxxxxx\n" +
-                "Public Sub suma (ByVal x As Integer,ByVal yy As Integer)\n" +
-                "    Dim y=x--2 As Integer\n" +
-                "    While x*y <= 10\n" +
-                "        If ( 0 Or Not(1) ) Then\n" +
-                "            x=intinput(\"Escriba su edad\")\n" +
-                "            Console.WriteLine(\"La edad es de \" & x)\n" +
-                "            Do\n" +
-                "                x=x+1\n" +
-                "            Loop While 2*x>1*x\n" +
-                "        End If\n" +
-                "    End While\n" +
-                "End Sub\n" +
-                "Public Sub resta (ByVal z As Double,ByVal y As Integer)\n" +
-                "    Dim x=y+2 As Integer\n" +
-                "    For w As Integer=10 To 20\n" +
-                "        If x = 1 Then\n" +
-                "            Console.Write(\"Caso 1\")\n" +
-                "        ElseIf x=2 Then\n" +
-                "            Console.Write(\"Caso 2\")\n" +
-                "        ElseIf x=3 Then\n" +
-                "            Console.WriteLine(\"Caso 3\")\n" +
-                "        Else\n" +
-                "            Console.Write(\"caso 4\")\n" +
-                "        End If        \n" +
-                "    Next\n" +
-                "    Select Case x\n" +
-                "        Case 1\n" +
-                "            x=10*x\n" +
-                "        Case 2\n" +
-                "            x=10/x\n" +
-                "        Case 3\n" +
-                "            x=10+x\n" +
-                "        Case 4\n" +
-                "            x=10%x\n" +
-                "        Case Else\n" +
-                "            x=x\n" +
-                "    End Select\n" +
-                "End Sub\n" +
-                "%%JAVA\n" +
-                "   //sdaaaaaaaaaaa\n" +
-                " public class aritmetica{\n" +
-                "     int k=0;" +
-                "     public void suma(){\n" +
-                "                   while(k){" +
-                "                       if(k+1){" +
-                "                           int j=20;" +
-                "                       }else if(k+2){" +
-                "                           int f=30;" +
-                "                       }else{" +
-                "                           int j=10;" +
-                "                       }" +
-                "                 }\n" +
-                "     }\n" +
-                " }\n" +
-                "%%PY\n" +
-                "def suma():\n" +
-                "    testin=10*3+2\n" +
-                "    testin=testin+2\n" +
-                "%%PROGRAMA\n" +
-                "#include \"PY\"\n" +
-                "#include \"VB\"\n" +
-                "#include \"JAVA.*\"\n" +
-                "int x,z=10;" +
-                "void main(){\n" +
-                "   int y=x;" +
-                "}\n";
+        String texto =
+                "%%VB\n" +
+                        "Public Function Factorial(ByVal valor As Integer) As Integer\n" +
+                        "  If valor==0 Then\n" +
+                        "    \tReturn 1\n" +
+                        "  Else\n" +
+                        "    \tReturn valor*Factorial(valor-1)\n" +
+                        "  End If\n" +
+                        "End Function\n" +
+                        "Public Sub pintarNota(ByVal valor As Integer)\n" +
+                        "  Console.WriteLine(\"\\n La nota Es de \" & valor)\n" +
+                        "End Sub\n" +
+                        "%%JAVA\n" +
+                        "public class alumno{\n" +
+                        "  char codigo;\n" +
+                        "  int  year;\n" +
+                        "  float promedio;\n" +
+                        "  int curso1,curso2,curso3;\n" +
+                        "\n" +
+                        "  public alumno(int curso1,int curso2,int curso3){\n" +
+                        "    this.curso1=this.curso1+this.curso2+curso1;\n" +
+                        "    this.curso2=curso2;\n" +
+                        "    this.curso3=curso3;" +
+                        "    if(this.curso1){}switch(this.curso1){case 0:break;} while(this.curso1){}\n" +
+                        "  }\n" +
+                        "\n" +
+                        "  public float getPromedio(){\n" +
+                        "    return promedio;\n" +
+                        "  }\n" +
+                        "\n" +
+                        "  public void calcularPromedio(int division){\n" +
+                        "    promedio=(curso1+curso2+curso3)/3;\n" +
+                        "  }\n" +
+                        "\n" +
+                        "  public void pintarPromedio(){\n" +
+                        "    System.out.println(\"EL PROMEDIO ES DE \"+promedio);\n" +
+                        "  }\n" +
+                        "\n" +
+                        "  public void actualizarPromedio(int tipo, int valor){\n" +
+                        "    switch(tipo){\n" +
+                        "      case 1:\n" +
+                        "        curso1=valor;\n" +
+                        "      break;\n" +
+                        "      case 2:\n" +
+                        "        curso2=valor;\n" +
+                        "      break;\n" +
+                        "      case 3:\n" +
+                        "        curso3=valor;\n" +
+                        "      break;\n" +
+                        "    }\n" +
+                        "\n" +
+                        "  }\n" +
+                        "}\n" +
+                        "%%PY\n" +
+                        "def validarCurso(promedio):\n" +
+                        "  print(\"EVALUANDO NOTA: \",promedio)\n" +
+                        "  if promedio<50:\n" +
+                        "    print(\" REPROBADO \\n\")\n" +
+                        "  else:\n" +
+                        "    print(\" APROBADO NOTA \\n\")\n" +
+                        "\n" +
+                        "%%PROGRAMA\n" +
+                        "#include \"PY\"\n" +
+                        "#include \"VB\"\n" +
+                        "#include \"JAVA.*\"\n" +
+                        "const int variablePrueba=10;" +
+                        "\n" +
+                        "void main(){\n" +
+                        "  int curso1;\n" +
+                        "  int curso2;\n" +
+                        "  int curso3;\n" +
+                        "\tint factorial;\n" +
+                        "  int booleano=0;\n" +
+                        "\n" +
+                        "  scanf(\"Ingrese la nota del curso1 \\n %d\", &curso1);\n" +
+                        "  scanf(\"Ingrese la nota del curso2 \\n %d\", &curso2);\n" +
+                        "  scanf(\"Ingrese la nota del curso3 \\n %d\", &curso3);\n" +
+                        "\n" +
+                        "  JAVA.alumno estudiante(curso1,curso2,curso3);\n" +
+                        "  estudiante.calcularPromedio(3);\n" +
+                        "  estudiante.pintarPromedio();\n" +
+                        "\n" +
+                        "  VB.pintarNota(curso1);\n" +
+                        "  VB.pintarNota(curso2);\n" +
+                        "  VB.pintarNota(curso3);\n" +
+                        "  PY.validarCurso(estudiante.getPromedio());\n" +
+                        "\tfactorial=VB.Factorial(5);\n" +
+                        "\tprintf(\"\\n VALOR: %d\",factorial);\n" +
+                        "  estudiante.actualizarPromedio(1,60);\n" +
+                        "  estudiante.actualizarPromedio(2,60);\n" +
+                        "  estudiante.actualizarPromedio(3,60);\n" +
+                        "  getch();\n" +
+                        "  estudiante.calcularPromedio(3);\n" +
+                        "  estudiante.pintarPromedio();\n" +
+                        "  PY.validarCurso(estudiante.getPromedio());\n" +
+                        "\n" +
+                        "  printf(\"Desea limpiar la pantalla? Presione 1\");\n" +
+                        "  booleano=getch();\n" +
+                        "  if(booleano==1){\n" +
+                        "    clrscr();\n" +
+                        "  }\n" +
+                        "\n" +
+                        "\n" +
+                        "  printf(\"\\n DATOS ESTUDIANTE 2 \\n\");\n" +
+                        "  scanf(\"Ingrese la nota del curso1 \\n %d\", &curso1);\n" +
+                        "  scanf(\"Ingrese la nota del curso2 \\n %d\", &curso2);\n" +
+                        "  scanf(\"Ingrese la nota del curso3 \\n %d\", &curso3);\n" +
+                        "  JAVA.alumno estudiante2(curso1,curso2,curso3);\n" +
+                        "  estudiante2.calcularPromedio(3);\n" +
+                        "  PY.validarCurso(estudiante2.getPromedio());\n" +
+                        "}";
         Compilador compilador = new Compilador(texto);
         compilador.create();
-        //compilador.compilar_vb();
-        //compilador.compilar_java();
-        //SymTable.print();
-        //compilador.compilar_pyva();
+        compilador.compilar_vb();
+        compilador.compilar_java();
+        compilador.compilar_pyva();
         compilador.compilar_c();
-        compilador.printError();
-        //compilador.printCod();
-        //OptimizarCodigo xx=new OptimizarCodigo();
-        //xx.optimiar();
-        //xx.print();
+        SymTable.fix();
+        //SymTable.print2();
+        generarCodigoIntermedio codigoIntermedio = new generarCodigoIntermedio();
+        compilador.printCod();
+        //codigoIntermedio.generar(MetodosVisual.instrucciones);
 
+        //Editor.compilarCodigoC(generarCodigoIntermedio.codigoFinal);
+        //compilador.printError();
     }
 
 }

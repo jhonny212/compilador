@@ -46,6 +46,9 @@ public class while_PY extends InstruccionPy {
             ambitoPY.errorClass=this.errorClass;
 
             ambitoPY.add(this.variables);
+            MetodosVisual.CONTADOR_AMBITO++;
+            ambitoPY.numeroAm=MetodosVisual.CONTADOR_AMBITO;
+            ambitoPY.ambitoDad=this.numeroAmbito;
             ambitoPY.validate();
         }
         MetodosVisual.add("goto","E",String.valueOf(dad),"",4);

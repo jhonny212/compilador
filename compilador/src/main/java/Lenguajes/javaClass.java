@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class javaClass {
     public String ID;
     int FILA,COLUMNA;
-    ArrayList<Instrucciones.metodos> metodos,construc;
+    public ArrayList<Instrucciones.metodos> metodos,construc;
     ArrayList<VariableDeclaracion> variablesDeclar;
 
     public javaClass(String ID, int FILA, int COLUMNA, ArrayList<Instrucciones.metodos> metodos, ArrayList<Instrucciones.metodos> construc, ArrayList<VariableDeclaracion> variablesDeclar) {

@@ -19,15 +19,20 @@ public class switch_var extends Instruccion{
         }
 
     }
-
+    String tmp="";
     @Override
     public void validate(boolean valid) {
         Variable var=this.getVar(ID);
+
         if(var==null){
             this.errores.AddError(2,FILA,COLUMNA-1,ID,"" +
                     "Error en el identificador del select,\n" +
                     "no existe la variable");
 
+        }else{
+            if(var.ID.startsWith("this.") && !this.ID.startsWith("this.")){
+                tmp="this.";
+            }
         }
 
         if(this.cases!=null){
@@ -39,7 +44,7 @@ public class switch_var extends Instruccion{
                     .forEach((x)->{
                         if(x.nodoAritmetica!=null){
                             MetodosVisual.CONTADOR_ETIQ++;
-                            MetodosVisual.add("==",this.ID,x.getStr(),"goto E"+MetodosVisual.CONTADOR_ETIQ,3);
+                            MetodosVisual.add("==",tmp+this.ID,x.getStr(),"goto E"+MetodosVisual.CONTADOR_ETIQ,3);
                             x.etiqueta=MetodosVisual.CONTADOR_ETIQ;
                         }else{
                             MetodosVisual.CONTADOR_ETIQ++;

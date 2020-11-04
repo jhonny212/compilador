@@ -64,6 +64,9 @@ public class for_py extends InstruccionPy {
         if(this.ambitoPY!=null){
             ambitoPY.errorClass=this.errorClass;
             ambitoPY.add(this.variables);
+            MetodosVisual.CONTADOR_AMBITO++;
+            ambitoPY.numeroAm=MetodosVisual.CONTADOR_AMBITO;
+            ambitoPY.ambitoDad=this.numeroAmbito;
             ambitoPY.validate();
         }
         if(nodo3!=null){

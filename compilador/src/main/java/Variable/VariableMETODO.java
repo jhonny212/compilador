@@ -39,6 +39,7 @@ public class VariableMETODO extends Variable{
 
             declaracion_c.lasValtmp1="%";
         }
+
         declaracion_c.validate(false);
         this.TIPO=declaracion_c.tipo;
         this.string=declaracion_c.string;

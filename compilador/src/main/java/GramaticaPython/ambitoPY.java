@@ -3,6 +3,8 @@ package GramaticaPython;
 
 import Errores.ErrorClass;
 import Lenguajes.MetodosVisual;
+import TablaSimbolos.SymTable;
+import TablaSimbolos.ambitoTable;
 import Variable.VariableDeclaracion;
 import controlador.Controlador_;
 
@@ -11,21 +13,27 @@ import java.util.ArrayList;
 public class  ambitoPY{
     public ArrayList<InstruccionPy> instruccionPIES;
     public ArrayList<VariableDeclaracion> variables;
+
     public ambitoPY(){
         this.instruccionPIES=new ArrayList<>();
     }
     public ErrorClass errorClass;
-    public void validate(){
+    public int ambitoDad=0,numeroAm=0;
+    public void
+    validate(){
         if(this.variables==null){
             variables=new ArrayList<>();
         }
         cnt=0;
+        ambitoTable.ADD_AMB(this.numeroAm,this.ambitoDad);
         this.instruccionPIES.stream()
                 .forEach((x)->{
                         x.errorClass=this.errorClass;
                         if(x.variables==null){
                             x.variables=new ArrayList();
                         }
+                    x.ambitoDad=this.ambitoDad;
+                    x.numeroAmbito=this.numeroAm;
                         if(x instanceof if_py){
                             if(num==1){
                                 MetodosVisual.add("Et","E",String.valueOf(salida),"",5);
@@ -70,6 +78,7 @@ public class  ambitoPY{
                             VariableDeclaracion var=new VariableDeclaracion(tmp.ID,tmp.FILA,tmp.COLUMNA);
                             var.isNull=false;
                             variables.add(var);
+                            SymTable.ADD(0,false,1,this.numeroAm,this.ambitoDad,var.ID);
                         }
 
                        }

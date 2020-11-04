@@ -452,7 +452,10 @@ this.parser.errores.update(x1left,x1right,"Error al declarar una variable, verif
 if_var::= IF AP boolean:bool CP
 AC
 datos2:am
-CC;
+CC
+{:
+RESULT=new instr_if(am,bool);
+:};
 
 if_var::= IF AP boolean:bool CP
 AC

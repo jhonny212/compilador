@@ -34,19 +34,20 @@ public class input_PY extends InstruccionPy {
                         }else{
                             val1="\""+x.texto+"\"";
                         }
-                        if(numvar==0){
+                        MetodosVisual.add("print",val1,"","",14);
+                        /*if(numvar==0){
                             MetodosVisual.add("",val1,"","str_asig",6);
                             numvar=1;
                         }else{
                             numvar=2;
                             MetodosVisual.add("concat","str_asig",val1,"str_asig",6);
-                        }
+                        }*/
                     });
-            if(numvar==1){
+            /*if(numvar==1){
                 MetodosVisual.add("print",val1,"","",14);
             }else{
                 MetodosVisual.add("print","str_asig","","",14);
-            }
+            }*/
             if(!asignar){
                 MetodosVisual.add("read","","","",13);
             }else{

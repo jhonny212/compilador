@@ -1,7 +1,9 @@
 package GramaticaPython;
 
 import Errores.ErrorClass;
+import Lenguajes.Cuadruplas;
 import Lenguajes.MetodosVisual;
+import TablaSimbolos.SymTable;
 import Variable.VariableDeclaracion;
 import java_cup.runtime.Symbol;
 
@@ -155,19 +157,51 @@ public class metodo_py {
         return false;
     }
     public ErrorClass errorClass;
-
-    public void validate(){
+    String x;
+    public void getCodigo(){
+         x=(this.variables==null?"0":String.valueOf(this.variables.size()));
+        this.CODIGO="PY_"+this.ID+"_"+x;
         numParams=this.variables==null?0:variables.size();
-        String x=(this.variables==null?"0":String.valueOf(this.variables.size()));
-        MetodosVisual.add("Fun","PY_"+this.ID,x,"",8);
-        this.CODIGO="PY_"+this.ID+x;
+
+    }
+    public void validate(){
+
+        MetodosVisual.add("Fun","PY_"+this.ID+"_",x,"",8);
+        int tamCuad=MetodosVisual.instrucciones.size();
+        int tamPrevio= SymTable.celdas.size();
+        SymTable.celda tmp=new SymTable.celda(0,false,0,0,-1,this.CODIGO,0);
+        SymTable.celdas.add(tmp);
+        if(numParams>0){
+            this.variables
+                    .stream()
+                    .forEach((var)->{
+                       SymTable.ADD(0,false,1,0,-1,var.ID);
+                    });
+        }
         if(check()){
             ambitoPY ambitoPY=get(0);
             ambitoPY.variables=this.variables;
             ambitoPY.errorClass=this.errorClass;
             ambitoPY.validate();
         }
+        //int tamCuad_next=MetodosVisual.instrucciones.size();
+        MetodosVisual.CONTADOR_ETIQ++;
+        boolean entro=false;
+        for (int i = tamCuad; i < MetodosVisual.instrucciones.size(); i++) {
+            Cuadruplas cuadrupla=MetodosVisual.instrucciones.get(i);
+            if(cuadrupla.TIPO==17){
+                entro=true;
+                MetodosVisual.instrucciones.add(i+1,new Cuadruplas("goto","E",String.valueOf(MetodosVisual.CONTADOR_ETIQ),"",4));
+                i=i+1;
+            }
+        }
+
+        if(entro){
+            MetodosVisual.add("","E",String.valueOf(MetodosVisual.CONTADOR_ETIQ),"",5);
+        }
         MetodosVisual.add("close","}","","",9);
+        int tamSig=SymTable.celdas.size();
+        tmp.POS_MEMORIA=tamSig-tamPrevio-1;
     }
 
     ambitoPY get(int i){

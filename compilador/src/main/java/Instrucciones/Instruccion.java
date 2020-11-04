@@ -36,9 +36,9 @@ public abstract class Instruccion {
          return null;
       }
       if(ID.startsWith("this.")){
-         String tmp=ID.replaceFirst("this.","");
+         ///String tmp=ID.replaceFirst("this.","");
          for (VariableDeclaracion x:this.variables) {
-            if(x.ID.equals(tmp) && x.globalVar==1){
+            if(x.ID.equals(ID) && x.globalVar==1){
                return x;
             }
          }
@@ -49,6 +49,13 @@ public abstract class Instruccion {
                return x;
             }
          }
+          for (int i = this.variables.size()-1; i >=0 ; i--) {
+              VariableDeclaracion x=this.variables.get(i);
+              if(x.ID.equals("this."+ID)){
+                  return x;
+              }
+          }
+
       }
      return null;
    }

@@ -38,6 +38,9 @@ public class else_py extends InstruccionPy {
             if(this.ambitoPY!=null){
                 ambitoPY.add(this.variables);
                 ambitoPY.errorClass=this.errorClass;
+                MetodosVisual.CONTADOR_AMBITO++;
+                ambitoPY.numeroAm=MetodosVisual.CONTADOR_AMBITO;
+                ambitoPY.ambitoDad=this.numeroAmbito;
                 ambitoPY.validate();
             }
             if(salida!=-1){

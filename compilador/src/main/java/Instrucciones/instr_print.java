@@ -31,24 +31,29 @@ public class instr_print extends Instruccion{
                         }else{
                             val1="\""+x.texto+"\"";
                         }
-                        if(numvar==0){
+                        MetodosVisual.add("print",val1,"","",14);
+                        /*if(numvar==0){
                             MetodosVisual.add("",val1,"","str_asig",6);
                             numvar=1;
                         }else{
                             numvar=2;
                             MetodosVisual.add("concat","str_asig",val1,"str_asig",6);
-                        }
+                        }*/
 
                     });
-            if(numvar==1){
+            if(this.isLN){
+                MetodosVisual.add("print","\"\\n\"","","",14);
+            }
+            /*if(numvar==1){
                 MetodosVisual.add("print",val1,this.isLN?"\\n":"","",14);
             }else{
                 MetodosVisual.add("print","str_asig",this.isLN?"\\n":"","",14);
-            }
+            }*/
         }else{
-                MetodosVisual.add("print",this.isLN?" \\n":"","","",14);
-
-
+            if(this.isLN){
+                MetodosVisual.add("print","\"\\n\"","","",14);
+            }
+                //MetodosVisual.add("print",this.isLN?" \\n":"","","",14);
         }
     }
 

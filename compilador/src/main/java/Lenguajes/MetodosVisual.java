@@ -6,6 +6,7 @@ import GramaticaC.call_c;
 import GramaticaPython.metodo_py;
 import Instrucciones.argumento_dato;
 import Instrucciones.metodos;
+import TablaSimbolos.SymTable;
 import Variable.VariableDeclaracion;
 
 import java.util.ArrayList;
@@ -26,11 +27,12 @@ public class MetodosVisual {
                            String RESULT,int TIPO){
         instrucciones.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO));
         instrOptim.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO));
+
     }
     public static void add(String OP,String ARG1,String ARG2,
                            String RESULT,int TIPO,String KIND){
         instrucciones.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO,KIND));
-        instrOptim.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO));
+        instrOptim.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO,KIND));
     }
     public static void addBefore(String OP,String ARG1,String ARG2,
                            String RESULT,int TIPO){
@@ -45,7 +47,7 @@ public class MetodosVisual {
         cod="";
         instrucciones.stream()
                 .forEach((x)->{
-                    cod+=x.getTabs()+x.PRINT()+"\n";
+                    cod+=x.getTabs()+x.PRINT()+" "+x.TIPO+"\n";
                     cnt++;
                 });
         return cod;
@@ -194,7 +196,7 @@ public class MetodosVisual {
                     tipo=x.TIPO;
                     string=x.str;
                     return x.codigoMetodo;
-                }else if(argumentos==null && x.argumentos!=null){
+                }else if(argumentos == null){
                     if(x.argumentos.size()==0){
                         tipo=x.TIPO;
                         string=x.str;
@@ -205,6 +207,7 @@ public class MetodosVisual {
         }
         return "";
     }
+
 
     public static boolean get(ArrayList<argumento_dato>argumentos,metodos x,ArrayList<VariableDeclaracion> vars,String name){
         int previo=instrucciones.size();
@@ -291,6 +294,12 @@ public class MetodosVisual {
         metodosVB=new ArrayList<>();
         instrOptim=new ArrayList<>();
         ErrorClass.numLine=0;
+        SymTable.canAdd=true;
+        SymTable.celdas=new ArrayList<>();
+        SymTable.celdas2=new ArrayList<>();
+        SymTable.size_char=0;
+        SymTable.size_double=0;
+        SymTable.size_int=0;
     }
 
 }

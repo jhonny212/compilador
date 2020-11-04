@@ -34,13 +34,15 @@ public class asig_c extends Instruccion {
     @Override
     public void validate(boolean valid) {
         VariableDeclaracion x=this.getVar(this.ID);
+
         if(x==null){
             this.errores.AddError(2,this.FILA,this.COLUMNA,this.ID,"La variable no existe");
         }else{
+            x.isNull=false;
             if(this.tipo==1 && x.TIPO==0){
                 this.errores.AddError(2,this.FILA,this.COLUMNA,this.ID,"La variable no es del mismo tipo");
             }
-            MetodosVisual.add("print",this.datos,"","",14);
+            MetodosVisual.add("print","\""+this.datos+"\"","","",14);
             MetodosVisual.add("read","","",this.ID,13);
         }
     }

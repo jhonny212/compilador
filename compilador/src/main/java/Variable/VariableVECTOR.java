@@ -4,6 +4,7 @@ import Arbol.AritAST.ArbolAritmetica;
 import Arbol.AritAST.NodoAritmetica;
 import Errores.ErrorClass;
 import Lenguajes.MetodosVisual;
+import TablaSimbolos.SymTable;
 
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class VariableVECTOR extends Variable{
     public boolean isNull() {
         return false;
     }
-
+    public  int AMBITO,AMBITO_DAD;
     @Override
     public Object getValor() {
         return null;
@@ -44,12 +45,18 @@ public class VariableVECTOR extends Variable{
         cnt=0;
         if(nodos!=null){
             if(!nodos.isEmpty()){
+                String tam=this.ID+"_tam"+nodos.size();
+                MetodosVisual.add("Asig","0","",tam,2);
+
                 nodos.stream().
                         forEach((x)->{
                             ArbolAritmetica aritmetica=new ArbolAritmetica(variableDeclaracions);
                             aritmetica.errorClass=errorClass;
                             aritmetica.recorrer(x);
                             MetodosVisual.add("Asig",aritmetica.lastVal,"",this.ID+"_tam"+cnt,2);
+                            SymTable.ADD(1,false,1,this.AMBITO,this.AMBITO_DAD,this.ID+"_tam"+cnt);
+                            MetodosVisual.add("+",aritmetica.lastVal,tam,tam,0);
+
                             if(x.variable!=null){
                                 if(x.variable.TIPO==0){
                                     errorClass.AddError(2,this.fila,this.columna-1,ID,"" +
@@ -58,6 +65,9 @@ public class VariableVECTOR extends Variable{
                             }
                             cnt++;
                         });
+                cnt++;
+                SymTable.ADD(1,false,1,this.AMBITO,this.AMBITO_DAD,this.ID+"_tam"+nodos.size());
+                this.lasValtmp1=tam;
             }
         }
         cnt=0;

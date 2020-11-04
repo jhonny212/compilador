@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import CodigoEjecutable.generarCodigoIntermedio;
 import Errores.ErrorClass;
 import Lenguajes.MetodosVisual;
 import java.io.BufferedReader;
@@ -56,6 +57,7 @@ public class Editor {
     }
 static ContentTab program_=null;
     public static void Nuevo(JTabbedPane Content, String fn) {
+
         if(program_==null){
             program_ = new ContentTab();
             Content.add("Programa", program_);
@@ -65,10 +67,10 @@ static ContentTab program_=null;
             program_.fileName=fn;
         }
     }
-    
+    public static ContentTab codInter=null;
     public static void addCodInter(JTabbedPane Content){
-        String txt=MetodosVisual.print();
-        ContentTab codInter=new ContentTab();
+        String txt= generarCodigoIntermedio.codigoEjecutable.toString();
+        codInter=new ContentTab();
         codInter.setTexto(txt);
         Content.add("Codigo Intermedio",codInter);
     }
@@ -178,6 +180,13 @@ static ContentTab program_=null;
         tb.show();
         //Content.add("Errores", tb);
     }
-    
+
+    public static void compilarCodigoC(StringBuffer stringBuffer){
+        write(new File("codigo.c"),stringBuffer.toString());
+        try{
+            Runtime.getRuntime().exec("gcc codigo.c -o codigo");
+        }catch(Exception ex){}
+
+    }
     
 }

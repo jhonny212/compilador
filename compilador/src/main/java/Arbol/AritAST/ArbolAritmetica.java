@@ -36,6 +36,7 @@ public class ArbolAritmetica extends Arbol {
             else if(variable1 instanceof VariableMETODO){
                 ((VariableMETODO)variable1).declaracion_c.errores=this.errorClass;
                 variable1.lasValtmp1="%";
+
                 ((VariableMETODO)variable1).validate(this.tablaSimbolos);
                 this.lastVal=variable1.getStr();
                 if(variable1.TIPO==-10){
@@ -48,7 +49,13 @@ public class ArbolAritmetica extends Arbol {
                 this.lastVal=variable1.getStr();
                 if(variable1.isNull()){
                 VariableDeclaracion t1=this.getVar(variable1.ID);
+
                 if(t1!=null){
+                    try{
+                        if(t1.ID.startsWith("this.") && !variable1.ID.startsWith("this.")){
+                            this.lastVal="this."+this.lastVal;
+                        }
+                    }catch (Exception ex){}
                     if(t1.variableVECTOR!=null){
                         this.errorClass.AddError(2,variable1.fila,variable1.columna,variable1.ID,"La variable es un vector, asigne una posicion al vector para poder operar");
                     }
@@ -129,6 +136,11 @@ public class ArbolAritmetica extends Arbol {
                     VariableDeclaracion t1=this.getVar(variable1.ID);
 
                     if(t1!=null){
+                        try{
+                            if(t1.ID.startsWith("this.") && !variable1.ID.startsWith("this.")){
+                                value1="this."+value1;
+                            }
+                        }catch (Exception ex){}
                         if(t1.variableVECTOR!=null){
                             this.errorClass.AddError(2,f1,c1,variable1.ID,"La variable es un vector, asigne una posicion al vector para poder operar");
                         }
@@ -188,6 +200,11 @@ public class ArbolAritmetica extends Arbol {
                     int c1=variable2.columna;
                     VariableDeclaracion t1=this.getVar(variable2.ID);
                     if(t1!=null){
+                        try{
+                            if(t1.ID.startsWith("this.") && !variable2.ID.startsWith("this.")){
+                                value2="this."+value2;
+                            }
+                        }catch (Exception ex){}
                         if(t1.variableVECTOR!=null){
                             this.errorClass.AddError(2,f1,c1,variable2.ID,"La variable es un vector, asigne una posicion al vector para poder operar");
                         }
@@ -222,8 +239,10 @@ public class ArbolAritmetica extends Arbol {
                     href.variable=new VariableVAL(this.kindVar+numeroVar,1,"e");
                 }
             }
-
-                MetodosVisual.add(href.operador,value1,value2,this.kindVar+numeroVar,0);
+                if(value1.equals("x") ){
+                    System.out.println("");
+                }
+                MetodosVisual.add(href.operador+"",value1,value2,this.kindVar+numeroVar,0);
                 numeroVar=numeroVar==0?1:0;
         }
     }

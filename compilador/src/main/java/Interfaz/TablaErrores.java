@@ -36,7 +36,7 @@ public class TablaErrores extends javax.swing.JFrame {
                     Object obj[]=new Object[5];
                     obj[0]=err.fila;
                     obj[1]=err.columna;
-                    obj[2]=err.token;
+                    obj[2]=err.token==null ?"Espacio en blanco" : err.token.isEmpty() ?"Espacio en blanco ": err.token;
                     obj[3]=err.dato;
                     obj[4]="Lexico";
                     x.addRow(obj);
@@ -48,7 +48,7 @@ public class TablaErrores extends javax.swing.JFrame {
                     Object obj[]=new Object[5];
                     obj[0]=err.fila;
                     obj[1]=err.columna;
-                    obj[2]=err.token;
+                    obj[2]=err.token==null ?"Espacio en blanco" : err.token.isEmpty() ?"Espacio en blanco ": err.token;
                     obj[3]=err.dato;
                     obj[4]="Sintactico";
                     x.addRow(obj);
@@ -60,7 +60,7 @@ public class TablaErrores extends javax.swing.JFrame {
                     Object obj[]=new Object[5];
                     obj[0]=err.fila;
                     obj[1]=err.columna;
-                    obj[2]=err.token;
+                    obj[2]=err.token==null ?"Espacio en blanco" : err.token.isEmpty() ?"Espacio en blanco ": err.token;
                     obj[3]=err.dato;
                     obj[4]="Semantico";
                     x.addRow(obj);

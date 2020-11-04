@@ -1032,17 +1032,17 @@ public class vblex implements java_cup.runtime.Scanner {
             // fall through
           case 96: break;
           case 29:
-            { string.append('\n'); yybegin(CHAR);
+            { string.append("\\n"); yybegin(CHAR);
             }
             // fall through
           case 97: break;
           case 30:
-            { string.append('\r'); yybegin(CHAR);
+            { string.append("\\r"); yybegin(CHAR);
             }
             // fall through
           case 98: break;
           case 31:
-            { string.append('\t'); yybegin(CHAR);
+            { string.append("\\t"); yybegin(CHAR);
             }
             // fall through
           case 99: break;
@@ -1052,17 +1052,17 @@ public class vblex implements java_cup.runtime.Scanner {
             // fall through
           case 100: break;
           case 33:
-            { string.append('\n'); yybegin(STRING);
+            { string.append("\\n"); yybegin(STRING);
             }
             // fall through
           case 101: break;
           case 34:
-            { string.append('\r'); yybegin(STRING);
+            { string.append("\\r"); yybegin(STRING);
             }
             // fall through
           case 102: break;
           case 35:
-            { string.append('\t'); yybegin(STRING);
+            { string.append("\\t"); yybegin(STRING);
             }
             // fall through
           case 103: break;

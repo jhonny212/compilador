@@ -5,6 +5,8 @@
  */
 package Instrucciones;
 
+import Lenguajes.MetodosVisual;
+
 /**
  *
  * @author jhonny
@@ -17,12 +19,16 @@ public class instr_getch extends Instruccion{
         this.COLUMNA=c;
         this.FILA=f;
         this.string=id;
+
     }
     
 
     @Override
     public void validate(boolean valid) {
-        
+        if(string==null){
+            string="";
+        }
+        MetodosVisual.add("getch","","",this.string,21);
     }
     
 }

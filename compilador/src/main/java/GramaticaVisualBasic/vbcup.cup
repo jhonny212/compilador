@@ -52,7 +52,8 @@ non-terminal modulo;
 //--------------------------Asignacion
 non-terminal Instruccion  declaracion_var;
 non-terminal Instruccion  asignacion_var;
-
+non-terminal ArrayList<argumento_dato > argumentos_function;
+non-terminal Instruccion call_fun;
 //--------------------------------INSTRUCCIONES
 non-terminal ArrayList<metodos> metodos;
 non-terminal metodos metodo;
@@ -105,18 +106,19 @@ inicio::= VB SALTO_LINEA JAVA
 | VB SALTO_LINEA metodos:mts SALTO_LINEA JAVA
 {:
 Controlador_.verifyMetodos(mts,this.parser.errores);
-if(mts!=null){
+
+              if(this.parser.errores.haveErrors()){
+                visual=new Lenguajes.MetodosVisual(mts);
+              }
+              MetodosVisual.metodosVB=mts;
+
+        if(mts!=null){
           if(!mts.isEmpty()){
             mts.stream()
-                    .forEach(x->{
-                      x.validate();
-                    });
+                    .forEach(metodos::validate);
           }
         }
- if(this.parser.errores.haveErrors()){
-  visual=new Lenguajes.MetodosVisual(mts);
- }
- this.parser.listado=mts;
+
 :};
 
 
@@ -264,7 +266,8 @@ instrucciones::= declaracion_var:val {:RESULT=val;:}
 |select_var:val {:RESULT=val;:}
 |for_var:val {:RESULT=val;:}
 |input_var:val {:RESULT=val;:}
-|print_var:val {:RESULT=val;:};
+|print_var:val {:RESULT=val;:}
+|call_fun:val {:RESULT=val;:};
 
 
 declaracion_var::= DIM variables:list AS tipos:t1
@@ -345,7 +348,10 @@ f::= RES ENTERO:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
 f::= RES REAL:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
-
+f::= call_fun:fun
+{:
+RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
+:};
 
 
 e_::= e_:val1 SUM t_:val2
@@ -530,7 +536,10 @@ ff1::= RES ENTERO:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,1,"e"));:};
 ff1::= RES REAL:val
 {:RESULT=new NodoAritmetica(new VariableVAL(val*-1,0,"r"));:};
-
+ff1::= call_fun:fun
+{:
+RESULT=new NodoAritmetica(new VariableMETODO((call_c) fun));
+:};
 
 
 else_var::= else_var:instr_ifs ELSE_IF boolean:bool THEN
@@ -700,6 +709,29 @@ print_var::= CONSL AP   CP
 RESULT=new instr_print(false);
 :};
 
+call_fun::=ID:id AP  CP
+{:
+call_c call=new call_c(0,id,idleft,idright);
+RESULT=call;
+call.tipoMetodo=0;
+:};
+
+call_fun::=ID:id AP argumentos_function:list CP
+{:
+call_c call=new call_c(0,id,idleft,idright,list);
+RESULT=call;
+call.tipoMetodo=0;
+:};
+argumentos_function::= argumentos_function:list COMA e:nodo
+{:
+list.add(new argumento_dato(nodo));
+RESULT=list;
+:}
+|e:nodo
+{:
+RESULT=new ArrayList();
+RESULT.add(new argumento_dato(nodo));
+:};
 
 
 datos::= datos:d Y CADENA:cd

@@ -4,6 +4,7 @@ import Arbol.AritAST.ArbolAritmetica;
 import Arbol.AritAST.NodoAritmetica;
 import Arbol.Nodo;
 import Lenguajes.MetodosVisual;
+import TablaSimbolos.SymTable;
 import Variable.*;
 
 import java.util.ArrayList;
@@ -50,7 +51,12 @@ public class instr_for extends Instruccion{
             {
             this.variables=new ArrayList<>();
             }
+            var_.pass=true;
             this.variables.add(var_);
+            var_.isNull=false;
+            var_.string=this.tipo==0?"r":this.tipo==1?"e":"c";
+            SymTable.ADD(var_.getTipe_var(),false,1,this.numeroAmbito,this.ambitoDad,var_.ID);
+
             if(var!=null){
                 if(this.tipo==1 && var.TIPO==0){
                     this.errores.AddError(2,FILA,COLUMNA-1,ID,"" +

@@ -1012,17 +1012,17 @@ public class javalex implements java_cup.runtime.Scanner {
             // fall through
           case 90: break;
           case 34:
-            { string.append('\n'); yybegin(CHAR);
+            { string.append("\\n"); yybegin(CHAR);
             }
             // fall through
           case 91: break;
           case 35:
-            { string.append('\r'); yybegin(CHAR);
+            { string.append("\\r"); yybegin(CHAR);
             }
             // fall through
           case 92: break;
           case 36:
-            { string.append('\t'); yybegin(CHAR);
+            { string.append("\\t"); yybegin(CHAR);
             }
             // fall through
           case 93: break;
