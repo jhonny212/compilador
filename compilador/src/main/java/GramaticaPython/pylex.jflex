@@ -44,6 +44,7 @@ Identifier = [:jletter:] [:jletterdigit:]*
     "for"                 {if(add){return symbol(sym.FOR,new String(yytext()));}}
     "return"                 {if(add){return symbol(sym.RETURN,new String(yytext()));}}
     "elif"                 {if(add){return symbol(sym.ELSEIF,new String(yytext()));}}
+    "PY"                 {if(add){return symbol(sym.PY,new String(yytext()));}}
 
     "if"                 {if(add){return symbol(sym.IF,new String(yytext()));}}
     ":"                 {if(add){return symbol(sym.TWOPOINT,new String(yytext()));}}

@@ -91,7 +91,7 @@ public class VariableVECTOR extends Variable{
                                 this.lasValtmp1=aritmetica.lastVal;
                             }else{
                                 MetodosVisual.add("*",lasValtmp1,this.ID+"_tam"+(cnt-1),"t_1",0);
-                                MetodosVisual.add("+","t_1",aritmetica.lastVal,"t_1",0);
+                                MetodosVisual.add("+","t_1"+this.TIPO,aritmetica.lastVal,"t_1",0);
                                 lasValtmp1="t_1";
                             }
                             if(x.variable!=null){
@@ -104,8 +104,22 @@ public class VariableVECTOR extends Variable{
                         });
             }
         }
-        MetodosVisual.add("Asig",this.ID,this.lasValtmp1,"t_1",7);
-        this.lasValtmp1="t_1";
+
+        MetodosVisual.add("Asig",this.ID,this.lasValtmp1,"t_1"+tipo(),7);
+
+        this.lasValtmp1="t_1"+tipo();
     }
     int cnt=0;
+
+    public String tipo(){
+        switch (this.string){
+            case "e":
+                return "_int";
+            case "r":
+                return "_float";
+            case "c":
+                return "_char";
+        }
+        return "_float";
+    }
 }

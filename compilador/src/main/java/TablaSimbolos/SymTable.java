@@ -160,10 +160,8 @@ public class SymTable {
         int tmp[]= obtenerID(id,inicio,tipo);
         if(tmp!=null){
             strings.forEach((string)->{
-                int x= (int) string[1];
-                if(x==tmp[1]){
                     append(String.valueOf(string[0]));
-                }
+
             });
         }
 
@@ -221,46 +219,34 @@ public class SymTable {
                         if(!celda.IS_ARRAY){
                             posDoub_++;
                         }else{
-                            if(DOUBLE.isEmpty()){
-                                String tmp=add(celda.sizePOS,inicio,0,strings,0);
-                                DOUBLE="posDouble="+posDoub_+"+"+tmp;
-                            }else{
-                                DOUBLE="posDouble=posDouble+"+posDoub_;
-                                Object ob[]=new Object[2];
-                                ob[0]=DOUBLE;
-                                ob[1]=0;
-                                strings.add(ob);
-                                String tmp=add(celda.sizePOS,inicio,0,strings,0);
-                                DOUBLE="posDouble=posDouble+"+tmp;
-                            }
+                                {
+                                    DOUBLE="posDouble="+(posDoub_+1);
+                                    Object ob[]=new Object[2];
+                                    ob[0]=DOUBLE;
+                                    strings.add(ob);
+                                }
+                                DOUBLE="posDouble=posDouble+"+add(celda.sizePOS,inicio);
+
                             obj[0]=DOUBLE;
-                            obj[1]=0;
                             strings.add(obj);
                             posDoub_=0;
                         }
+
+
                         break;
                     case 1:
                         if(!celda.IS_ARRAY){
                             posInt_++;
-
                         }else{
-                            posInt_++;
-                            if(INT.isEmpty()){
-                                String tmp=add(celda.sizePOS,inicio,1,strings,1);
-                                INT="posInt="+posInt_+" + "+tmp;
-                            }else{
-                                INT="posInt=posInt+"+posInt_;
-
+                            {
+                                INT="posInt="+(posInt_+1);
                                 Object ob[]=new Object[2];
                                 ob[0]=INT;
-                                ob[1]=1;
                                 strings.add(ob);
-                                String tmp=add(celda.sizePOS,inicio,1,strings,1);
-                                INT="posInt=posInt+"+tmp;
                             }
-                            //append(INT);
+                            INT="posInt=posInt+"+add(celda.sizePOS,inicio);
+
                             obj[0]=INT;
-                            obj[1]=1;
                             strings.add(obj);
                             posInt_=0;
                         }
@@ -270,27 +256,19 @@ public class SymTable {
                     case 2:
                         if(!celda.IS_ARRAY){
                             posChar_++;
-
                         }else{
-                            if(CHAR.isEmpty()){
-                                String tmp=add(celda.sizePOS,inicio,2,strings,2);
-                                CHAR="posChar="+posChar_+"+"+tmp;
-                            }else{
-                                CHAR="posChar=posChar+"+posChar_;
+                            {
+                                CHAR="posChar="+(posChar_+1);
                                 Object ob[]=new Object[2];
                                 ob[0]=CHAR;
-                                ob[1]=2;
                                 strings.add(ob);
-                                String tmp=add(celda.sizePOS,inicio,2,strings,2);
-
-                                CHAR="posChar=posChar+"+tmp;
                             }
-                            //append(CHAR);
+                            CHAR="posChar=posChar+"+add(celda.sizePOS,inicio);
                             obj[0]=CHAR;
-                            obj[1]=2;
                             strings.add(obj);
                             posChar_=0;
                         }
+
                         break;
                 }
             }
@@ -304,35 +282,9 @@ public class SymTable {
         String INT,DOUBLE,CHAR;
         INT="";DOUBLE="";CHAR="";
         boolean canADD=true;
-        for (int i = 0; i <celdas.size() ; i++) {
-            celda celda=celdas.get(i);
-            if(celda.ID.equals(id)){
-                if(posInt_!=0 && !INT.isEmpty()){
-                    Object ob[]={"posInt=posInt+"+posInt_,1};
-                    strings.add(ob);
-                }
-                if(posDoub_!=0 && !DOUBLE.isEmpty()){
-                    Object ob[]={"posDouble=posDouble+"+posDoub_,0};
-                    strings.add(ob);
-                }
-                if(posChar_!=0 && !CHAR.isEmpty()){
-                    Object ob[]={"posChar=posChar+"+posChar_,2};
-                    strings.add(ob);
-                }
 
-                //INT=INT.isEmpty()?String.valueOf(posInt_):"posInt";
-                //CHAR=CHAR.isEmpty()?String.valueOf(posChar_):"posChar";
-                //DOUBLE=DOUBLE.isEmpty()?String.valueOf(posDoub_):"posDouble";
-                INT=INT.isEmpty()?String.valueOf(posInt_):"posInt";
-                CHAR=CHAR.isEmpty()?String.valueOf(posChar_):"posChar";
-                DOUBLE=DOUBLE.isEmpty()?String.valueOf(posDoub_):"posDouble";
-                SIZE_POS=celda.TIPO_VAR==0?DOUBLE:celda.TIPO_VAR==1?INT:CHAR;
-                posINT=INT;
-                posCHAR=CHAR;
-                posDOUBLE=DOUBLE;
-                int tmp[]={celda.TIPO_VAR==0?posDoub_:celda.TIPO_VAR==1?posInt_:posChar_,celda.TIPO_VAR,posChar_,posInt_,posDoub_,i};
-                return tmp;
-            }
+        for (int i = inicio+1; i <celdas.size() ; i++) {
+            celda celda=celdas.get(i);
             if(canADD){
                 Object obj[]=new Object[2];
                 switch (celda.TIPO_VAR){
@@ -340,46 +292,34 @@ public class SymTable {
                         if(!celda.IS_ARRAY){
                             posDoub_++;
                         }else{
-                            if(DOUBLE.isEmpty()){
-                                String tmp=add(celda.sizePOS,inicio,0,strings,0);
-                                DOUBLE="posDouble="+posDoub_+"+"+tmp;
-                            }else{
-                                DOUBLE="posDouble=posDouble+"+posDoub_;
+                            {
+                                DOUBLE="posDouble="+(posDoub_+1);
                                 Object ob[]=new Object[2];
                                 ob[0]=DOUBLE;
-                                ob[1]=0;
                                 strings.add(ob);
-                                String tmp=add(celda.sizePOS,inicio,0,strings,0);
-                                DOUBLE="posDouble=posDouble+"+tmp;
                             }
+                            DOUBLE="posDouble=posDouble+"+add(celda.sizePOS,inicio);
+
                             obj[0]=DOUBLE;
-                            obj[1]=0;
                             strings.add(obj);
                             posDoub_=0;
                         }
+
+
                         break;
                     case 1:
                         if(!celda.IS_ARRAY){
                             posInt_++;
-
                         }else{
-                            posInt_++;
-                            if(INT.isEmpty()){
-                                String tmp=add(celda.sizePOS,inicio,1,strings,1);
-                                INT="posInt="+posInt_+" + "+tmp;
-                            }else{
-                                INT="posInt=posInt+"+posInt_;
-
+                            {
+                                INT="posInt="+(posInt_+1);
                                 Object ob[]=new Object[2];
                                 ob[0]=INT;
-                                ob[1]=1;
                                 strings.add(ob);
-                                String tmp=add(celda.sizePOS,inicio,1,strings,1);
-                                INT="posInt=posInt+"+tmp;
                             }
-                            //append(INT);
+                            INT="posInt=posInt+"+add(celda.sizePOS,inicio);
+
                             obj[0]=INT;
-                            obj[1]=1;
                             strings.add(obj);
                             posInt_=0;
                         }
@@ -389,34 +329,58 @@ public class SymTable {
                     case 2:
                         if(!celda.IS_ARRAY){
                             posChar_++;
-
                         }else{
-                            if(CHAR.isEmpty()){
-                                String tmp=add(celda.sizePOS,inicio,2,strings,2);
-                                CHAR="posChar="+posChar_+"+"+tmp;
-                            }else{
-                                CHAR="posChar=posChar+"+posChar_;
+                            {
+                                CHAR="posChar="+(posChar_+1);
                                 Object ob[]=new Object[2];
                                 ob[0]=CHAR;
-                                ob[1]=2;
                                 strings.add(ob);
-                                String tmp=add(celda.sizePOS,inicio,2,strings,2);
-                                CHAR="posChar=posChar+"+tmp;
                             }
-                            //append(CHAR);
+                            INT="posChar=posChar+"+add(celda.sizePOS,inicio);
                             obj[0]=CHAR;
-                            obj[1]=2;
                             strings.add(obj);
                             posChar_=0;
                         }
+
                         break;
+
                     case 10:
+
                     case 20:
                         canADD=false;
                         break;
                 }
             }
         }
+        SymTable.celda celda=null;
+         for (int i = 0; i < celdas.size(); i++) {
+             celda=celdas.get(i);
+             if(celda.ID.equals(id) ){
+                 if(posInt_!=0 && !INT.isEmpty()){
+                     Object ob[]={"posInt=posInt+"+posInt_,1};
+                     strings.add(ob);
+                 }
+                 if(posDoub_!=0 && !DOUBLE.isEmpty()){
+                     Object ob[]={"posDouble=posDouble+"+posDoub_,0};
+                     strings.add(ob);
+                 }
+                 if(posChar_!=0 && !CHAR.isEmpty()){
+                     Object ob[]={"posChar=posChar+"+posChar_,2};
+                     strings.add(ob);
+                 }
+                 INT=INT.isEmpty()?String.valueOf(posInt_):"posInt";
+                 CHAR=CHAR.isEmpty()?String.valueOf(posChar_):"posChar";
+                 DOUBLE=DOUBLE.isEmpty()?String.valueOf(posDoub_):"posDouble";
+                 SIZE_POS=celda.TIPO_VAR==0?DOUBLE:celda.TIPO_VAR==1?INT:CHAR;
+                 posINT=INT;
+                 posCHAR=CHAR;
+                 posDOUBLE=DOUBLE;
+                 int tmp[]={celda.TIPO_VAR==0?posDoub_:celda.TIPO_VAR==1?posInt_:posChar_,celda.TIPO_VAR,posChar_,posInt_,posDoub_,i};
+                 return tmp;
+             }
+         }
+
+
         return null;
     }
 
@@ -500,22 +464,22 @@ public class SymTable {
 
         return var;
     }
-    public static String add(String sizePos, int i,int tipo,ArrayList<Object[]>strings,int typo){
-        int values[]=obtenerID(sizePos,i,typo);
+    public static String add(String sizePos, int i){
+        int values[]=obtenerID(sizePos,i,1);
         if(values!=null){
-            String tmp="op_4="+getType(values[1],"puntero",sizePos)+"+"+SymTable.SIZE_POS;
+            String tmp="op_4="+getType(1,"puntero",sizePos)+"+"+SymTable.SIZE_POS;
             Object[] ob =new Object[2];
             ob[0]=tmp;
-            ob[1]=tipo;
+
             strings.add(ob);
-            tmp=getType(values[1],"valTmp4_","");
+            tmp=getType(1,"valTmp4_","");
             Object [] obj3=new Object[2];
-            obj3[0]=tmp+"="+getStack(values[1],sizePos)+"[op_4]";
-            obj3[1]=tipo;
+            obj3[0]=tmp+"="+getStack(1,sizePos)+"[op_4]";
             strings.add(obj3);
-            return tmp;
+
+            return "("+tmp+")";
         }
-        return sizePos;
+        return "("+sizePos+")";
     }
 
     public static int[] getParams(String string,int params){

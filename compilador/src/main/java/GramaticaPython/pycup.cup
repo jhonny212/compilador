@@ -6,6 +6,7 @@ import java_cup.runtime.Symbol;
 import Variable.*;
 import Instrucciones.*;
 
+import GramaticaC.call_c;
 import Arbol.*;
 import Arbol.AritAST.*;
 import Arbol.BoolAST.*;
@@ -31,7 +32,7 @@ non-terminal inicio;
 non-terminal ArrayList<argumento_dato > argumentos_function;
 non-terminal Instruccion call_fun;
 
-terminal String WHILE,ELSE,IF,FOR,RETURN,CODC;
+terminal String WHILE,ELSE,IF,FOR,RETURN,CODC,PY;
 terminal String TWOPOINT,COMA,IN;
 terminal String AP,CP,RANGE,OP,SUM,RES,MUL,DIV,MODUL,ELSEIF;
 terminal String EQUALS,DEF,AND,OR,NOT,CADENA;
@@ -70,7 +71,14 @@ start with inicio;
 
 inicio::= SALTO_LINEA metodos CODC
 {:
-
+ Object RESULT =null;
+		      this.parser.metodos
+                      .forEach(metodo_py::getCodigo);
+              MetodosVisual.metodosPY=this.parser.metodos;
+              this.parser.metodos
+                      .forEach((x)->{
+                        x.validate();
+                      });
 :};
 inicio::= SALTO_LINEA CODC;
 
@@ -156,6 +164,10 @@ instruccion::= asignacion_var:x {:RESULT=x;:}
 |print_var:x {:RESULT=x;:}
 |input_var:x {:RESULT=x;:}
 |else_var:x {:RESULT=x;:}
+|PY:p call_fun:x
+{:
+RESULT=new call_fun_py(x,pleft,pright);
+:}
 |RETURN:x1 e:nodo {:RESULT=new return_py(x1left,x1right,nodo);:};
 
 asignacion_var::= ID:id EQUALS e:nodo

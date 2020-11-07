@@ -14,9 +14,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class MetodosVisual {
     public static int CONTADOR=0,CONTADOR_ETIQ=0,CONTADOR_AMBITO=1;
-    public static ArrayList<Cuadruplas> instrucciones=new ArrayList<>(),instrOptim=new ArrayList<>();
+    public static ArrayList<Cuadruplas> instrucciones=new ArrayList<>();
+    public static ArrayList<Cuadruplas> instrOptim=new ArrayList<>();
     public MetodosVisual(ArrayList<metodos> metodos){
-
+                        MetodosVisual.metodosVB=metodos;
     }
 
     public static int getAndCNT(){
@@ -26,18 +27,18 @@ public class MetodosVisual {
     public static void add(String OP,String ARG1,String ARG2,
                            String RESULT,int TIPO){
         instrucciones.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO));
-        instrOptim.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO));
+        //instrOptim.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO));
 
     }
     public static void add(String OP,String ARG1,String ARG2,
                            String RESULT,int TIPO,String KIND){
         instrucciones.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO,KIND));
-        instrOptim.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO,KIND));
+        //instrOptim.add(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO,KIND));
     }
     public static void addBefore(String OP,String ARG1,String ARG2,
                            String RESULT,int TIPO){
         instrucciones.add((instrucciones.size()-1),(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO)));
-        instrOptim.add((instrOptim.size()-1),(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO)));
+        //instrOptim.add((instrOptim.size()-1),(new Cuadruplas(OP, ARG1, ARG2, RESULT, TIPO)));
     }
 
     static  int cnt=0;
@@ -52,6 +53,20 @@ public class MetodosVisual {
                 });
         return cod;
     }
+    public static String print2(){
+        cnt=0;
+        cod="";
+        instrOptim.stream()
+                .forEach((x)->{
+                    if(x.canAdd){
+                        cod+=x.getTabs()+x.PRINT()+" "+x.TIPO+"\n";
+                        cnt++;
+                    }
+
+                });
+        return cod;
+    }
+
     
     
     

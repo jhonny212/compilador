@@ -52,7 +52,6 @@ public class MainInterfaz extends javax.swing.JFrame {
         ExitProgram = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         generarCodigoIntermedio = new javax.swing.JMenuItem();
-        Compilar = new javax.swing.JMenuItem();
         generarOptimizado = new javax.swing.JMenuItem();
         generarAsembler = new javax.swing.JMenuItem();
         ejecutar3dir = new javax.swing.JMenu();
@@ -133,14 +132,6 @@ public class MainInterfaz extends javax.swing.JFrame {
             }
         });
         jMenu2.add(generarCodigoIntermedio);
-
-        Compilar.setText("Compilar");
-        Compilar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CompilarActionPerformed(evt);
-            }
-        });
-        jMenu2.add(Compilar);
 
         generarOptimizado.setText("Codigo Optimizado");
         generarOptimizado.addActionListener(new java.awt.event.ActionListener() {
@@ -266,11 +257,6 @@ public class MainInterfaz extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitProgramActionPerformed
 Compilador compilador=null;
-    private void CompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompilarActionPerformed
-        compilar();
-
-    }//GEN-LAST:event_CompilarActionPerformed
-
     void compilar(){
         if(Editor.program_==null){
             Editor.program_ = new ContentTab();
@@ -309,35 +295,70 @@ Compilador compilador=null;
             MetodosVisual.clear();
         }
     }
+  
     private void generarCodigoIntermedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarCodigoIntermedioActionPerformed
-        if(compilador==null){
-        return;
-        }
-
+        compilador=null;
+        compilar();
+        
+        if(compilador!=null){
         CodigoEjecutable.generarCodigoIntermedio codigoIntermedio = new CodigoEjecutable.generarCodigoIntermedio();
         codigoIntermedio.generar(MetodosVisual.instrucciones);
         Editor.addCodInter(jTabbedPane1);
+        }
+        
+        
+        /*if(compilador!=null){
+        CodigoEjecutable.generarCodigoIntermedio codigoIntermedio = new CodigoEjecutable.generarCodigoIntermedio();
+        codigoIntermedio.generar(MetodosVisual.instrucciones);
+        Editor.addCodInter(jTabbedPane1);
+        }else{
+            compilar();
+            if(compilador!=null){
+                CodigoEjecutable.generarCodigoIntermedio cod=new CodigoEjecutable.generarCodigoIntermedio();
+                cod.generar(MetodosVisual.instrucciones);
+                Editor.addCodInter(jTabbedPane1);
+            }
+          }
+       
+        compilador=null;*/
     }//GEN-LAST:event_generarCodigoIntermedioActionPerformed
 
 
 
     private void generarOptimizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarOptimizadoActionPerformed
         if(compilador==null){
-            return;
+        compilar();
         }
+        
+        if(compilador!=null){
         OptimizarCodigo op=new OptimizarCodigo();
         op.optimiar();
         op.print();
+        
+        //CodigoEjecutable.generarCodigoIntermedio codigoIntermedio = new CodigoEjecutable.generarCodigoIntermedio();
+        //codigoIntermedio.generar(MetodosVisual.instrOptim);
+        //Editor.addCodInter(jTabbedPane1);
+  
         try{
             Desktop.getDesktop().open(new File("reporte.html"));
         }catch (Exception ex){}
+        compilador=null;
+        }
 
     }//GEN-LAST:event_generarOptimizadoActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        if(compilador==null){
+            compilar();
+        }
         if(compilador!=null){
-            //CodigoEjecutable.generarCodigoIntermedio cod=new CodigoEjecutable.generarCodigoIntermedio();
-            //cod.generar(MetodosVisual.instrucciones);
+        CodigoEjecutable.generarCodigoIntermedio cod=new CodigoEjecutable.generarCodigoIntermedio();
+        cod.generar(MetodosVisual.instrucciones);
+        Editor.compilarCodigoC(CodigoEjecutable.generarCodigoIntermedio.codigoFinal);
+        
+        }
+        
+        /*if(compilador!=null){
             Editor.compilarCodigoC(CodigoEjecutable.generarCodigoIntermedio.codigoFinal);
         }else{
             compilar();
@@ -347,12 +368,38 @@ Compilador compilador=null;
                 Editor.compilarCodigoC(CodigoEjecutable.generarCodigoIntermedio.codigoFinal);
             }
 
-        }
+        }*/
 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void ejecutarOptiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarOptiActionPerformed
-        // TODO add your handling code here:
+        if(compilador==null){
+            compilar();
+            
+            /*if(compilador!=null){
+            OptimizarCodigo op=new OptimizarCodigo();
+            op.optimiar();
+            op.print();
+            
+            CodigoEjecutable.generarCodigoIntermedio cod=new CodigoEjecutable.generarCodigoIntermedio();
+            cod.generar(MetodosVisual.instrOptim);
+            
+            Editor.compilarCodigoC(CodigoEjecutable.generarCodigoIntermedio.codigoFinal);
+            }*/
+            
+        }//else{
+            
+            if(compilador!=null){
+            OptimizarCodigo op=new OptimizarCodigo();
+            op.optimiar();
+            op.print();
+            
+            CodigoEjecutable.generarCodigoIntermedio cod=new CodigoEjecutable.generarCodigoIntermedio();
+            cod.generar(MetodosVisual.instrOptim);
+            Editor.compilarCodigoC(CodigoEjecutable.generarCodigoIntermedio.codigoFinal);
+        
+            }
+        //}
     }//GEN-LAST:event_ejecutarOptiActionPerformed
 
     private void ejecutarAsmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarAsmActionPerformed
@@ -396,7 +443,6 @@ Compilador compilador=null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ClosePestaña;
-    private javax.swing.JMenuItem Compilar;
     private javax.swing.JMenuItem ExitProgram;
     private javax.swing.JMenuItem NuevoFIle;
     private javax.swing.JMenuItem OpenFile;

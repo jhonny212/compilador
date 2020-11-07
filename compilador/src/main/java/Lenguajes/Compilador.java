@@ -116,6 +116,10 @@ public class Compilador {
        String x= MetodosVisual.print();
        System.err.println(x);
     }
+    public void printCodOP(){
+        String x= MetodosVisual.print2();
+        System.err.println(x);
+    }
 
     void validatePy(){
         if(MetodosVisual.metodosPY.isEmpty()){

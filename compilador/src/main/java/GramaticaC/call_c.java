@@ -77,21 +77,21 @@ public class call_c extends Instruccion {
               }
 
               if(argumentos==null){
-                  MetodosVisual.add("call",name,"",this.lasValtmp1.equals("%")?"call_fun":"",12);
+                  MetodosVisual.add("call",name,"",this.lasValtmp1.equals("%")?"call_fun"+tipo():"",12);
                   MetodosVisual.instrucciones.get(MetodosVisual.instrucciones.size()-1).EXTRA=extra;
-                  MetodosVisual.instrOptim.get(MetodosVisual.instrOptim.size()-1).EXTRA=extra;
+                  //MetodosVisual.instrOptim.get(MetodosVisual.instrOptim.size()-1).EXTRA=extra;
 
               }else{
-                  MetodosVisual.add("call",name,String.valueOf(argumentos.size()),this.lasValtmp1.equals("%")?"call_fun":"",12);
+                  MetodosVisual.add("call",name,String.valueOf(argumentos.size()),this.lasValtmp1.equals("%")?"call_fun"+tipo():"",12);
                   MetodosVisual.instrucciones.get(MetodosVisual.instrucciones.size()-1).EXTRA=extra;
-                  MetodosVisual.instrOptim.get(MetodosVisual.instrOptim.size()-1).EXTRA=extra;
+                  //MetodosVisual.instrOptim.get(MetodosVisual.instrOptim.size()-1).EXTRA=extra;
               }
           }
           else if(vector.length==3){
               name=MetodosVisual.buscar_java(this,vector[1],vector[2],errores);
               this.tipo=MetodosVisual.tipo;
               this.string=MetodosVisual.string;
-              MetodosVisual.add("call",name,"",this.lasValtmp1.equals("%")?"call_fun":"",12);
+              MetodosVisual.add("call",name,"",this.lasValtmp1.equals("%")?"call_fun"+tipo():"",12);
 
           }
       }else{
@@ -138,12 +138,23 @@ public class call_c extends Instruccion {
                   break;
           }
           if(argumentos==null){
-              MetodosVisual.add("call",name,"",this.lasValtmp1.equals("%")?"call_fun":"",12);
+              MetodosVisual.add("call",name,"",this.lasValtmp1.equals("%")?"call_fun"+tipo():"",12);
           }else{
-              MetodosVisual.add("call",name,String.valueOf(argumentos.size()),this.lasValtmp1.equals("%")?"call_fun":"",12);
+              MetodosVisual.add("call",name,String.valueOf(argumentos.size()),this.lasValtmp1.equals("%")?"call_fun"+tipo():"",12);
           }
       }
-        this.lasValtmp1=this.lasValtmp1.equals("%")?"call_fun":"";
+        this.lasValtmp1=this.lasValtmp1.equals("%")?"call_fun"+tipo():"";
     }
 
+    public String tipo(){
+        switch (this.string){
+            case "e":
+                return "_int";
+            case "r":
+                return "_float";
+            case "c":
+                return "_char";
+        }
+        return "_float";
+    }
 }

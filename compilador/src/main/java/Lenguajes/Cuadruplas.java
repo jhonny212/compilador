@@ -1,10 +1,19 @@
 package Lenguajes;
 
-public class Cuadruplas {
+public class Cuadruplas implements Cloneable{
     public String OP,ARG1,ARG2,RESULT;
     public  int TIPO;
     public String KIND;
     public String EXTRA;
+    public Object clone(){
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(CloneNotSupportedException ex){
+            System.out.println(" no se puede duplicar");
+        }
+        return obj;
+    }
     public Cuadruplas(String OP, String ARG1, String ARG2,
                       String RESULT, int TIPO) {
         this.OP = OP;

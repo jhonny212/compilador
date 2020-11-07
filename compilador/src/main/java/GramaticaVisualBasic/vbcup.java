@@ -622,7 +622,7 @@ public class vbcup extends java_cup.runtime.lr_parser {
     Controlador_ controlador=new Controlador_();
     public ArrayList<metodos> listado;
     public ErrorClass errores=null;
-    public Lenguajes.MetodosVisual visual=null;
+    //public Lenguajes.MetodosVisual visual=null;
     public void addError(int fila,int columna,String tk,String extra){
 
     }
@@ -695,9 +695,7 @@ class CUP$vbcup$actions {
 		ArrayList<metodos> mts = (ArrayList<metodos>)((java_cup.runtime.Symbol) CUP$vbcup$stack.elementAt(CUP$vbcup$top-2)).value;
 
               Controlador_.verifyMetodos(mts,this.parser.errores);
-              if(this.parser.errores.haveErrors()){
-                visual=new Lenguajes.MetodosVisual(mts);
-              }
+              //this.parser.visual=null;
               MetodosVisual.metodosVB=mts;
 if(mts!=null){
           if(!mts.isEmpty()){

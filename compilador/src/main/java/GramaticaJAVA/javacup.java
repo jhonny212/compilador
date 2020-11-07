@@ -915,6 +915,7 @@ class CUP$javacup$actions {
   int tamaño=this.parser.variablesDeclar.size();
   int prev= SymTable.celdas.size()-tamaño;
   SymTable.celda celda=new SymTable.celda(20,false,0,-1,-1,id,-1);
+
   SymTable.celdas.add((prev),celda);
   int tamañoPrevio=SymTable.celdas.size();
   //celda.POS_MEMORIA=this.parser.constructores.size()+datos.size()+this.parser.variablesDeclar.size();
@@ -964,7 +965,7 @@ class CUP$javacup$actions {
               MetodosVisual.search(id);
               //MetodosVisual.add("class ",id,"","",9);
 
-   celda.POS_MEMORIA=this.parser.variablesDeclar.size();
+   celda.POS_MEMORIA=variablesDeclar.size();
 this.parser.variablesDeclar=new ArrayList();
 this.parser.constructores=new ArrayList<>();
 

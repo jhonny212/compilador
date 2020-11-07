@@ -8,9 +8,18 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class OptimizarCodigo {
-    ArrayList<Cuadruplas> codigoOptimizado=new ArrayList<>();
+
+    void clonar(){
+        MetodosVisual.instrOptim=new ArrayList();
+        MetodosVisual.instrucciones.forEach((x)->{
+            MetodosVisual.instrOptim.add((Cuadruplas) x.clone());
+        });
+    }
+
     public void optimiar(){
+        clonar();
         if(validar()){
+            vectorDatosExtra=new String[10];
             vectorDatosExtra=new String[MetodosVisual.instrOptim.size()];
             optimizar2(MetodosVisual.instrOptim,false);
         }
@@ -207,9 +216,10 @@ public class OptimizarCodigo {
     }
 
     boolean validar(){
-        if(MetodosVisual.instrOptim==null)
+       if(MetodosVisual.instrOptim==null)
             return false;
         return !MetodosVisual.instrOptim.isEmpty();
+
     }
 
     class  createHtML{

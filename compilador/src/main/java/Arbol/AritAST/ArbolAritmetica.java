@@ -30,6 +30,7 @@ public class ArbolAritmetica extends Arbol {
                     verify(variable1,t1);
                     href.variable=t1;
                 }
+                variable1.string=t1==null?"r":t1.string;
                 ((VariableVECTOR)variable1).validate2(this.tablaSimbolos,this.errorClass);
                 this.lastVal=variable1.getStr();
             }
@@ -104,6 +105,7 @@ public class ArbolAritmetica extends Arbol {
                     verify(variable1,t1);
                     variable1.string=t1.string;
                 }
+
                 ((VariableVECTOR)variable1).validate2(this.tablaSimbolos,this.errorClass);
 
                 if(t1==null){
@@ -179,8 +181,8 @@ public class ArbolAritmetica extends Arbol {
             }
             else if(variable2 instanceof VariableMETODO){
                 if(metodo==1){
-                    MetodosVisual.add("Asig",value1,"","call_fun_2",2);
-                    value1="call_fun_2";
+                    MetodosVisual.add("Asig",value1,"","call_fun_2"+(variable1.TIPO==1?"_int":"_double"),2);
+                    value1="call_fun_2"+(variable1.TIPO==1?"_int":"_double");
                 }
                 ((VariableMETODO)variable2).declaracion_c.errores=this.errorClass;
                 variable2.lasValtmp1="%";

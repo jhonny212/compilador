@@ -9,9 +9,13 @@ import java.util.ArrayList;
 public class generarCodigoIntermedio {
     public static StringBuffer codigoFinal,codigoEjecutable,codigoMostrar;
     public static ArrayList<Cuadruplas> instrucciones;
-    public static int posCLASE=0;
+    public static int posCLASE=0,posEXTRACLASE=0;
     public void generar(ArrayList<Cuadruplas> cua){
-        instrucciones=cua;
+        instrucciones=new ArrayList<>();
+        SymTable.celdas.get(2);
+        cua.forEach((x)->{
+            instrucciones.add((Cuadruplas) x.clone());
+        });
         codigoFinal=new StringBuffer();
         codigoEjecutable=new StringBuffer();
         codigoMostrar=new StringBuffer();
@@ -31,12 +35,20 @@ public class generarCodigoIntermedio {
         for (int i = 0; i < instrucciones.size(); i++)
         {
             Cuadruplas x=instrucciones.get(i);
+            if(!x.canAdd){
+                continue;
+            }
             switch (x.TIPO){
 
                 case 15:
                     values=SymTable.getID(x.ARG1,-1);
                     posCLASE=values[2];
-
+                    for (int j = 0; j < SymTable.celdas.size(); j++) {
+                        SymTable.celda cl=SymTable.celdas.get(j);
+                        if(cl.ID.contains(x.ARG1) && cl.TIPO_VAR==20){
+                            posEXTRACLASE=cl.POS_MEMORIA;
+                        }
+                    }
                     break;
                 case 18:
 
@@ -105,7 +117,37 @@ public class generarCodigoIntermedio {
                                 break;
                         }
                     }else{
-                        append("printf("+x.ARG1+")");
+                        if(x.ARG1.contains("\"")){
+                            append("printf("+x.ARG1+")");
+                        }else{
+                            if(x.ARG1.contains("char")
+                                    || x.ARG1.contains("Char")
+                                    || x.ARG1.contains("CHAR")){
+                                append("printf(\"%c\","+x.ARG1+")");
+                            }else if(
+                                    x.ARG1.contains("float")
+                                    || x.ARG1.contains("Float")
+                                    || x.ARG1.contains("FLOAT")
+                                    || x.ARG1.contains("double")
+                                    || x.ARG1.contains("Double")
+                                    || x.ARG1.contains("DOUBLE")
+
+                            ){
+                                append("printf(\"%f\","+x.ARG1+")");
+                            }else if(
+                                            x.ARG1.contains("int")
+                                            || x.ARG1.contains("Int")
+                                            || x.ARG1.contains("INT")
+
+                            ){
+                                append("printf(\"%d\","+x.ARG1+")");
+                            }else{
+                                append("gcvt("+x.ARG1+",10,string_asig);");
+                                append("printf(\"%s\",string_asig)");
+                            }
+
+                        }
+
                     }
                     break;
 
@@ -120,6 +162,9 @@ public class generarCodigoIntermedio {
                 case 1:
 
                 case 2:
+                    if(x.RESULT.equals(x.ARG1)){
+                        continue;
+                    }
                     values=SymTable.getID(x.RESULT,inicio_metodo);
                         if(values!=null){
                             append("p1="+getType(values[1],"puntero",x.RESULT)+" + "+SymTable.SIZE_POS);
@@ -286,12 +331,7 @@ public class generarCodigoIntermedio {
                         append("punteroTMPChar="+SymTable.posCHAR);
                     }
                     //if(datos_extra!=null){
-                        append("punteroInt=punteroTMPInt+punteroInt");
-                        append("punteroDouble=punteroTMPDouble+punteroDouble");
-                        append("punteroChar=punteroTMPChar+punteroChar");
-                        append("punteroInt=1+punteroInt");
-                        append("punteroDouble=1+punteroDouble");
-                        append("punteroChar=1+punteroChar");
+
                     //}
 
                     if(x.ARG1.startsWith("JAVA_") && !x.ARG1.contains("constru") && inicio_metodo==-1 ){
@@ -313,6 +353,13 @@ public class generarCodigoIntermedio {
 
 
                     }
+                    append("punteroInt=punteroTMPInt+punteroInt");
+                    append("punteroDouble=punteroTMPDouble+punteroDouble");
+                    append("punteroChar=punteroTMPChar+punteroChar");
+                    append("punteroInt=1+punteroInt");
+                    append("punteroDouble=1+punteroDouble");
+                    append("punteroChar=1+punteroChar");
+
                     append(""+x.ARG1+"()");
                     //if(datos_extra!=null){
                         append("punteroInt=punteroInt-punteroTMPInt");
@@ -327,28 +374,32 @@ public class generarCodigoIntermedio {
                         String href=datos_extra[1]==0?double_:datos_extra[1]==1?integer_:char_;
                         append("op_1="+getType(datos_extra[1],"puntero",x.RESULT)+"+"+href);
                         values=SymTable.getID(x.RESULT,inicio_metodo);
-                        //append("op_1=op_1-1");
-
-                        Cuadruplas cuadrupla=instrucciones.get(i+1);
+                        if(x.ARG1.contains("JAVA_")){
+                            //append("op_1=op_1+1");
+                        }
+                        //Cuadruplas cuadrupla=instrucciones.get(i+1);
                         if(values!=null){
                             if( x.ARG1.startsWith("JAVA_constru") && inicio_metodo==-1){
-                                SymTable.celda celda=SymTable.celdas.get(posCLASE);
+                                //SymTable.celda celda=SymTable.celdas.get(posCLASE);
 
                                 SymTable.getID(x.RESULT+"_INTEGER",inicio_metodo);
                                 append(getStack(1,"")+"["+SymTable.SIZE_POS+"]"+"=sizeINTHEAP");
-                                append("sizeINTHEAP=sizeINTHEAP+"+celda.POS_MEMORIA);
+                                append("sizeINTHEAP=sizeINTHEAP+"+posEXTRACLASE);
 
                                 SymTable.getID(x.RESULT+"_CHAR",inicio_metodo);
                                 append(getStack(2,"")+"["+SymTable.SIZE_POS+"]"+"=sizeCHARHEAP");
-                                append("sizeCHARHEAP=sizeCHARHEAP+"+celda.POS_MEMORIA);
+                                append("sizeCHARHEAP=sizeCHARHEAP+"+posEXTRACLASE);
 
                                 SymTable.getID(x.RESULT+"_DOUBLE",inicio_metodo);
                                 append(getStack(0,"")+"["+SymTable.SIZE_POS+"]"+"=sizeDOUBLEHEAP");
-                                append("sizeDOUBLEHEAP=sizeDOUBLEHEAP+"+celda.POS_MEMORIA);
+                                append("sizeDOUBLEHEAP=sizeDOUBLEHEAP+"+posEXTRACLASE);
                             }else{
                                 append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
                             }
-                        }else{
+                        }else {
+                            append(x.RESULT+"="+getStack(datos_extra[1],"")+"[op_1]");
+                        }
+                        /*else{
                             if(cuadrupla.ARG1.startsWith("call_fun")){
                                 x.RESULT+=getType(datos_extra[1],"_","");
                                 cuadrupla.ARG1=x.RESULT;
@@ -359,7 +410,7 @@ public class generarCodigoIntermedio {
                                 x.RESULT=cuadrupla.ARG2;
                             }
                             append(x.RESULT+"="+getStack(datos_extra[1],"")+"[op_1]");
-                        }
+                        }*/
 
                     }
                     datos_extra=null;
@@ -443,7 +494,7 @@ public class generarCodigoIntermedio {
             }
         }
 
-        System.err.println(codigoFinal.toString());
+        //System.err.println(codigoFinal.toString());
     }
 
 
@@ -462,23 +513,30 @@ public class generarCodigoIntermedio {
             " int sizeINTHEAP=0,getch;\n" +
             " int sizeCHARHEAP=0;\n" +
             " int sizeDOUBLEHEAP=0;\n";
-    String TEMPORALES="   int call_fun_Int_2_Int, call_fun_Int,call_fun_2_Int,call_fun_Int_Int,call_fun_2_Int_2_Int;\n" +
-            "   double call_fun_Double_2_Double, call_fun_Double,call_fun_2_Double,call_fun_Double_Double,call_fun_2_Double_2_Double;\n" +
-            "\n" +
-            "   char call_fun_Char_2_Char,call_fun_Char,call_fun_2_Char,call_fun_Char_Char,call_fun_2_Char_2_Char;\n" +
+    String TEMPORALES=
+            //"   int call_fun_Int_2_Int, call_fun_Int,call_fun_2_Int,call_fun_Int_Int,call_fun_2_Int_2_Int;\n" +
+            //"   double call_fun_Double_2_Double, call_fun_Double,call_fun_2_Double,call_fun_Double_Double,call_fun_2_Double_2_Double;\n" +
+            //"   double call_fun;\n" +
+            //"   char call_fun_Char_2_Char,call_fun_Char,call_fun_2_Char,call_fun_Char_Char,call_fun_2_Char_2_Char;\n" +
+            "   char string_asig[300];" +
+            "   int call_fun_int,call_fun_2_int;"+
+            "   char call_fun_char,call_fun_2_char;"+
+            "   double call_fun_float,call_fun_2_float;"+
             "   int p1,op_1,op_2,op_3,op_4,p2;\n" +
             "   int valTmp1_Int,valTmp2_Int,valTmp4_Int;\n" +
-            "   int valTmp1_Double,valTmp2_Double,valTmp4_Double;\n" +
+            "   double valTmp1_Double,valTmp2_Double,valTmp4_Double;\n" +
             "   char valTmp1_Char,valTmp2_Char,valTmp4_Char;\n" +
             "   int int_num0vector,int_num1vector;\n" +
             "   double double_num0vector,double_num1vector;\n" +
             "   char char_num0vector,char_num1vector;\n" +
-            "   int t_1,t_2,t_3;\n" +
+            "   int t_1,t_2,t_3,t_1_int;\n" +
             "   int t_1vector,t_2vector,t_3vector;\n" +
+            "   double t_1Double,t_2Double,t_3Double;\n" +
+            "   double t_1Doublevector,t_2Doublevector,t_3Doublevector,t_1_float;\n" +
             "   int int_num0,int_num1,int_num2,int_num3;\n" +
             "   int int_ex_num0,int_ex_num1,int_ex_num2;\n" +
             "   double double_ex_num0,double_ex_num1,double_ex_num2;\n" +
-            "   char char_ex_num0,char_ex_num1,char_ex_num2;\n" +
+            "   char char_ex_num0,char_ex_num1,char_ex_num2,t_1_char;\n" +
             "   int punteroTMPInt;\n" +
             "   int punteroTMPChar;\n" +
             "   int punteroTMPDouble;\n" +
