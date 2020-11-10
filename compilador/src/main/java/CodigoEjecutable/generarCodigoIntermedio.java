@@ -394,7 +394,9 @@ public class generarCodigoIntermedio {
                                 append(getStack(0,"")+"["+SymTable.SIZE_POS+"]"+"=sizeDOUBLEHEAP");
                                 append("sizeDOUBLEHEAP=sizeDOUBLEHEAP+"+posEXTRACLASE);
                             }else{
-                                append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                                //append("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+                                append(x.RESULT+"="+getStack(datos_extra[1],"")+"[op_1]");
+
                             }
                         }else {
                             append(x.RESULT+"="+getStack(datos_extra[1],"")+"[op_1]");

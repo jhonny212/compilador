@@ -29,9 +29,9 @@ public class Main {
 
     public static void main(String[] args) {
         //generarCompilador();
-        test();
-        //MainInterfaz interfaz=new MainInterfaz();
-        //interfaz.show();
+        //test();
+        MainInterfaz interfaz=new MainInterfaz();
+        interfaz.show();
 
 
 
@@ -73,58 +73,114 @@ public class Main {
     public static void test() {
         String texto =
                 "%%VB\n" +
-                        "Public Function validar(ByVal valor As Integer) As Integer\n" +
-                        "  Return valor-1\n" +
+                        "Public Function Incremento(ByVal Valor As Integer) As Integer\n" +
+                        "  Valor = Valor + 1\n" +
+                        "  Return Valor\n" +
                         "End Function\n" +
-                        "Public Function factorial(ByVal valor As Integer) As Integer\n" +
-                        "  If valor==0 Then\n" +
-                        "    Return 1\n" +
-                        "  Else\n" +
-                        "    Return valor*factorial(validar(valor))\n" +
-                        "  End If\n" +
-                        "End Function\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
                         "%%JAVA\n" +
-                        "public class animal{\n" +
-                        "  float promedioVida;" +
-                        "  int x,y,z;" +
-                        "  \n" +
                         "\n" +
-                        "  public animal(float promedio){\n" +
-                        "\n" +
-                        "    promedioVida=promedio;\n" +
-                        "  }\n" +
-                        "  public float getPromedio(){\n" +
-                        "    return promedioVida;\n" +
-                        "  }\n" +
-                        "\n" +
-                        "}\n" +
                         "%%PY\n" +
-                        "def mostrarSaludo():\n" +
-                        "  print(\"PRESIONE 1 PARA CONTINUAR\")\n" +
-                        "  PY saltoLinea()\n" +
+                        "def Mensaje(tipo):\n" +
+                        "    if tipo == 1:\n" +
+                        "        print(\"Arreglo antes de ordenarse \\n\")\n" +
+                        "    elif tipo == 2:\n" +
+                        "        print(\"Arreglo depues de ordenarse \\n\")\n" +
+                        "    else:\n" +
+                        "        print(\"default \\n\")\n" +
                         "\n" +
-                        "\n" +
-                        "def saltoLinea():\n" +
-                        "  print(\" \\n\")\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
+                        "def Mostrar(indice, valor):\n" +
+                        "    print(\"arreglo[\", indice, \"] = \",valor,\" \\n \")\n" +
                         "\n" +
                         "%%PROGRAMA\n" +
-                        "#include \"PY\"\n" +
-                        "#include \"JAVA.*\"\n" +
-                        "#include \"VB\"\n" +
-                        "int valor;\n" +
-                        "float valorFlotante;\n" +
-                        "void main(){\n" +
-                        "    JAVA.animal animal(10.5);\n" +
-                        "    JAVA.animal animal2(20.5);\n" +
-                        "    JAVA.animal animal3(40.5);\n" +
+                        "/* ---------------------------------------------\n" +
+                        "\tSeccion de Librerias\n" +
+                        "   --------------------------------------------- */\n" +
+                        "   #include \"VB\"\n" +
+                        "   #include \"PY\"\n" +
                         "\n" +
-                        "    valorFlotante=animal.getPromedio();\n" +
-                        "    printf(\"VALOR %f\",valorFlotante);\n" +
+                        "/* ---------------------------------------------\n" +
+                        "    Declaracion de Constantes\n" +
+                        "   --------------------------------------------- */\n" +
                         "\n" +
-                        "}";
+                        "    int tamano;\n" +
+                        "\n" +
+                        "/* ---------------------------------------------\n" +
+                        "    Declaracion de Variables Globales\n" +
+                        "   --------------------------------------------- */\n" +
+                        "\n" +
+                        "\n" +
+                        "   int i;\n" +
+                        "   int j;\n" +
+                        "   int tmp;\n" +
+                        "\n" +
+                        "   void main ()\n" +
+                        "   {\n" +
+                        "        // Inicializar arreglo\n" +
+                        "    tamano=10;\n" +
+                        "    int arreglo[tamano];" +
+                        "    j=0;\n" +
+                        "\t\tarreglo[0]=7;\n" +
+                        "\t\tarreglo[1]=14;\n" +
+                        "\t\tarreglo[2]=18;\n" +
+                        "\t\tarreglo[3]=19;\n" +
+                        "\t\tarreglo[4]=21;\n" +
+                        "\t\tarreglo[5]=2;\n" +
+                        "\t\tarreglo[6]=9;\n" +
+                        "\t\tarreglo[7]=24;\n" +
+                        "\t\tarreglo[8]=29;\n" +
+                        "\t\tarreglo[9]=47;\n" +
+                        "\n" +
+                        "\t\tPY.Mensaje(1);\n" +
+                        "\t\tfor(i = 0; i < tamano; i = i + 1)\n" +
+                        "\t    {\n" +
+                        "\t\t\t//Pascal.Mostrar(i,arreglo[i]);\n" +
+                        "      PY.Mostrar(i,arreglo[i]);\n" +
+                        "\t    }\n" +
+                        "\n" +
+                        "\t\ti = 0;\n" +
+                        "\n" +
+                        "\t\t// Ordenar el arreglo\n" +
+                        "\t\t// Inicio while 1\n" +
+                        "\t\twhile(i < 10)\n" +
+                        "\t\t{\n" +
+                        "\t\t\t// Inicio while 2\n" +
+                        "\t\t\twhile(j < 9)\n" +
+                        "\t\t\t{\n" +
+                        "\t\t\t\t// Inicio if\n" +
+                        "\t\t\t\tif(arreglo[j] < arreglo[j+1])\n" +
+                        "\t\t\t\t{\n" +
+                        "                    tmp = arreglo[j];\n" +
+                        "                    arreglo[j] = arreglo[j + 1];\n" +
+                        "                    arreglo[j + 1] = tmp;\n" +
+                        "\n" +
+                        "\t\t\t\t} // fin if\n" +
+                        "\n" +
+                        "\t\t\t\t// contador 2\n" +
+                        "\t\t\t\tj = VB.Incremento(j);\n" +
+                        "\n" +
+                        "\t\t\t} // fin while\n" +
+                        "\n" +
+                        "\t\t\t// contador 1\n" +
+                        "\t\t\tj = 0;\n" +
+                        "\t\t\ti = VB.Incremento(i);\n" +
+                        "\n" +
+                        "\t\t} // fin while\n" +
+                        "\n" +
+                        "\n" +
+                        "\t   PY.Mensaje(2);\n" +
+                        "\n" +
+                        "\t   // Mostrar el arreglo ordenado\n" +
+                        "\n" +
+                        "\t   for(i = 0; i < tamano; i = i + 1)\n" +
+                        "\t   {\n" +
+                        "\t\t\tPY.Mostrar(i,arreglo[i]);\n" +
+                        "\t   }\n" +
+                        "\t   getch();\n" +
+                        "   }\n";
         Compilador compilador = new Compilador(texto);
         compilador.create();
         compilador.compilar_vb();
@@ -142,7 +198,7 @@ public class Main {
        codigoIntermedio.generar(MetodosVisual.instrucciones);
 
        Editor.compilarCodigoC(generarCodigoIntermedio.codigoFinal);
-        //compilador.printError();
+       // compilador.printError();
     }
 
 }

@@ -33,882 +33,702 @@
         </thead>
         <tbody>          <tr>
             <th scope="row">1</th>
-            <td>void VB_Factorial_int_int() {</td>
-            <td>void VB_Factorial_int_int() {</td>
+            <td>void VB_Incremento_int_int() {</td>
+            <td>void VB_Incremento_int_int() {</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">2</th>
-            <td>num_tmp_float=valor;</td>
-            <td>num_tmp_float=valor;</td>
+            <td>int_num0=Valor+1;</td>
+            <td>Valor=Valor+1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td>if(num_tmp_float == 0)goto E1;</td>
-            <td>if(num_tmp_float == 0)goto E1;</td>
-            <td></td>
+            <td>Valor=int_num0;</td>
+            <td style="color:red">Valor=int_num0;</td>
+            <td>La asignacion puede asignarse de una vez, a la instruccion anterior</td>
           </tr>
           <tr>
             <th scope="row">4</th>
-            <td>goto E2;</td>
-            <td>goto E2;</td>
+            <td>return Valor</td>
+            <td>return Valor</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">5</th>
-            <td>E1:</td>
-            <td>E1:</td>
+            <td>goto E1;</td>
+            <td>goto E1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">6</th>
-            <td>return 1</td>
-            <td>return 1</td>
+            <td>E1:</td>
+            <td>E1:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">7</th>
-            <td>goto E4;</td>
-            <td>goto E4;</td>
+            <td>;}</td>
+            <td>;}</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">8</th>
-            <td>goto E3;</td>
-            <td>goto E4;</td>
-            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
+            <td>void PY_Mensaje_1() {</td>
+            <td>void PY_Mensaje_1() {</td>
+            <td></td>
           </tr>
           <tr>
             <th scope="row">9</th>
-            <td>E2:</td>
-            <td>E2:</td>
+            <td>num_tmp_float=tipo;</td>
+            <td>num_tmp_float=tipo;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">10</th>
-            <td>int_num0=valor-1;</td>
-            <td>int_num0=valor-1;</td>
+            <td>if(num_tmp_float == 1)goto E2;</td>
+            <td>if(num_tmp_float == 1)goto E2;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">11</th>
-            <td>param int_num0</td>
-            <td>param int_num0</td>
+            <td>num_tmp_float=tipo;</td>
+            <td>num_tmp_float=tipo;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">12</th>
-            <td>call_fun=call VB_Factorial_int_int 1</td>
-            <td>call_fun=call VB_Factorial_int_int 1</td>
+            <td>if(num_tmp_float == 2)goto E3;</td>
+            <td>if(num_tmp_float == 2)goto E3;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">13</th>
-            <td>int_num0=valor*call_fun;</td>
-            <td>int_num0=valor*call_fun;</td>
+            <td>goto E5;</td>
+            <td>goto E5;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">14</th>
-            <td>return int_num0</td>
-            <td>return int_num0</td>
+            <td>E2:</td>
+            <td>E2:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">15</th>
-            <td>goto E4;</td>
-            <td>goto E4;</td>
+            <td>print "Arreglo antes de ordenarse"</td>
+            <td>print "Arreglo antes de ordenarse"</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">16</th>
-            <td>E3:</td>
-            <td style="color:red">E3:</td>
-            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
+            <td>goto E6;</td>
+            <td>goto E6;</td>
+            <td></td>
           </tr>
           <tr>
             <th scope="row">17</th>
-            <td>E4:</td>
-            <td>E4:</td>
+            <td>E3:</td>
+            <td>E3:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">18</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>print "Arreglo depues de ordenarse"</td>
+            <td>print "Arreglo depues de ordenarse"</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">19</th>
-            <td>void VB_pintarNota_int() {</td>
-            <td>void VB_pintarNota_int() {</td>
+            <td>goto E6;</td>
+            <td>goto E6;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">20</th>
-            <td>print "\n La nota Es de "</td>
-            <td>print "\n La nota Es de "</td>
+            <td>E5:</td>
+            <td>E5:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">21</th>
-            <td>print valor</td>
-            <td>print valor</td>
+            <td>print "default"</td>
+            <td>print "default"</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">22</th>
-            <td>print "\n"</td>
-            <td>print "\n"</td>
+            <td>goto E6;</td>
+            <td>goto E6;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">23</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>E6:</td>
+            <td>E6:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">24</th>
-            <td>class alumno{</td>
-            <td>class alumno{</td>
+            <td>;}</td>
+            <td>;}</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">25</th>
-            <td>void JAVA_alumno_actualizarPromedio_int_int() {</td>
-            <td>void JAVA_alumno_actualizarPromedio_int_int() {</td>
+            <td>void PY_Mostrar_2() {</td>
+            <td>void PY_Mostrar_2() {</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">26</th>
-            <td>E6:</td>
-            <td>E6:</td>
+            <td>print "arreglo["</td>
+            <td>print "arreglo["</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">27</th>
-            <td>if(tipo == 1)goto E7;</td>
-            <td>if(tipo == 1)goto E7;</td>
+            <td>print indice</td>
+            <td>print indice</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">28</th>
-            <td>if(tipo == 2)goto E8;</td>
-            <td>if(tipo == 2)goto E8;</td>
+            <td>print "] = "</td>
+            <td>print "] = "</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">29</th>
-            <td>if(tipo == 3)goto E9;</td>
-            <td>if(tipo == 3)goto E9;</td>
+            <td>print valor</td>
+            <td>print valor</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">30</th>
-            <td>goto E10;</td>
-            <td>goto E10;</td>
+            <td>;}</td>
+            <td>;}</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">31</th>
-            <td>E7:</td>
-            <td>E7:</td>
+            <td>int main(){</td>
+            <td>int main(){</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">32</th>
-            <td>this.curso1=valor;</td>
-            <td>this.curso1=valor;</td>
+            <td>j=0;</td>
+            <td>j=0;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">33</th>
-            <td>goto E10;</td>
-            <td>goto E10;</td>
+            <td>tamano=10;</td>
+            <td>tamano=10;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">34</th>
-            <td>E8:</td>
-            <td>E8:</td>
+            <td>arreglo_tam1=0;</td>
+            <td>arreglo_tam1=0;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">35</th>
-            <td>this.curso2=valor;</td>
-            <td>this.curso2=valor;</td>
+            <td>arreglo_tam0=tamano;</td>
+            <td>arreglo_tam0=tamano;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">36</th>
-            <td>goto E10;</td>
-            <td>goto E10;</td>
+            <td>arreglo_tam1=tamano+arreglo_tam1;</td>
+            <td>arreglo_tam1=tamano+arreglo_tam1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">37</th>
-            <td>E9:</td>
-            <td>E9:</td>
+            <td>arreglo[0]=7</td>
+            <td>arreglo[0]=7</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">38</th>
-            <td>this.curso3=valor;</td>
-            <td>this.curso3=valor;</td>
+            <td>arreglo[1]=14</td>
+            <td>arreglo[1]=14</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">39</th>
-            <td>goto E10;</td>
-            <td>goto E10;</td>
+            <td>arreglo[2]=18</td>
+            <td>arreglo[2]=18</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">40</th>
-            <td>E10:</td>
-            <td>E10:</td>
+            <td>arreglo[3]=19</td>
+            <td>arreglo[3]=19</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">41</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>arreglo[4]=21</td>
+            <td>arreglo[4]=21</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">42</th>
-            <td>void JAVA_alumno_pintarPromedio() {</td>
-            <td>void JAVA_alumno_pintarPromedio() {</td>
+            <td>arreglo[5]=2</td>
+            <td>arreglo[5]=2</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">43</th>
-            <td>print "EL PROMEDIO ES DE "</td>
-            <td>print "EL PROMEDIO ES DE "</td>
+            <td>arreglo[6]=9</td>
+            <td>arreglo[6]=9</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">44</th>
-            <td>print this.promedio</td>
-            <td>print this.promedio</td>
+            <td>arreglo[7]=24</td>
+            <td>arreglo[7]=24</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">45</th>
-            <td>print "\n"</td>
-            <td>print "\n"</td>
+            <td>arreglo[8]=29</td>
+            <td>arreglo[8]=29</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">46</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>arreglo[9]=47</td>
+            <td>arreglo[9]=47</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">47</th>
-            <td>void JAVA_alumno_calcularPromedio_int() {</td>
-            <td>void JAVA_alumno_calcularPromedio_int() {</td>
+            <td>param 1</td>
+            <td>param 1</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">48</th>
-            <td>int_num0=this.curso1+this.curso2;</td>
-            <td>int_num0=this.curso1+this.curso2;</td>
+            <td>call PY_Mensaje_1 1</td>
+            <td>call PY_Mensaje_1 1</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">49</th>
-            <td>int_num1=int_num0+this.curso3;</td>
-            <td>int_num1=int_num0+this.curso3;</td>
+            <td>i=0;</td>
+            <td>i=0;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">50</th>
-            <td>int_num0=int_num1/3;</td>
-            <td>this.promedio=int_num1/3;</td>
+            <td>E9:</td>
+            <td>E9:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">51</th>
-            <td>this.promedio=int_num0;</td>
-            <td style="color:red">this.promedio=int_num0;</td>
-            <td>La asignacion puede asignarse de una vez, a la instruccion anterior</td>
+            <td>if(i < tamano)goto E10;</td>
+            <td>if(i < tamano)goto E10;</td>
+            <td></td>
           </tr>
           <tr>
             <th scope="row">52</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>goto E11;</td>
+            <td>goto E11;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">53</th>
-            <td>void JAVA_alumno_getPromedio_float_float() {</td>
-            <td>void JAVA_alumno_getPromedio_float_float() {</td>
+            <td>E10:</td>
+            <td>E10:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">54</th>
-            <td>return this.promedio</td>
-            <td>return this.promedio</td>
+            <td>param i</td>
+            <td>param i</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">55</th>
-            <td>goto E15;</td>
-            <td>goto E15;</td>
+            <td>t_1_int=arreglo[i];</td>
+            <td>t_1_int=arreglo[i];</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">56</th>
-            <td>E15:</td>
-            <td>E15:</td>
+            <td>param t_1_int</td>
+            <td>param t_1_int</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">57</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>call PY_Mostrar_2 2</td>
+            <td>call PY_Mostrar_2 2</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">58</th>
-            <td>void JAVA_constru_alumno_alumno_int_int_int() {</td>
-            <td>void JAVA_constru_alumno_alumno_int_int_int() {</td>
+            <td>int_num0=i+1;</td>
+            <td>i=i+1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">59</th>
-            <td>this.curso1=curso1;</td>
-            <td>this.curso1=curso1;</td>
-            <td></td>
+            <td>i=int_num0;</td>
+            <td style="color:red">i=int_num0;</td>
+            <td>La asignacion puede asignarse de una vez, a la instruccion anterior</td>
           </tr>
           <tr>
             <th scope="row">60</th>
-            <td>this.curso2=curso2;</td>
-            <td>this.curso2=curso2;</td>
+            <td>goto E9;</td>
+            <td>goto E9;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">61</th>
-            <td>this.curso3=curso3;</td>
-            <td>this.curso3=curso3;</td>
+            <td>E11:</td>
+            <td>E11:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">62</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>i=0;</td>
+            <td>i=0;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">63</th>
-            <td>void PY_validarCurso_1() {</td>
-            <td>void PY_validarCurso_1() {</td>
+            <td>E13:</td>
+            <td>E13:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">64</th>
-            <td>print "EVALUANDO NOTA: "</td>
-            <td>print "EVALUANDO NOTA: "</td>
+            <td>num_tmp_float=i;</td>
+            <td>num_tmp_float=i;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">65</th>
-            <td>print promedio</td>
-            <td>print promedio</td>
-            <td></td>
+            <td>if(num_tmp_float < 10)goto E14;</td>
+            <td>if(num_tmp_float < 10)goto E16;</td>
+            <td>La parte de la instruccion goto E# puede ir al destino directamente</td>
           </tr>
           <tr>
             <th scope="row">66</th>
-            <td>num_tmp_float=promedio;</td>
-            <td>num_tmp_float=promedio;</td>
+            <td>goto E15;</td>
+            <td>goto E15;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">67</th>
-            <td>if(num_tmp_float < 50)goto E17;</td>
-            <td>if(num_tmp_float < 50)goto E17;</td>
-            <td></td>
+            <td>E14:</td>
+            <td style="color:red">E14:</td>
+            <td>La etiqueta no es usada por un goto, puede eliminarse</td>
           </tr>
           <tr>
             <th scope="row">68</th>
-            <td>goto E18;</td>
-            <td>goto E18;</td>
+            <td>E16:</td>
+            <td>E16:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">69</th>
-            <td>E17:</td>
-            <td>E17:</td>
+            <td>num_tmp_float=j;</td>
+            <td>num_tmp_float=j;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">70</th>
-            <td>print " REPROBADO \n"</td>
-            <td>print " REPROBADO \n"</td>
+            <td>if(num_tmp_float < 9)goto E17;</td>
+            <td>if(num_tmp_float < 9)goto E17;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">71</th>
-            <td>goto E19;</td>
-            <td>goto E19;</td>
+            <td>goto E18;</td>
+            <td>goto E18;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">72</th>
-            <td>E18:</td>
-            <td>E18:</td>
+            <td>E17:</td>
+            <td>E17:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">73</th>
-            <td>print " APROBADO NOTA \n"</td>
-            <td>print " APROBADO NOTA \n"</td>
+            <td>t_1_int=arreglo[j];</td>
+            <td>t_1_int=arreglo[j];</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">74</th>
-            <td>goto E19;</td>
-            <td>goto E19;</td>
+            <td>num_tmp_float=t_1_int;</td>
+            <td>num_tmp_float=t_1_int;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">75</th>
-            <td>E19:</td>
-            <td>E19:</td>
+            <td>int_num0=j+1;</td>
+            <td>int_num0=j+1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">76</th>
-            <td>;}</td>
-            <td>;}</td>
+            <td>t_1_int=arreglo[int_num0];</td>
+            <td>t_1_int=arreglo[int_num0];</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">77</th>
-            <td>int main(){</td>
-            <td>int main(){</td>
+            <td>if(num_tmp_float < t_1_int)goto E19;</td>
+            <td>if(num_tmp_float < t_1_int)goto E19;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">78</th>
-            <td>booleano=0;</td>
-            <td>booleano=0;</td>
+            <td>goto E20;</td>
+            <td>goto E20;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">79</th>
-            <td>print "Ingrese la nota del curso1 \n "</td>
-            <td>print "Ingrese la nota del curso1 \n "</td>
+            <td>E19:</td>
+            <td>E19:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">80</th>
-            <td>Read curso1</td>
-            <td>Read curso1</td>
+            <td>t_1_int=arreglo[j];</td>
+            <td>t_1_int=arreglo[j];</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">81</th>
-            <td>print "Ingrese la nota del curso2 \n "</td>
-            <td>print "Ingrese la nota del curso2 \n "</td>
+            <td>tmp=t_1_int;</td>
+            <td>tmp=t_1_int;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">82</th>
-            <td>Read curso2</td>
-            <td>Read curso2</td>
+            <td>int_num0=j+1;</td>
+            <td>int_num0=j+1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">83</th>
-            <td>print "Ingrese la nota del curso3 \n "</td>
-            <td>print "Ingrese la nota del curso3 \n "</td>
+            <td>t_1_int=arreglo[int_num0];</td>
+            <td>t_1_int=arreglo[int_num0];</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">84</th>
-            <td>Read curso3</td>
-            <td>Read curso3</td>
-            <td></td>
+            <td>t_1_int=t_1_int;</td>
+            <td style="color:red">t_1_int=t_1_int;</td>
+            <td>La asignacion corresponde a la misma variable</td>
           </tr>
           <tr>
             <th scope="row">85</th>
-            <td>param curso1</td>
-            <td>param curso1</td>
+            <td>arreglo[j]=t_1_int</td>
+            <td>arreglo[j]=t_1_int</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">86</th>
-            <td>param curso2</td>
-            <td>param curso2</td>
-            <td></td>
+            <td>tmp=tmp;</td>
+            <td style="color:red">tmp=tmp;</td>
+            <td>La asignacion corresponde a la misma variable</td>
           </tr>
           <tr>
             <th scope="row">87</th>
-            <td>param curso3</td>
-            <td>param curso3</td>
+            <td>int_num0=j+1;</td>
+            <td>int_num0=j+1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">88</th>
-            <td>estudiante=call JAVA_constru_alumno_alumno_int_int_int 3</td>
-            <td>estudiante=call JAVA_constru_alumno_alumno_int_int_int 3</td>
+            <td>arreglo[int_num0]=tmp</td>
+            <td>arreglo[int_num0]=tmp</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">89</th>
-            <td>param 3</td>
-            <td>param 3</td>
+            <td>E20:</td>
+            <td>E20:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">90</th>
-            <td>call JAVA_alumno_calcularPromedio_int 1</td>
-            <td>call JAVA_alumno_calcularPromedio_int 1</td>
+            <td>param j</td>
+            <td>param j</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">91</th>
-            <td>call JAVA_alumno_pintarPromedio </td>
-            <td>call JAVA_alumno_pintarPromedio </td>
+            <td>call_fun_int=call VB_Incremento_int_int 1</td>
+            <td>call_fun_int=call VB_Incremento_int_int 1</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">92</th>
-            <td>param curso1</td>
-            <td>param curso1</td>
+            <td>j=call_fun_int;</td>
+            <td>j=call_fun_int;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">93</th>
-            <td>call VB_pintarNota_int 1</td>
-            <td>call VB_pintarNota_int 1</td>
+            <td>goto E16;</td>
+            <td>goto E16;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">94</th>
-            <td>param curso2</td>
-            <td>param curso2</td>
+            <td>E18:</td>
+            <td>E18:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">95</th>
-            <td>call VB_pintarNota_int 1</td>
-            <td>call VB_pintarNota_int 1</td>
+            <td>j=0;</td>
+            <td>j=0;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">96</th>
-            <td>param curso3</td>
-            <td>param curso3</td>
+            <td>param i</td>
+            <td>param i</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">97</th>
-            <td>call VB_pintarNota_int 1</td>
-            <td>call VB_pintarNota_int 1</td>
+            <td>call_fun_int=call VB_Incremento_int_int 1</td>
+            <td>call_fun_int=call VB_Incremento_int_int 1</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">98</th>
-            <td>call_fun=call JAVA_alumno_getPromedio_float_float </td>
-            <td>call_fun=call JAVA_alumno_getPromedio_float_float </td>
+            <td>i=call_fun_int;</td>
+            <td>i=call_fun_int;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">99</th>
-            <td>param call_fun</td>
-            <td>param call_fun</td>
+            <td>goto E13;</td>
+            <td>goto E13;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">100</th>
-            <td>call PY_validarCurso_1 1</td>
-            <td>call PY_validarCurso_1 1</td>
+            <td>E15:</td>
+            <td>E15:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">101</th>
-            <td>param 5</td>
-            <td>param 5</td>
+            <td>param 2</td>
+            <td>param 2</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">102</th>
-            <td>call_fun=call VB_Factorial_int_int 1</td>
-            <td>call_fun=call VB_Factorial_int_int 1</td>
+            <td>call PY_Mensaje_1 1</td>
+            <td>call PY_Mensaje_1 1</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">103</th>
-            <td>factorial=call_fun;</td>
-            <td>factorial=call_fun;</td>
+            <td>i=0;</td>
+            <td>i=0;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">104</th>
-            <td>print "\n VALOR: "</td>
-            <td>print "\n VALOR: "</td>
+            <td>E21:</td>
+            <td>E21:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">105</th>
-            <td>print factorial</td>
-            <td>print factorial</td>
+            <td>if(i < tamano)goto E22;</td>
+            <td>if(i < tamano)goto E22;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">106</th>
-            <td>param 1</td>
-            <td>param 1</td>
+            <td>goto E23;</td>
+            <td>goto E23;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">107</th>
-            <td>param 60</td>
-            <td>param 60</td>
+            <td>E22:</td>
+            <td>E22:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">108</th>
-            <td>call JAVA_alumno_actualizarPromedio_int_int 2</td>
-            <td>call JAVA_alumno_actualizarPromedio_int_int 2</td>
+            <td>param i</td>
+            <td>param i</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">109</th>
-            <td>param 2</td>
-            <td>param 2</td>
+            <td>t_1_int=arreglo[i];</td>
+            <td>t_1_int=arreglo[i];</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">110</th>
-            <td>param 60</td>
-            <td>param 60</td>
+            <td>param t_1_int</td>
+            <td>param t_1_int</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">111</th>
-            <td>call JAVA_alumno_actualizarPromedio_int_int 2</td>
-            <td>call JAVA_alumno_actualizarPromedio_int_int 2</td>
+            <td>call PY_Mostrar_2 2</td>
+            <td>call PY_Mostrar_2 2</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">112</th>
-            <td>param 3</td>
-            <td>param 3</td>
+            <td>int_num0=i+1;</td>
+            <td>i=i+1;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">113</th>
-            <td>param 60</td>
-            <td>param 60</td>
-            <td></td>
+            <td>i=int_num0;</td>
+            <td style="color:red">i=int_num0;</td>
+            <td>La asignacion puede asignarse de una vez, a la instruccion anterior</td>
           </tr>
           <tr>
             <th scope="row">114</th>
-            <td>call JAVA_alumno_actualizarPromedio_int_int 2</td>
-            <td>call JAVA_alumno_actualizarPromedio_int_int 2</td>
+            <td>goto E21;</td>
+            <td>goto E21;</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">115</th>
-            <td>Read</td>
-            <td>Read</td>
+            <td>E23:</td>
+            <td>E23:</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">116</th>
-            <td>param 3</td>
-            <td>param 3</td>
+            <td>Read</td>
+            <td>Read</td>
             <td></td>
           </tr>
           <tr>
             <th scope="row">117</th>
-            <td>call JAVA_alumno_calcularPromedio_int 1</td>
-            <td>call JAVA_alumno_calcularPromedio_int 1</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">118</th>
-            <td>call JAVA_alumno_pintarPromedio </td>
-            <td>call JAVA_alumno_pintarPromedio </td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">119</th>
-            <td>call_fun=call JAVA_alumno_getPromedio_float_float </td>
-            <td>call_fun=call JAVA_alumno_getPromedio_float_float </td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">120</th>
-            <td>param call_fun</td>
-            <td>param call_fun</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">121</th>
-            <td>call PY_validarCurso_1 1</td>
-            <td>call PY_validarCurso_1 1</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">122</th>
-            <td>print "Desea limpiar la pantalla? Presione 1"</td>
-            <td>print "Desea limpiar la pantalla? Presione 1"</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">123</th>
-            <td>Read booleano</td>
-            <td>Read booleano</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">124</th>
-            <td>num_tmp_float=booleano;</td>
-            <td>num_tmp_float=booleano;</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">125</th>
-            <td>if(num_tmp_float == 1)goto E21;</td>
-            <td>if(num_tmp_float == 1)goto E21;</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">126</th>
-            <td>goto E22;</td>
-            <td>goto E22;</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">127</th>
-            <td>E21:</td>
-            <td>E21:</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">128</th>
-            <td>clear</td>
-            <td>clear</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">129</th>
-            <td>E22:</td>
-            <td>E22:</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">130</th>
-            <td>print "\n DATOS ESTUDIANTE 2 \n"</td>
-            <td>print "\n DATOS ESTUDIANTE 2 \n"</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">131</th>
-            <td>print "Ingrese la nota del curso1 \n "</td>
-            <td>print "Ingrese la nota del curso1 \n "</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">132</th>
-            <td>Read curso1</td>
-            <td>Read curso1</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">133</th>
-            <td>print "Ingrese la nota del curso2 \n "</td>
-            <td>print "Ingrese la nota del curso2 \n "</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">134</th>
-            <td>Read curso2</td>
-            <td>Read curso2</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">135</th>
-            <td>print "Ingrese la nota del curso3 \n "</td>
-            <td>print "Ingrese la nota del curso3 \n "</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">136</th>
-            <td>Read curso3</td>
-            <td>Read curso3</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">137</th>
-            <td>param curso1</td>
-            <td>param curso1</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">138</th>
-            <td>param curso2</td>
-            <td>param curso2</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">139</th>
-            <td>param curso3</td>
-            <td>param curso3</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">140</th>
-            <td>estudiante2=call JAVA_constru_alumno_alumno_int_int_int 3</td>
-            <td>estudiante2=call JAVA_constru_alumno_alumno_int_int_int 3</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">141</th>
-            <td>param 3</td>
-            <td>param 3</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">142</th>
-            <td>call JAVA_alumno_calcularPromedio_int 1</td>
-            <td>call JAVA_alumno_calcularPromedio_int 1</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">143</th>
-            <td>call JAVA_alumno_pintarPromedio </td>
-            <td>call JAVA_alumno_pintarPromedio </td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">144</th>
-            <td>call_fun=call JAVA_alumno_getPromedio_float_float </td>
-            <td>call_fun=call JAVA_alumno_getPromedio_float_float </td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">145</th>
-            <td>param call_fun</td>
-            <td>param call_fun</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">146</th>
-            <td>call PY_validarCurso_1 1</td>
-            <td>call PY_validarCurso_1 1</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">147</th>
             <td>;}</td>
             <td>;}</td>
             <td></td>
