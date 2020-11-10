@@ -75,6 +75,9 @@ public class Main {
                 "%%VB\n" +
                         "Public Function Incremento(ByVal Valor As Integer) As Integer\n" +
                         "  Valor = Valor + 1\n" +
+                        "  Valor = 2\n" +
+                        "  Valor =3*Valor\n" +
+                        "  Valor = Valor\n" +
                         "  Return Valor\n" +
                         "End Function\n" +
                         "\n" +
@@ -86,14 +89,14 @@ public class Main {
                         "%%PY\n" +
                         "def Mensaje(tipo):\n" +
                         "    if tipo == 1:\n" +
-                        "        print(\"Arreglo antes de ordenarse \\n\")\n" +
+                        "        print(\"Arreglo antes de ordenarse\")\n" +
                         "    elif tipo == 2:\n" +
-                        "        print(\"Arreglo depues de ordenarse \\n\")\n" +
+                        "        print(\"Arreglo depues de ordenarse\")\n" +
                         "    else:\n" +
-                        "        print(\"default \\n\")\n" +
+                        "        print(\"default\")\n" +
                         "\n" +
                         "def Mostrar(indice, valor):\n" +
-                        "    print(\"arreglo[\", indice, \"] = \",valor,\" \\n \")\n" +
+                        "    print(\"arreglo[\", indice, \"] = \",valor)\n" +
                         "\n" +
                         "%%PROGRAMA\n" +
                         "/* ---------------------------------------------\n" +
@@ -121,8 +124,8 @@ public class Main {
                         "   {\n" +
                         "        // Inicializar arreglo\n" +
                         "    tamano=10;\n" +
-                        "    int arreglo[tamano];" +
                         "    j=0;\n" +
+                        "    int arreglo[tamano];\n" +
                         "\t\tarreglo[0]=7;\n" +
                         "\t\tarreglo[1]=14;\n" +
                         "\t\tarreglo[2]=18;\n" +
@@ -180,24 +183,25 @@ public class Main {
                         "\t\t\tPY.Mostrar(i,arreglo[i]);\n" +
                         "\t   }\n" +
                         "\t   getch();\n" +
-                        "   }\n";
+                        "   }";
         Compilador compilador = new Compilador(texto);
         compilador.create();
         compilador.compilar_vb();
-        compilador.compilar_java();
-        compilador.compilar_pyva();
-        compilador.compilar_c();
-        SymTable.fix();
-        //OptimizarCodigo optimizarCodigo=new OptimizarCodigo();
-        //optimizarCodigo.optimiar();
+        //compilador.compilar_java();
+        //compilador.compilar_pyva();
+        //compilador.compilar_c();
+        //SymTable.fix();
+        OptimizarCodigo optimizarCodigo=new OptimizarCodigo();
+        optimizarCodigo.optimiar();
+        optimizarCodigo.print();
         //optimizarCodigo.print();
         //compilador.printCodOP();
         //SymTable.print2();
-        generarCodigoIntermedio codigoIntermedio = new generarCodigoIntermedio();
+       // generarCodigoIntermedio codigoIntermedio = new generarCodigoIntermedio();
         //compilador.printCod();
-       codigoIntermedio.generar(MetodosVisual.instrucciones);
+       //codigoIntermedio.generar(MetodosVisual.instrucciones);
 
-       Editor.compilarCodigoC(generarCodigoIntermedio.codigoFinal);
+       //Editor.compilarCodigoC(generarCodigoIntermedio.codigoFinal);
        // compilador.printError();
     }
 

@@ -21,10 +21,46 @@ public class OptimizarCodigo {
         if(validar()){
             vectorDatosExtra=new String[10];
             vectorDatosExtra=new String[MetodosVisual.instrOptim.size()];
-            optimizar2(MetodosVisual.instrOptim,false);
+            optimizar2(MetodosVisual.instrOptim);
+            optimizar3(MetodosVisual.instrOptim);
         }
     }
-    void optimizar2(ArrayList<Cuadruplas> list,boolean valid){
+    void optimizar3(ArrayList<Cuadruplas>list){
+        for (int i = 0; i < list.size(); i++) {
+            Cuadruplas cuadrupla=list.get(i);
+            if(cuadrupla.canAdd){
+                switch (cuadrupla.TIPO){
+                    case 0:
+                    case 1:
+                    case 2:
+                        final String RESULT=cuadrupla.RESULT;
+                        for (int j = i+1; j < list.size(); j++) {
+                            Cuadruplas tmp=list.get(j);
+                            if(tmp.TIPO==5 || tmp.TIPO==4){
+                                break;
+                            }
+                            if(!tmp.canAdd){
+                                continue;
+                            }
+                            if(tmp.getVal(1).equals(RESULT)){
+                                break;
+                            }else if(tmp.getVal(0).equals(RESULT)){
+                                break;
+                            }
+                            if(tmp.getVal(-1).equals(RESULT)
+                                    && (tmp.TIPO==0 || tmp.TIPO==1 || tmp.TIPO==2)){
+                                cuadrupla.canAdd=false;
+                                vectorDatosExtra[i]="El valor no es usado, puede eliminarse";
+                                break;
+                            }
+
+                        }
+
+                }
+            }
+        }
+    }
+    void optimizar2(ArrayList<Cuadruplas> list){
             for (int i = 0; i < list.size(); i++) {
                 Cuadruplas cuadrupla=list.get(i);
                 if(cuadrupla.canAdd){
@@ -101,12 +137,8 @@ public class OptimizarCodigo {
                             }
                         }catch (Exception ex){}
                     }
+
                 }
-                /*if(valid){
-                    if(cuadrupla.canAdd){
-                        this.codigoOptimizado.add(cuadrupla);
-                    }
-                }*/
             }
 
     }
@@ -222,12 +254,5 @@ public class OptimizarCodigo {
 
     }
 
-    class  createHtML{
-        String THEAD="";
-        String TBODY="";
-        String BODY="";
-        String HTML="";
 
-
-    }
 }

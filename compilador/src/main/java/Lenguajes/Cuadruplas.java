@@ -144,5 +144,22 @@ public class Cuadruplas implements Cloneable{
 
     public boolean canAdd=true;
 
-
+    public String getVal(int opc){
+        if(opc==1){
+            if(this.ARG1==null){
+                return "";
+            }
+            return this.ARG1;
+        }else if(opc==0){
+            if(this.ARG2==null){
+                return "";
+            }
+            return this.ARG2;
+        }else{
+            if(this.RESULT==null){
+                return "";
+            }
+            return this.RESULT;
+        }
+    }
 }
